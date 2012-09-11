@@ -75,7 +75,7 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectAsApp(string client_id, string client_secret, string code)
+        public static Client ConnectAsApp(string client_id, string client_secret, string podioAppId, string podioAppToken)
         {
             // validate that the accessToken is valid.
             return new Client();
