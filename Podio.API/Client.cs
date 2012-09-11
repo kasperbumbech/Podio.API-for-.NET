@@ -85,6 +85,8 @@ namespace Podio.API
 
         public Services.SpaceService SpaceService { get { return new Services.SpaceService(this); } }
 
+        public Services.ApplicationService ApplicationService { get { return new Services.ApplicationService(this); } }
+
 
     }
 }
