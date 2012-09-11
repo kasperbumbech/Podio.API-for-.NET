@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Podio.API</id>
+    <version>0.0.0</version>
+    <authors>Kasper Bumbech Andersen</authors>
+    <owners>Kasper Bumbech Andersen</owners>
+    <licenseUrl>http://podio.kasperb.dk/license</licenseUrl>
+    <projectUrl>http://podio.kasperb.dk</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Podio.API Assembly</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>Podio.API</tags>
+    <dependencies></dependencies>
+  </metadata>
+  <files>
+    <file src="Podio.API\bin\Release\Podio.API.dll" target="lib\net40" />
+  </files>
+</package>
