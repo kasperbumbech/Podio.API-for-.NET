@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "embed_id", IsRequired=false)]
-		public int EmbedId { get; set; }
+		public int? EmbedId { get; set; }
 
 
 		[DataMember(Name = "original_url", IsRequired=false)]
@@ -35,7 +35,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "provider_name", IsRequired=false)]
@@ -51,7 +51,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "embed_width", IsRequired=false)]
-		public int EmbedWidth { get; set; }
+		public int? EmbedWidth { get; set; }
 
 
 		[DataMember(Name = "files", IsRequired=false)]

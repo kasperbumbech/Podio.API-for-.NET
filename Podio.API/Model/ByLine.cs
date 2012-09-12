@@ -15,7 +15,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "id", IsRequired=false)]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 
 		[DataMember(Name = "avatar_type", IsRequired=false)]
@@ -23,11 +23,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "avatar_id", IsRequired=false)]
-		public int AvatarId { get; set; }
+		public int? AvatarId { get; set; }
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Dictionary<string,string> Image { get; set; }
+		public FileAttachment Image { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
@@ -42,7 +42,7 @@ namespace Podio.API.Model
 		///  # Sometimes used by older operation
 		/// </summary>
 		[DataMember(Name = "avatar", IsRequired=false)]
-		public int Avatar { get; set; }
+		public int? Avatar { get; set; }
 
 
 	}

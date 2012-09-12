@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "task_id", IsRequired=false)]
-		public int TaskId { get; set; }
+		public int? TaskId { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]
@@ -35,7 +35,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "due_date", IsRequired=false)]
-		public DateTime DueDate { get; set; }
+		public string DueDate { get; set; }
 
 
 		[DataMember(Name = "due_time", IsRequired=false)]
@@ -45,16 +45,16 @@ namespace Podio.API.Model
 		/// <summary>
 		///  => tru
 		/// </summary>
-		[DataMember(Name = "due_on, :datetime", IsRequired=false)]
-		public DateTime DueOn { get; set; }
+		[DataMember(Name = "due_on, :string", IsRequired=false)]
+		public string DueOn { get; set; }
 
 
 		[DataMember(Name = "responsible", IsRequired=false)]
-		public Dictionary<string,string> Responsible { get; set; }
+		public List<User> Responsible { get; set; }
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "link", IsRequired=false)]
@@ -62,11 +62,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "completed_on", IsRequired=false)]
-		public DateTime CompletedOn { get; set; }
+		public string CompletedOn { get; set; }
 
 
 		/// <summary>
@@ -99,7 +99,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ref_id", IsRequired=false)]
-		public int RefId { get; set; }
+		public int? RefId { get; set; }
 
 
 		[DataMember(Name = "ref_title", IsRequired=false)]
@@ -110,8 +110,8 @@ namespace Podio.API.Model
 		public string RefLink { get; set; }
 
 
-		[DataMember(Name = "ref", IsRequired=false)]
-		public Dictionary<string,string> Ref { get; set; }
+        //[DataMember(Name = "ref", IsRequired=false)]
+        //public  Ref { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

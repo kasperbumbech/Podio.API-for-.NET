@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "field_id", IsRequired=false)]
-		public int FieldId { get; set; }
+		public int? FieldId { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -22,8 +22,8 @@ namespace Podio.API.Model
 		public string ExternalId { get; set; }
 
 
-		[DataMember(Name = "config", IsRequired=false)]
-		public Dictionary<string,string> Config { get; set; }
+        //[DataMember(Name = "config", IsRequired=false)]
+        //public  Config { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]

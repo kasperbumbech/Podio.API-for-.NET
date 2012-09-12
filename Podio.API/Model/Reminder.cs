@@ -11,11 +11,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "reminder_id", IsRequired=false)]
-		public int ReminderId { get; set; }
+		public int? ReminderId { get; set; }
 
 
 		[DataMember(Name = "remind_delta", IsRequired=false)]
-		public int RemindDelta { get; set; }
+		public int? RemindDelta { get; set; }
 
 
 	}

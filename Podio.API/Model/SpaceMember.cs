@@ -15,15 +15,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "invited_on", IsRequired=false)]
-		public DateTime InvitedOn { get; set; }
+		public string InvitedOn { get; set; }
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public DateTime StartedOn { get; set; }
+		public string StartedOn { get; set; }
 
 
 		[DataMember(Name = "ended_on", IsRequired=false)]
-		public DateTime EndedOn { get; set; }
+		public string EndedOn { get; set; }
 
 
 		[DataMember(Name = "user", IsRequired=false)]

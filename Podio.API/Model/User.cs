@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_id", IsRequired=false)]
-		public int UserId { get; set; }
+		public int? UserId { get; set; }
 
 
 		[DataMember(Name = "mail", IsRequired=false)]
@@ -51,7 +51,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
@@ -63,11 +63,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "avatar", IsRequired=false)]
-		public int Avatar { get; set; }
+		public int? Avatar { get; set; }
 
 
 		[DataMember(Name = "profile_id", IsRequired=false)]
-		public int ProfileId { get; set; }
+		public int? ProfileId { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -82,8 +82,8 @@ namespace Podio.API.Model
 		public string Referrer { get; set; }
 
 
-		[DataMember(Name = "internal", IsRequired=false)]
-		public Dictionary<string,string> Internal { get; set; }
+        //[DataMember(Name = "internal", IsRequired=false)]
+        //public   Internal { get; set; }
 
 
 		[DataMember(Name = "marketo_cookie", IsRequired=false)]

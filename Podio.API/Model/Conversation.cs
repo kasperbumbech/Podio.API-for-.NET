@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "conversation_id", IsRequired=false)]
-		public int ConversationId { get; set; }
+		public int? ConversationId { get; set; }
 
 
 		[DataMember(Name = "subject", IsRequired=false)]
@@ -31,15 +31,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "embed_id", IsRequired=false)]
-		public int EmbedId { get; set; }
+		public int? EmbedId { get; set; }
 
 
 		[DataMember(Name = "embed_file_id", IsRequired=false)]
-		public int EmbedFileId { get; set; }
+		public int? EmbedFileId { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "embed", IsRequired=false)]

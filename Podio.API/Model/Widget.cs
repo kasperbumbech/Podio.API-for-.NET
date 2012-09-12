@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "widget_id", IsRequired=false)]
-		public int WidgetId { get; set; }
+		public int? WidgetId { get; set; }
 
 
 		[DataMember(Name = "ref_type", IsRequired=false)]
@@ -19,7 +19,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ref_id", IsRequired=false)]
-		public int RefId { get; set; }
+		public int? RefId { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -30,20 +30,20 @@ namespace Podio.API.Model
 		public string Title { get; set; }
 
 
-		[DataMember(Name = "config", IsRequired=false)]
-		public Dictionary<string,string> Config { get; set; }
+        //[DataMember(Name = "config", IsRequired=false)]
+        //public  Config { get; set; }
 
 
-		[DataMember(Name = "ref", IsRequired=false)]
-		public Dictionary<string,string> Ref { get; set; }
+        //[DataMember(Name = "ref", IsRequired=false)]
+        //public  Ref { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]
 		public string[] Rights { get; set; }
 
 
-		[DataMember(Name = "data", IsRequired=false)]
-		public Dictionary<string,string> Data { get; set; }
+        //[DataMember(Name = "data", IsRequired=false)]
+        //public  Data { get; set; }
 
 
 	}

@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "comment_id", IsRequired=false)]
-		public int CommentId { get; set; }
+		public int? CommentId { get; set; }
 
 
 		[DataMember(Name = "value", IsRequired=false)]
@@ -23,15 +23,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "external_id", IsRequired=false)]
-		public int ExternalId { get; set; }
+		public int? ExternalId { get; set; }
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
         ///// <summary>
@@ -52,14 +52,14 @@ namespace Podio.API.Model
 		///  #optional, when inputting comment
 		/// </summary>
 		[DataMember(Name = "embed_id", IsRequired=false)]
-		public int EmbedId { get; set; }
+		public int? EmbedId { get; set; }
 
 
 		/// <summary>
 		///  #optional, when inputting comment
 		/// </summary>
 		[DataMember(Name = "embed_file_id", IsRequired=false)]
-		public int EmbedFileId { get; set; }
+		public int? EmbedFileId { get; set; }
 
 
 		[DataMember(Name = "embed", IsRequired=false)]

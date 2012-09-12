@@ -10,7 +10,7 @@ namespace Podio.API.Model
 	{
         
         [DataMember(Name = "profile", IsRequired=false)]
-		public Dictionary<string,string> Profile { get; set; }
+		public Profile Profile { get; set; }
 
 
 		[DataMember(Name = "admin", IsRequired=false)]
@@ -22,7 +22,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space_memberships", IsRequired=false)]
-		public int SpaceMemberships { get; set; }
+		public int? SpaceMemberships { get; set; }
 
 
 		[DataMember(Name = "user", IsRequired=false)]

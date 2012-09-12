@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "role", IsRequired=false)]
@@ -43,7 +43,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "activation_code", IsRequired=false)]
-		public int ActivationCode { get; set; }
+		public int? ActivationCode { get; set; }
 
 
 		/// <summary>
@@ -57,18 +57,18 @@ namespace Podio.API.Model
 		///  # Writ
 		/// </summary>
 		[DataMember(Name = "context_ref_id", IsRequired=false)]
-		public int ContextRefId { get; set; }
+		public int? ContextRefId { get; set; }
 
 
-		/// <summary>
-		///  # Rea
-		/// </summary>
-		[DataMember(Name = "context", IsRequired=false)]
-		public Dictionary<string,string> Context { get; set; }
+        ///// <summary>
+        /////  # Rea
+        ///// </summary>
+        //[DataMember(Name = "context", IsRequired=false)]
+        //public  Context { get; set; }
 
 
 		[DataMember(Name = "external_contacts", IsRequired=false)]
-		public Dictionary<string,string> ExternalContacts { get; set; }
+		public List<Contact> ExternalContacts { get; set; }
 
 
 		[DataMember(Name = "user", IsRequired=false)]

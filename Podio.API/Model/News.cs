@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "news_id", IsRequired=false)]
-		public int NewsId { get; set; }
+		public int? NewsId { get; set; }
 
 
 		[DataMember(Name = "title", IsRequired=false)]
@@ -31,7 +31,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "priority", IsRequired=false)]
-		public int Priority { get; set; }
+		public int? Priority { get; set; }
 
 
 		[DataMember(Name = "target_group", IsRequired=false)]
@@ -43,11 +43,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "run_from", IsRequired=false)]
-		public DateTime RunFrom { get; set; }
+		public string RunFrom { get; set; }
 
 
 		[DataMember(Name = "run_to", IsRequired=false)]
-		public DateTime RunTo { get; set; }
+		public string RunTo { get; set; }
 
 
 		[DataMember(Name = "stream_display", IsRequired=false)]
@@ -59,19 +59,19 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "email_views", IsRequired=false)]
-		public int EmailViews { get; set; }
+		public int? EmailViews { get; set; }
 
 
 		[DataMember(Name = "stream_views", IsRequired=false)]
-		public int StreamViews { get; set; }
+		public int? StreamViews { get; set; }
 
 
 		[DataMember(Name = "email_clicks", IsRequired=false)]
-		public int EmailClicks { get; set; }
+		public int? EmailClicks { get; set; }
 
 
 		[DataMember(Name = "stream_clicks", IsRequired=false)]
-		public int StreamClicks { get; set; }
+		public int? StreamClicks { get; set; }
 
 
 	}

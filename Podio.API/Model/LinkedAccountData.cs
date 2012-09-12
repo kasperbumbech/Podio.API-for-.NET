@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "id", IsRequired=false)]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]

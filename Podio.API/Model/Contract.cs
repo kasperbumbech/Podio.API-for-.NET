@@ -11,11 +11,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "contract_id", IsRequired=false)]
-		public int ContractId { get; set; }
+		public int? ContractId { get; set; }
 
 
 		[DataMember(Name = "org_id", IsRequired=false)]
-		public int OrgId { get; set; }
+		public int? OrgId { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]
@@ -23,23 +23,23 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public DateTime StartedOn { get; set; }
+		public string StartedOn { get; set; }
 
 
 		[DataMember(Name = "ended_on", IsRequired=false)]
-		public DateTime EndedOn { get; set; }
+		public string EndedOn { get; set; }
 
 
 		[DataMember(Name = "item_prices", IsRequired=false)]
-		public Dictionary<string,string> ItemPrices { get; set; }
+		public List<ContractPrice> ItemPrices { get; set; }
 
 
-		[DataMember(Name = "item_limits", IsRequired=false)]
-		public Dictionary<string,string> ItemLimits { get; set; }
+        //[DataMember(Name = "item_limits", IsRequired=false)]
+        //public  ItemLimits { get; set; }
 
 
 		[DataMember(Name = "payment_id", IsRequired=false)]
@@ -69,15 +69,15 @@ namespace Podio.API.Model
 		[DataMember(Name = "premium_space_ids", IsRequired=false)]
 		public string[] PremiumSpaceIds { get; set; }
 
-		[DataMember(Name = "next_period_start, :datetime", IsRequired=false)]
-		public DateTime NextPeriodStart { get; set; }
+		[DataMember(Name = "next_period_start, :string", IsRequired=false)]
+		public string NextPeriodStart { get; set; }
 
-		[DataMember(Name = "next_period_end, :datetime", IsRequired=false)]
-		public DateTime NextPeriodEnd { get; set; }
+		[DataMember(Name = "next_period_end, :string", IsRequired=false)]
+		public string NextPeriodEnd { get; set; }
 
 
 		[DataMember(Name = "invoice_interval", IsRequired=false)]
-		public int InvoiceInterval { get; set; }
+		public int? InvoiceInterval { get; set; }
 
 
 		[DataMember(Name = "invoicing_mode", IsRequired=false)]

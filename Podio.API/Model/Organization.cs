@@ -10,7 +10,7 @@ namespace Podio.API.Model
 	{
 
 
-		[DataMember(Name = "org_id", IsRequired=false)]
+		[DataMember(Name = "org_id")]
 		public int OrgId { get; set; }
 
 
@@ -19,15 +19,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "logo", IsRequired=false)]
-		public int Logo { get; set; }
+		public int? Logo { get; set; }
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Dictionary<string,string> Image { get; set; }
+		public FileAttachment Image { get; set; }
 
 
 		[DataMember(Name = "spaces", IsRequired=false)]
-		public Dictionary<string,string> Spaces { get; set; }
+		public List<Space> Spaces { get; set; }
 
 
 		[DataMember(Name = "url", IsRequired=false)]
@@ -51,27 +51,27 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "sales_agent_id", IsRequired=false)]
-		public int SalesAgentId { get; set; }
+		public int? SalesAgentId { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "user_limit", IsRequired=false)]
-		public int UserLimit { get; set; }
+		public int? UserLimit { get; set; }
 
 
 		[DataMember(Name = "member_count", IsRequired=false)]
-		public int MemberCount { get; set; }
+		public int? MemberCount { get; set; }
 
 
 		[DataMember(Name = "contact_count", IsRequired=false)]
-		public int ContactCount { get; set; }
+		public int? ContactCount { get; set; }
 
 
 		[DataMember(Name = "billing_interval", IsRequired=false)]
-		public int BillingInterval { get; set; }
+		public int? BillingInterval { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]
@@ -90,7 +90,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "rank", IsRequired=false)]
-		public int Rank { get; set; }
+		public int? Rank { get; set; }
 
 
 		[DataMember(Name = "contract_status", IsRequired=false)]
@@ -106,7 +106,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "segment_size", IsRequired=false)]
-		public int SegmentSize { get; set; }
+		public int? SegmentSize { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

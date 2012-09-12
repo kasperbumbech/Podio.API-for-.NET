@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "file_id", IsRequired=false)]
-		public int FileId { get; set; }
+		public int? FileId { get; set; }
 
 
 		[DataMember(Name = "link", IsRequired=false)]
@@ -43,15 +43,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "size", IsRequired=false)]
-		public int Size { get; set; }
-
-
-		[DataMember(Name = "context", IsRequired=false)]
-		public Dictionary<string,string> Context { get; set; }
+		public int? Size { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]

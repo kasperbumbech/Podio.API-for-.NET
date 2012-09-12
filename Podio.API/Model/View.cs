@@ -9,9 +9,8 @@ namespace Podio.API.Model
 	public class View 
 	{
 
-
 		[DataMember(Name = "view_id", IsRequired=false)]
-		public int ViewId { get; set; }
+		public int? ViewId { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
@@ -19,11 +18,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "items", IsRequired=false)]
-		public int Items { get; set; }
+		public int? Items { get; set; }
 
 
 		[DataMember(Name = "sort_by", IsRequired=false)]
@@ -35,7 +34,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "filters", IsRequired=false)]
-		public Dictionary<string,string> Filters { get; set; }
+		public List<Filter> Filters { get; set; }
 
 
 		[DataMember(Name = "layout", IsRequired=false)]
@@ -43,7 +42,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "fields", IsRequired=false)]
-		public Dictionary<string,string> Fields { get; set; }
+		public List<ItemField> Fields { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

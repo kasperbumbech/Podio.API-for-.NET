@@ -11,15 +11,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "app_id", IsRequired=false)]
-		public int AppId { get; set; }
+		public int? AppId { get; set; }
 
 
 		[DataMember(Name = "original", IsRequired=false)]
-		public int Original { get; set; }
+		public int? Original { get; set; }
 
 
 		[DataMember(Name = "original_revision", IsRequired=false)]
-		public int OriginalRevision { get; set; }
+		public int? OriginalRevision { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]
@@ -31,23 +31,23 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "icon_id", IsRequired=false)]
-		public int IconId { get; set; }
+		public int? IconId { get; set; }
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "owner_id", IsRequired=false)]
-		public int OwnerId { get; set; }
+		public int? OwnerId { get; set; }
 
 
 		[DataMember(Name = "owner", IsRequired=false)]
-		public Dictionary<string,string> Owner { get; set; }
+		public User Owner { get; set; }
 
 
-		[DataMember(Name = "config", IsRequired=false)]
-		public Dictionary<string,string> Config { get; set; }
+        //[DataMember(Name = "config", IsRequired=false)]
+        //public  Config { get; set; }
 
 
 		[DataMember(Name = "fields", IsRequired=false)]
@@ -59,7 +59,7 @@ namespace Podio.API.Model
 
 
         //[DataMember(Name = "integration", IsRequired=false)]
-        //public Dictionary<string,string> Integration { get; set; }
+        //public  Integration { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]

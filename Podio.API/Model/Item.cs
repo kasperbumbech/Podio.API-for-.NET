@@ -11,11 +11,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "item_id", IsRequired=false)]
-		public int ItemId { get; set; }
+		public int? ItemId { get; set; }
 
 
 		[DataMember(Name = "app", IsRequired=false)]
-		public Dictionary<string,string> App { get; set; }
+		public Application App { get; set; }
 
 
 		[DataMember(Name = "external_id", IsRequired=false)]
@@ -35,7 +35,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Dictionary<string,string> Ratings { get; set; }
+		public List<Rating>  Ratings { get; set; }
 
 
 		[DataMember(Name = "conversations", IsRequired=false)]
@@ -63,7 +63,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Dictionary<string,string> UserRatings { get; set; }
+		public List<Rating> UserRatings { get; set; }
 
 
 		[DataMember(Name = "link", IsRequired=false)]
@@ -71,22 +71,22 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "invite", IsRequired=false)]
-		public Dictionary<string,string> Invite { get; set; }
+		public SpaceInvitation Invite { get; set; }
 
 
 		[DataMember(Name = "participants", IsRequired=false)]
-		public Dictionary<string,string> Participants { get; set; }
+		public List<Contact> Participants { get; set; }
 
 
 		[DataMember(Name = "linked_account_id", IsRequired=false)]
-		public int LinkedAccountId { get; set; }
+		public int? LinkedAccountId { get; set; }
 
 
-		/// <summary>
-		///   # linked item
-		/// </summary>
-		[DataMember(Name = "ref", IsRequired=false)]
-		public Dictionary<string,string> Ref { get; set; }
+        ///// <summary>
+        /////   # linked item
+        ///// </summary>
+        //[DataMember(Name = "ref", IsRequired=false)]
+        //public  Ref { get; set; }
 
 
 		[DataMember(Name = "priority", IsRequired=false)]
@@ -94,11 +94,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "comment_count", IsRequired=false)]
-		public int CommentCount { get; set; }
+		public int? CommentCount { get; set; }
 
 
 		[DataMember(Name = "task_count", IsRequired=false)]
-		public int TaskCount { get; set; }
+		public int? TaskCount { get; set; }
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]

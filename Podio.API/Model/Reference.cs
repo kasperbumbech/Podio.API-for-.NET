@@ -15,7 +15,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "id", IsRequired=false)]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 
 		[DataMember(Name = "title", IsRequired=false)]
@@ -27,11 +27,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "data", IsRequired=false)]
-		public Dictionary<string,string> Data { get; set; }
+		public object Data { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

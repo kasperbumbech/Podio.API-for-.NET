@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_id", IsRequired=false)]
-		public int UserId { get; set; }
+		public int? UserId { get; set; }
 
 
 		[DataMember(Name = "organization", IsRequired=false)]
@@ -40,7 +40,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "link", IsRequired=false)]
@@ -48,7 +48,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_seen_on", IsRequired=false)]
-		public DateTime LastSeenOn { get; set; }
+		public string LastSeenOn { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]

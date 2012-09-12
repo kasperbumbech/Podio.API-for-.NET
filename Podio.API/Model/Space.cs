@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
@@ -27,15 +27,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "org_id", IsRequired=false)]
-		public int OrgId { get; set; }
+		public int? OrgId { get; set; }
 
 
 		[DataMember(Name = "contact_count", IsRequired=false)]
-		public int ContactCount { get; set; }
+		public int? ContactCount { get; set; }
 
 
 		[DataMember(Name = "members", IsRequired=false)]
-		public int Members { get; set; }
+		public int? Members { get; set; }
 
 
 		[DataMember(Name = "role", IsRequired=false)]
@@ -75,11 +75,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_activity_on", IsRequired=false)]
-		public DateTime LastActivityOn { get; set; }
+		public string LastActivityOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

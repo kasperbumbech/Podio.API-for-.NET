@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space_count", IsRequired=false)]
-		public int SpaceCount { get; set; }
+		public int? SpaceCount { get; set; }
 
 
 	}

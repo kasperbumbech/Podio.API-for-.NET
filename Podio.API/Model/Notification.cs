@@ -11,11 +11,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "notification_id", IsRequired=false)]
-		public int NotificationId { get; set; }
+		public int? NotificationId { get; set; }
 
 
         //[DataMember(Name = "user", IsRequired=false)]
-        //public Dictionary<string,string> User { get; set; }
+        //public  User { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -23,19 +23,19 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "viewed_on", IsRequired=false)]
-		public DateTime ViewedOn { get; set; }
+		public string ViewedOn { get; set; }
 
 
 		[DataMember(Name = "subscription_id", IsRequired=false)]
-		public int SubscriptionId { get; set; }
+		public int? SubscriptionId { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
-		[DataMember(Name = "data", IsRequired=false)]
-		public Dictionary<string,string> Data { get; set; }
+        //[DataMember(Name = "data", IsRequired=false)]
+        //public  Data { get; set; }
 
 
 		[DataMember(Name = "starred", IsRequired=false)]
@@ -43,11 +43,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space", IsRequired=false)]
-		public Dictionary<string,string> Space { get; set; }
+		public Space Space { get; set; }
 
 
 		[DataMember(Name = "org", IsRequired=false)]
-		public Dictionary<string,string> Org { get; set; }
+		public Organization  Org { get; set; }
 
 
 		[DataMember(Name = "data_link", IsRequired=false)]
@@ -62,8 +62,8 @@ namespace Podio.API.Model
 		public string ContextLink { get; set; }
 
 
-		[DataMember(Name = "context", IsRequired=false)]
-		public Dictionary<string,string> Context { get; set; }
+        //[DataMember(Name = "context", IsRequired=false)]
+        //public  Context { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "bulletin_id", IsRequired=false)]
-		public int BulletinId { get; set; }
+		public int? BulletinId { get; set; }
 
 
 		[DataMember(Name = "title", IsRequired=false)]
@@ -35,11 +35,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "sent_on", IsRequired=false)]
-		public DateTime SentOn { get; set; }
+		public string SentOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

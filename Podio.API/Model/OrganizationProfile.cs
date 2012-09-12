@@ -11,15 +11,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "org_id", IsRequired=false)]
-		public int OrgId { get; set; }
+		public int? OrgId { get; set; }
 
 
 		[DataMember(Name = "avatar", IsRequired=false)]
-		public int Avatar { get; set; }
+		public int? Avatar { get; set; }
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Dictionary<string,string> Image { get; set; }
+		public FileAttachment  Image { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]

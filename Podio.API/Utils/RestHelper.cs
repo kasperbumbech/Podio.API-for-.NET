@@ -1,9 +1,14 @@
 ﻿using Podio.API.Exceptions;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +17,45 @@ using System.Web.Script.Serialization;
 
 namespace Podio.API.Utils
 {
+  
+    [Serializable]
+    public class SerializableDictionary : ISerializable
+    {
+        public Dictionary<string, object[]> dict;
+        public SerializableDictionary()
+        {
+            dict = new Dictionary<string, object[]>();
+        }
+
+
+        protected SerializableDictionary(SerializationInfo info, StreamingContext context)
+        {
+            dict = new Dictionary<string, object[]>();
+            foreach (var entry in info)
+            {
+                object[] array = entry.Value as object[];
+                dict.Add(entry.Name, array);
+            }
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            foreach (string key in dict.Keys)
+            {
+                info.AddValue(key, dict[key]);
+            }
+        }
+    }
+
+
    /// <summary>
    ///  It smells like homebrew
    /// </summary>
     public sealed class PodioRestHelper
     {
+        
+
+    
+
         public class PodioError
         {
             public bool error_propagate { get; set; }
@@ -258,7 +297,9 @@ namespace Podio.API.Utils
                 requestStream.Write(data, 0, data.Length);
             }
             return request;
+           
         }
+
         #endregion
     }
 }

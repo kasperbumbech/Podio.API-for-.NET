@@ -94,6 +94,7 @@
     <Compile Include="Model\OrganizationContact.cs" />
     <Compile Include="Model\OrganizationMember.cs" />
     <Compile Include="Model\OrganizationProfile.cs" />
+    <Compile Include="Model\PodioDateTime.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionAnswer.cs" />
@@ -118,7 +119,6 @@
     <Compile Include="Model\TaskLabel.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserMail.cs" />
-    <Compile Include="Model\UserRating.cs" />
     <Compile Include="Model\UserStatus.cs" />
     <Compile Include="Model\Via.cs" />
     <Compile Include="Model\View.cs" />

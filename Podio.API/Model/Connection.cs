@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "connection_id", IsRequired=false)]
-		public int ConnectionId { get; set; }
+		public int? ConnectionId { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -23,15 +23,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_load_on", IsRequired=false)]
-		public DateTime LastLoadOn { get; set; }
+		public string LastLoadOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "contact_count", IsRequired=false)]
-		public int ContactCount { get; set; }
+		public int? ContactCount { get; set; }
 
 
 	}

@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "id", IsRequired=false)]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -19,7 +19,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_update_on", IsRequired=false)]
-		public DateTime LastUpdateOn { get; set; }
+		public string LastUpdateOn { get; set; }
 
 
 		[DataMember(Name = "title", IsRequired=false)]
@@ -34,8 +34,8 @@ namespace Podio.API.Model
 		public string[] Rights { get; set; }
 
 
-		[DataMember(Name = "data", IsRequired=false)]
-		public Dictionary<string,string> Data { get; set; }
+        //[DataMember(Name = "data", IsRequired=false)]
+        //public object Data { get; set; }
 
 
 		[DataMember(Name = "comments_allowed", IsRequired=false)]
@@ -43,11 +43,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Dictionary<string,string> UserRatings { get; set; }
+		public List<Rating> UserRatings { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

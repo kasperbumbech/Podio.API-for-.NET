@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "share_id", IsRequired=false)]
-		public int ShareId { get; set; }
+		public int? ShareId { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -51,19 +51,19 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "categories", IsRequired=false)]
-		public Dictionary<string,string> Categories { get; set; }
+		public List<Category>  Categories { get; set; }
 
 
 		[DataMember(Name = "org", IsRequired=false)]
-		public Dictionary<string,string> Org { get; set; }
+		public Organization  Org { get; set; }
 
 
 		[DataMember(Name = "author_apps", IsRequired=false)]
-		public int AuthorApps { get; set; }
+		public int? AuthorApps { get; set; }
 
 
 		[DataMember(Name = "author_packs", IsRequired=false)]
-		public int AuthorPacks { get; set; }
+		public int? AuthorPacks { get; set; }
 
 
 		[DataMember(Name = "icon", IsRequired=false)]
@@ -71,11 +71,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "icon_id", IsRequired=false)]
-		public int IconId { get; set; }
+		public int? IconId { get; set; }
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Dictionary<string,string> Ratings { get; set; }
+		public List<Rating> Ratings { get; set; }
 
 
 		[DataMember(Name = "user_rating", IsRequired=false)]
@@ -87,7 +87,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "rating", IsRequired=false)]
-		public int Rating { get; set; }
+		public int? Rating { get; set; }
 
 
 		[DataMember(Name = "author", IsRequired=false)]

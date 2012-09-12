@@ -11,15 +11,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "revision", IsRequired=false)]
-		public int Revision { get; set; }
+		public int? Revision { get; set; }
 
 
 		[DataMember(Name = "app_revision", IsRequired=false)]
-		public int AppRevision { get; set; }
+		public int? AppRevision { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

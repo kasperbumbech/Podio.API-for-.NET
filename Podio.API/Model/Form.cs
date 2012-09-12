@@ -11,19 +11,19 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "form_id", IsRequired=false)]
-		public int FormId { get; set; }
+		public int? FormId { get; set; }
 
 
 		[DataMember(Name = "app_id", IsRequired=false)]
-		public int AppId { get; set; }
+		public int? AppId { get; set; }
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
-		[DataMember(Name = "settings", IsRequired=false)]
-		public Dictionary<string,string> Settings { get; set; }
+        //[DataMember(Name = "settings", IsRequired=false)]
+        //public  Settings { get; set; }
 
 
 		[DataMember(Name = "domains", IsRequired=false)]

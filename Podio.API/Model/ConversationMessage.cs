@@ -11,15 +11,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "message_id", IsRequired=false)]
-		public int MessageId { get; set; }
+		public int? MessageId { get; set; }
 
 
 		[DataMember(Name = "embed_id", IsRequired=false)]
-		public int EmbedId { get; set; }
+		public int? EmbedId { get; set; }
 
 
 		[DataMember(Name = "embed_file_id", IsRequired=false)]
-		public int EmbedFileId { get; set; }
+		public int? EmbedFileId { get; set; }
 
 
 		[DataMember(Name = "text", IsRequired=false)]
@@ -27,7 +27,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "embed", IsRequired=false)]

@@ -15,7 +15,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "id", IsRequired=false)]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 
 		[DataMember(Name = "group", IsRequired=false)]
@@ -39,11 +39,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "start", IsRequired=false)]
-		public DateTime Start { get; set; }
+		public string Start { get; set; }
 
 
 		[DataMember(Name = "start_date", IsRequired=false)]
-		public DateTime StartDate { get; set; }
+		public string StartDate { get; set; }
 
 
 		[DataMember(Name = "start_time", IsRequired=false)]
@@ -51,11 +51,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "end", IsRequired=false)]
-        public DateTime End { get; set; }
+        public string End { get; set; }
 
 
 		[DataMember(Name = "end_date", IsRequired=false)]
-		public DateTime EndDate { get; set; }
+		public string EndDate { get; set; }
 
 
 		[DataMember(Name = "end_time", IsRequired=false)]

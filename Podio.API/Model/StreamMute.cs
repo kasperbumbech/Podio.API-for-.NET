@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "id", IsRequired=false)]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -22,8 +22,8 @@ namespace Podio.API.Model
 		public string Title { get; set; }
 
 
-		[DataMember(Name = "data", IsRequired=false)]
-		public Dictionary<string,string> Data { get; set; }
+        //[DataMember(Name = "data", IsRequired=false)]
+        //public  Data { get; set; }
 
 
 		[DataMember(Name = "item", IsRequired=false)]

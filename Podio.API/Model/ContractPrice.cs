@@ -19,11 +19,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "quantity", IsRequired=false)]
-		public int Quantity { get; set; }
+		public int? Quantity { get; set; }
 
 
 		[DataMember(Name = "already_paid", IsRequired=false)]
-		public int AlreadyPaid { get; set; }
+		public int? AlreadyPaid { get; set; }
 
 
 		[DataMember(Name = "users", IsRequired=false)]

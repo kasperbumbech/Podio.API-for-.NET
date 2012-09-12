@@ -11,11 +11,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "integration_id", IsRequired=false)]
-		public int IntegrationId { get; set; }
+		public int? IntegrationId { get; set; }
 
 
 		[DataMember(Name = "app_id", IsRequired=false)]
-		public int AppId { get; set; }
+		public int? AppId { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]
@@ -30,12 +30,12 @@ namespace Podio.API.Model
 		public bool Silent { get; set; }
 
 
-		[DataMember(Name = "config", IsRequired=false)]
-		public Dictionary<string,string> Config { get; set; }
+        //[DataMember(Name = "config", IsRequired=false)]
+        //public  Config { get; set; }
 
 
-		[DataMember(Name = "mapping", IsRequired=false)]
-		public Dictionary<string,string> Mapping { get; set; }
+        //[DataMember(Name = "mapping", IsRequired=false)]
+        //public  Mapping { get; set; }
 
 
 		[DataMember(Name = "updating", IsRequired=false)]
@@ -43,11 +43,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_updated_on", IsRequired=false)]
-		public DateTime LastUpdatedOn { get; set; }
+		public string LastUpdatedOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

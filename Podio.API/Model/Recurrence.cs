@@ -11,23 +11,23 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "recurrence_id", IsRequired=false)]
-		public int RecurrenceId { get; set; }
+		public int? RecurrenceId { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
 		public string Name { get; set; }
 
 
-		[DataMember(Name = "config", IsRequired=false)]
-		public Dictionary<string,string> Config { get; set; }
+        //[DataMember(Name = "config", IsRequired=false)]
+        //public  Config { get; set; }
 
 
 		[DataMember(Name = "step", IsRequired=false)]
-		public int Step { get; set; }
+		public int? Step { get; set; }
 
 
 		[DataMember(Name = "until", IsRequired=false)]
-		public DateTime Until { get; set; }
+		public string Until { get; set; }
 
 
 	}

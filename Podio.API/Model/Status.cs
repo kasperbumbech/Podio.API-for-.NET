@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "status_id", IsRequired=false)]
-		public int StatusId { get; set; }
+		public int? StatusId { get; set; }
 
 
 		[DataMember(Name = "value", IsRequired=false)]
@@ -27,7 +27,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "alerts", IsRequired=false)]
@@ -35,7 +35,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Dictionary<string,string> Ratings { get; set; }
+		public List<Rating> Ratings { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]
@@ -43,7 +43,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Dictionary<string,string> UserRatings { get; set; }
+		public List<Rating> UserRatings { get; set; }
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]
@@ -51,11 +51,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "embed_id", IsRequired=false)]
-		public int EmbedId { get; set; }
+		public int? EmbedId { get; set; }
 
 
 		[DataMember(Name = "embed_file_id", IsRequired=false)]
-		public int EmbedFileId { get; set; }
+		public int? EmbedFileId { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

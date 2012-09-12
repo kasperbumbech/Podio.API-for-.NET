@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "hook_id", IsRequired=false)]
-		public int HookId { get; set; }
+		public int? HookId { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]

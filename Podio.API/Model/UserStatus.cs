@@ -11,19 +11,19 @@ namespace Podio.API.Model
 
 
         //[DataMember(Name = "user", IsRequired=false)]
-        //public Dictionary<string,string> User { get; set; }
+        //public  User { get; set; }
 
 
 		[DataMember(Name = "profile", IsRequired=false)]
-		public Dictionary<string,string> Profile { get; set; }
+		public Profile Profile { get; set; }
 
 
 		[DataMember(Name = "properties", IsRequired=false)]
-		public Dictionary<string,string> Properties { get; set; }
+		public object  Properties { get; set; }
 
 
 		[DataMember(Name = "inbox_new", IsRequired=false)]
-		public int InboxNew { get; set; }
+		public int? InboxNew { get; set; }
 
 
 		[DataMember(Name = "calendar_code", IsRequired=false)]

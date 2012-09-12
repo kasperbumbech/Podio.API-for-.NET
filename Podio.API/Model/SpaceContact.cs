@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
-		public int SpaceId { get; set; }
+		public int? SpaceId { get; set; }
 
 
 		[DataMember(Name = "organization", IsRequired=false)]
@@ -19,7 +19,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "avatar", IsRequired=false)]
-		public int Avatar { get; set; }
+		public int? Avatar { get; set; }
 
 
 	}

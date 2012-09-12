@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "linked_account_id", IsRequired=false)]
-		public int LinkedAccountId { get; set; }
+		public int? LinkedAccountId { get; set; }
 
 
 		[DataMember(Name = "label", IsRequired=false)]
@@ -26,12 +26,12 @@ namespace Podio.API.Model
 		public string ProviderHumanizedName { get; set; }
 
 
-		[DataMember(Name = "capability_names", IsRequired=false)]
-		public Dictionary<string,string> CapabilityNames { get; set; }
+        //[DataMember(Name = "capability_names", IsRequired=false)]
+        //public  CapabilityNames { get; set; }
 
 
-		[DataMember(Name = "options", IsRequired=false)]
-		public Dictionary<string,string> Options { get; set; }
+        //[DataMember(Name = "options", IsRequired=false)]
+        //public  Options { get; set; }
 
 
 	}

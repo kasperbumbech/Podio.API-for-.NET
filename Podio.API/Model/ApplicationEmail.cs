@@ -14,8 +14,8 @@ namespace Podio.API.Model
 		public bool Attachments { get; set; }
 
 
-		[DataMember(Name = "mappings", IsRequired=false)]
-		public Dictionary<string,string> Mappings { get; set; }
+        //[DataMember(Name = "mappings", IsRequired=false)]
+        //public  Mappings { get; set; }
 
 
 	}

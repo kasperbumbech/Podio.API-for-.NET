@@ -15,11 +15,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ref_id", IsRequired=false)]
-		public int RefId { get; set; }
+		public int? RefId { get; set; }
 
 
 		[DataMember(Name = "people", IsRequired=false)]
-		public Dictionary<string,string> People { get; set; }
+		public List<User> People { get; set; }
 
 
 		[DataMember(Name = "action", IsRequired=false)]

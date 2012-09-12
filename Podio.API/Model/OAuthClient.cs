@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "auth_client_id", IsRequired=false)]
-		public int AuthClientId { get; set; }
+		public int? AuthClientId { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]

@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "profile_id", IsRequired=false)]
-		public int ProfileId { get; set; }
+		public int? ProfileId { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
@@ -19,15 +19,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "avatar", IsRequired=false)]
-		public int Avatar { get; set; }
+		public int? Avatar { get; set; }
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Dictionary<string,string> Image { get; set; }
+		public FileAttachment Image { get; set; }
 
 
 		[DataMember(Name = "birthdate", IsRequired=false)]
-		public DateTime Birthdate { get; set; }
+		public string Birthdate { get; set; }
 
 
 		[DataMember(Name = "department", IsRequired=false)]
@@ -123,7 +123,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_seen_on", IsRequired=false)]
-		public DateTime LastSeenOn { get; set; }
+		public string LastSeenOn { get; set; }
 
 
 		[DataMember(Name = "is_employee", IsRequired=false)]

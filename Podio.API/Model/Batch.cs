@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "batch_id", IsRequired=false)]
-		public int BatchId { get; set; }
+		public int? BatchId { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]
@@ -27,27 +27,27 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "completed", IsRequired=false)]
-		public int Completed { get; set; }
+		public int? Completed { get; set; }
 
 
 		[DataMember(Name = "skipped", IsRequired=false)]
-		public int Skipped { get; set; }
+		public int? Skipped { get; set; }
 
 
 		[DataMember(Name = "failed", IsRequired=false)]
-		public int Failed { get; set; }
+		public int? Failed { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public DateTime StartedOn { get; set; }
+		public string StartedOn { get; set; }
 
 
 		[DataMember(Name = "ended_on", IsRequired=false)]
-		public DateTime EndedOn { get; set; }
+		public string EndedOn { get; set; }
 
 
 		[DataMember(Name = "file", IsRequired=false)]

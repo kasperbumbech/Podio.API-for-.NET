@@ -10,12 +10,12 @@ namespace Podio.API.Model
 	{
 
 
-		[DataMember(Name = "context", IsRequired=false)]
-		public Dictionary<string,string> Context { get; set; }
+        //[DataMember(Name = "context", IsRequired=false)]
+        //public  Context { get; set; }
 
 
 		[DataMember(Name = "notifications", IsRequired=false)]
-		public Dictionary<string,string> Notifications { get; set; }
+		public List<Notification> Notifications { get; set; }
 
 
 	}

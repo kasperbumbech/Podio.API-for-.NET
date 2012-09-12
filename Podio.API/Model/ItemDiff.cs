@@ -11,7 +11,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "field_id", IsRequired=false)]
-		public int FieldId { get; set; }
+		public int? FieldId { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -19,7 +19,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "external_id", IsRequired=false)]
-		public int ExternalId { get; set; }
+		public int? ExternalId { get; set; }
 
 
 		[DataMember(Name = "label", IsRequired=false)]

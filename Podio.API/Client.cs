@@ -87,6 +87,7 @@ namespace Podio.API
 
         public Services.ApplicationService ApplicationService { get { return new Services.ApplicationService(this); } }
 
+        public Services.StreamService StreamService { get { return new Services.StreamService(this); } }
 
     }
 }
