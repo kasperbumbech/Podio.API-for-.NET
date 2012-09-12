@@ -1,100 +1,91 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Podio.API.Model
 {
-    [DataContract]
-    public class Space
-    {
-        [DataMember(IsRequired=false,Name = "premium")]
-        public bool Premium { get; set; }
+	[DataContract]
+	public class Space 
+	{
 
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
 
-        [DataMember(IsRequired=false,Name = "rights")]
-        public IList<string> Rights { get; set; }
+		[DataMember(Name = "space_id", IsRequired=false)]
+		public int SpaceId { get; set; }
 
-        [DataMember(IsRequired=false,Name = "url")]
-        public string Url { get; set; }
 
-        [DataMember(IsRequired=false,Name = "url_label")]
-        public string UrlLabel { get; set; }
+		[DataMember(Name = "name", IsRequired=false)]
+		public string Name { get; set; }
 
-        [DataMember(Name = "space_id")]
-        public int SpaceId { get; set; }
 
-        [DataMember(IsRequired=false,Name = "role")]
-        public string Role { get; set; }
+		[DataMember(Name = "url", IsRequired=false)]
+		public string Url { get; set; }
 
-        [DataMember(IsRequired=false,Name = "type")]
-        public string Type { get; set; }
 
-        [DataMember(IsRequired=false,Name = "rank")]
-        public int Rank { get; set; }
+		[DataMember(Name = "url_label", IsRequired=false)]
+		public string UrlLabel { get; set; }
 
-        /// <summary>
-        /// https://developers.podio.com/doc/spaces/create-space-22390
-        /// </summary>
-        [DataContract]
-        public struct CreatedResponse
-        {
-            [DataMember(Name = "space_id")]
-            public int SpaceId { get; set; }
 
-            [DataMember(Name = "url")]
-            public string Url { get; set; }
-        }
+		[DataMember(Name = "org_id", IsRequired=false)]
+		public int OrgId { get; set; }
 
-        /// <summary>
-        /// https://developers.podio.com/doc/spaces/create-space-22390
-        /// </summary>
-        [DataContract]
-        public struct CreateRequest
-        {
-            [DataMember(IsRequired=false,Name = "org_id")]
-            public int OrgId { get; set; }
 
-            [DataMember(IsRequired=false,Name = "privacy")]
-            public string Privacy { get; set; }
+		[DataMember(Name = "contact_count", IsRequired=false)]
+		public int ContactCount { get; set; }
 
-            [DataMember(IsRequired=false,Name = "auto_join")]
-            public bool AutoJoin { get; set; }
 
-            [DataMember(IsRequired=false,Name = "name")]
-            public string Name { get; set; }
+		[DataMember(Name = "members", IsRequired=false)]
+		public int Members { get; set; }
 
-            [DataMember(IsRequired=false,Name = "post_on_new_app")]
-            public bool PostOnNewApp { get; set; }
 
-            [DataMember(IsRequired=false,Name = "post_on_new_member")]
-            public bool PostOnNewMember { get; set; }
-        }
+		[DataMember(Name = "role", IsRequired=false)]
+		public string Role { get; set; }
 
-        /// <summary>
-        /// https://developers.podio.com/doc/spaces/update-space-22391
-        /// </summary>
-        [DataContract]
-        public struct UpdateRequest
-        {
-            [DataMember(IsRequired = false, Name = "privacy")]
-            public string Privacy { get; set; }
 
-            [DataMember(IsRequired = false, Name = "auto_join")]
-            public bool AutoJoin { get; set; }
+		[DataMember(Name = "rights", IsRequired=false)]
+		public string[] Rights { get; set; }
 
-            [DataMember(IsRequired = false, Name = "name")]
-            public string Name { get; set; }
 
-            [DataMember(IsRequired = false, Name = "post_on_new_app")]
-            public bool PostOnNewApp { get; set; }
+		[DataMember(Name = "post_on_new_app", IsRequired=false)]
+		public bool PostOnNewApp { get; set; }
 
-            [DataMember(IsRequired = false, Name = "post_on_new_member")]
-            public bool PostOnNewMember { get; set; }
-        }
-    }
+
+		[DataMember(Name = "post_on_new_member", IsRequired=false)]
+		public bool PostOnNewMember { get; set; }
+
+
+		[DataMember(Name = "subscribed", IsRequired=false)]
+		public bool Subscribed { get; set; }
+
+
+		[DataMember(Name = "privacy", IsRequired=false)]
+		public string Privacy { get; set; }
+
+
+		[DataMember(Name = "auto_join", IsRequired=false)]
+		public bool AutoJoin { get; set; }
+
+
+		[DataMember(Name = "type", IsRequired=false)]
+		public string Type { get; set; }
+
+
+		[DataMember(Name = "premium", IsRequired=false)]
+		public bool Premium { get; set; }
+
+
+		[DataMember(Name = "last_activity_on", IsRequired=false)]
+		public DateTime LastActivityOn { get; set; }
+
+
+		[DataMember(Name = "created_on", IsRequired=false)]
+		public DateTime CreatedOn { get; set; }
+
+
+		[DataMember(Name = "created_by", IsRequired=false)]
+		public ByLine CreatedBy { get; set; }
+
+
+	}
 }
+

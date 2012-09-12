@@ -21,23 +21,23 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/organizations/get-organizations-22344
         /// </summary>
-        public IEnumerable<Organisation> GetOrganizations() {
-            return PodioRestHelper.Request<List<Organisation>>(Constants.PODIOAPI_BASEURL + "/org/", _client.AuthInfo.access_token).Data;
+        public IEnumerable<Organization> GetOrganizations() {
+            return PodioRestHelper.Request<List<Organization>>(Constants.PODIOAPI_BASEURL + "/org/", _client.AuthInfo.access_token).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/organizations/get-organization-22383
         /// </summary>
-        public Organisation GetOrganization(int orgId) {
-            return PodioRestHelper.Request<Organisation>(Constants.PODIOAPI_BASEURL + "/org/" + orgId.ToString(), _client.AuthInfo.access_token).Data;
+        public Organization GetOrganization(int orgId) {
+            return PodioRestHelper.Request<Organization>(Constants.PODIOAPI_BASEURL + "/org/" + orgId.ToString(), _client.AuthInfo.access_token).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/organizations/get-organization-by-url-22384
         /// </summary>
-        public Organisation GetOrganizationByURL(string url)
+        public Organization GetOrganizationByURL(string url)
         {
-            return PodioRestHelper.Request<Organisation>(Constants.PODIOAPI_BASEURL + "/org/url", _client.AuthInfo.access_token, new Dictionary<string, string>() { { "url", url } }).Data;
+            return PodioRestHelper.Request<Organization>(Constants.PODIOAPI_BASEURL + "/org/url", _client.AuthInfo.access_token, new Dictionary<string, string>() { { "url", url } }).Data;
         }
        
         /// <summary>

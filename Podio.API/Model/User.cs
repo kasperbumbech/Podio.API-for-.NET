@@ -1,49 +1,103 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Podio.API.Model
 {
-    [DataContract]
-    public class User
-    {
-        [DataMember(Name = "user_id")]
-        public int UserId { get; set; }
+	[DataContract]
+	public class User 
+	{
 
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
 
-        [DataMember(IsRequired=false,Name = "rights")]
-        public IList<string> Rights { get; set; }
+		[DataMember(Name = "user_id", IsRequired=false)]
+		public int UserId { get; set; }
 
-        [DataMember(IsRequired=false,Name = "external_id")]
-        public string ExternalId { get; set; }
 
-        [DataMember(IsRequired=false,Name = "image")]
-        public Image Image { get; set; }
+		[DataMember(Name = "mail", IsRequired=false)]
+		public string Mail { get; set; }
 
-        [DataMember(IsRequired=false,Name = "profile_id")]
-        public int ProfileId { get; set; }
 
-        [DataMember(IsRequired=false,Name = "link")]
-        public string Link { get; set; }
+		[DataMember(Name = "status", IsRequired=false)]
+		public string Status { get; set; }
 
-        [DataMember(IsRequired=false,Name = "removable")]
-        public bool Removable { get; set; }
 
-        [DataMember(IsRequired=false,Name = "mail")]
-        public IList<string> Mail { get; set; }
+		[DataMember(Name = "locale", IsRequired=false)]
+		public string Locale { get; set; }
 
-        [DataMember(IsRequired=false,Name = "role")]
-        public IList<string> Role { get; set; }
 
-        [DataMember(IsRequired=false,Name = "type")]
-        public string Type { get; set; }
+		[DataMember(Name = "timezone", IsRequired=false)]
+		public string Timezone { get; set; }
 
-        [DataMember(IsRequired=false,Name = "last_seen_on")]
-        public string LastSeenOn { get; set; }
-    }
+
+		[DataMember(Name = "password", IsRequired=false)]
+		public string Password { get; set; }
+
+
+		[DataMember(Name = "old_password", IsRequired=false)]
+		public string OldPassword { get; set; }
+
+
+		[DataMember(Name = "new_password", IsRequired=false)]
+		public string NewPassword { get; set; }
+
+
+		[DataMember(Name = "flags", IsRequired=false)]
+		public string[] Flags { get; set; }
+
+
+		[DataMember(Name = "betas", IsRequired=false)]
+		public string[] Betas { get; set; }
+
+
+		[DataMember(Name = "created_on", IsRequired=false)]
+		public DateTime CreatedOn { get; set; }
+
+
+		[DataMember(Name = "name", IsRequired=false)]
+		public string Name { get; set; }
+
+
+		[DataMember(Name = "link", IsRequired=false)]
+		public string Link { get; set; }
+
+
+		[DataMember(Name = "avatar", IsRequired=false)]
+		public int Avatar { get; set; }
+
+
+		[DataMember(Name = "profile_id", IsRequired=false)]
+		public int ProfileId { get; set; }
+
+
+		[DataMember(Name = "type", IsRequired=false)]
+		public string Type { get; set; }
+
+
+		[DataMember(Name = "landing", IsRequired=false)]
+		public string Landing { get; set; }
+
+
+		[DataMember(Name = "referrer", IsRequired=false)]
+		public string Referrer { get; set; }
+
+
+		[DataMember(Name = "internal", IsRequired=false)]
+		public Dictionary<string,string> Internal { get; set; }
+
+
+		[DataMember(Name = "marketo_cookie", IsRequired=false)]
+		public string MarketoCookie { get; set; }
+
+
+		[DataMember(Name = "profile", IsRequired=false)]
+		public Contact Profile { get; set; }
+
+
+		[DataMember(Name = "mails", IsRequired=false)]
+		public List<UserMail> Mails { get; set; }
+
+
+	}
 }
+
