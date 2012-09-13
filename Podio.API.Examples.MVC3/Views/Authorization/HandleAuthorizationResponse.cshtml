@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "AuthorizationCompleted";
+}
+<div class="page-header">
+    <h1>You authorize - bad boy/girl</h1>
+</div>
+
+<div class="container">
+    <p class="alert alert-important">@ViewData["error"]</p>
+    <a href="@Url.Action("Index")">Go try again</a>
+</div>
