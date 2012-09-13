@@ -18,14 +18,14 @@ namespace Podio.API
         [DataContract]
         public struct AuthenticationResponse
         {
-            [DataMember(IsRequired=false)]
-            public string access_token { get; set; }
-            [DataMember(IsRequired=false)]
-            public string token_type { get; set; }
-            [DataMember(IsRequired=false)]
+            [DataMember(IsRequired=false, Name="access_token")]
+            public string AccessToken { get; set; }
+            [DataMember(IsRequired=false,Name="token_type")]
+            public string TokenType { get; set; }
+            [DataMember(IsRequired=false,Name = "expires_in")]
             public int expires_in { get; set; }
-            [DataMember(IsRequired = false)]
-            public string refresh_token { get; set; }
+            [DataMember(IsRequired = false,Name="refresh_token")]
+            public string RefreshToken { get; set; }
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Podio.API
             // authenticate the username and password.
             string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
 
-            Dictionary<string, string> _params = new Dictionary<string, string>() {
+            Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
                 { "grant_type","password"} ,
                 {"username",username},
                 {"password",password},
@@ -60,7 +60,7 @@ namespace Podio.API
                 {"client_secret",client_secret}
             };
 
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _params, PodioRestHelper.RequestMethod.POST);
+            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
             
             retval.AuthInfo = _response.Data;
             
@@ -78,7 +78,52 @@ namespace Podio.API
         public static Client ConnectAsApp(string client_id, string client_secret, string podioAppId, string podioAppToken)
         {
             // validate that the accessToken is valid.
-            return new Client();
+            //grant_type=app&app_id=YOUR_PODIO_APP_ID&app_token=YOUR_PODIO_APP_TOKEN&client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&client_secret=YOUR_APP_SECRET
+            var retval = new Client();
+            // authenticate the username and password.
+            string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
+
+            Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
+                { "grant_type","app"} ,
+                {"client_id",client_id},
+                {"client_secret",client_secret},
+                {"app_id",podioAppId},
+                {"app_token",podioAppToken},
+            };
+            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
+
+            retval.AuthInfo = _response.Data;
+
+            return retval;
+
+        }
+
+        /// <summary>
+        /// Connecting with the Authorization code requires that you have authorized using the "Server-side flow" and use
+        /// the returned "code" that is the result of the authorization.
+        /// </summary>
+        /// <param name="app_id"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static Client ConnectWithAuthorizationCode(string client_id, string client_secret, string authorizationCode)
+        {
+
+            var retval = new Client();
+            // authenticate the username and password.
+            string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
+
+            // grant_type=authorization_code&client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&client_secret=YOUR_APP_SECRET&code=THE_AUTHORIZATION_CODE
+            Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
+                { "grant_type","authorization_code"} ,
+                {"client_id",client_id},
+                {"client_secret",client_secret},
+                {"code",authorizationCode},
+            };
+            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
+
+            retval.AuthInfo = _response.Data;
+
+            return retval;
         }
 
         public Services.OrganisationService OrganisationService { get { return new Services.OrganisationService(this); } }

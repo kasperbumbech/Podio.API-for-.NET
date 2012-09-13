@@ -24,7 +24,7 @@ namespace Podio.API.Services
         public IEnumerable<Model.Application> GetAppsBySpace(int spaceId)
         {
             {
-                return PodioRestHelper.Request<List<Model.Application>>(Constants.PODIOAPI_BASEURL + "/app/space/" + spaceId + "/", _client.AuthInfo.access_token).Data;
+                return PodioRestHelper.Request<List<Model.Application>>(Constants.PODIOAPI_BASEURL + "/app/space/" + spaceId + "/", _client.AuthInfo.AccessToken).Data;
             }
         }
 

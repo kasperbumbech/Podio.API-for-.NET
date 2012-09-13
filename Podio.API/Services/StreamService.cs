@@ -20,7 +20,7 @@ namespace Podio.API.Services
             Dictionary<string,string> _args = new Dictionary<string,string>();
             _args.Add("limit",limit.ToString());
             _args.Add("offset",offset.ToString());
-            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/", _client.AuthInfo.access_token, _args).Data;
+            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/", _client.AuthInfo.AccessToken, _args).Data;
         }
 
 
@@ -32,7 +32,7 @@ namespace Podio.API.Services
             Dictionary<string, string> _args = new Dictionary<string, string>();
             _args.Add("limit", limit.ToString());
             _args.Add("offset", offset.ToString());
-            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/personal/", _client.AuthInfo.access_token, _args).Data;
+            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/personal/", _client.AuthInfo.AccessToken, _args).Data;
         }
 
 
@@ -44,7 +44,7 @@ namespace Podio.API.Services
             Dictionary<string, string> _args = new Dictionary<string, string>();
             _args.Add("limit", limit.ToString());
             _args.Add("offset", offset.ToString());
-            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/user/" + userId + "/", _client.AuthInfo.access_token, _args).Data;
+            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/user/" + userId + "/", _client.AuthInfo.AccessToken, _args).Data;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Podio.API.Services
             Dictionary<string, string> _args = new Dictionary<string, string>();
             _args.Add("limit", limit.ToString());
             _args.Add("offset", offset.ToString());
-            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/app/" + appId + "/", _client.AuthInfo.access_token, _args).Data;
+            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/app/" + appId + "/", _client.AuthInfo.AccessToken, _args).Data;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Podio.API.Services
             Dictionary<string, string> _args = new Dictionary<string, string>();
             _args.Add("limit", limit.ToString());
             _args.Add("offset", offset.ToString());
-            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/space/" + spaceId + "/", _client.AuthInfo.access_token, _args).Data;
+            return PodioRestHelper.Request<List<StreamObject>>(Constants.PODIOAPI_BASEURL + "/stream/space/" + spaceId + "/", _client.AuthInfo.AccessToken, _args).Data;
         }
 
 

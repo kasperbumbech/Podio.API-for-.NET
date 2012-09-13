@@ -98,21 +98,21 @@ namespace Podio.API.Services
         /// </summary>
         public CreatedResponse CreateSpace(CreateRequest requestData)
         {
-            return PodioRestHelper.JSONRequest<CreatedResponse>(Constants.PODIOAPI_BASEURL + "/space/", _client.AuthInfo.access_token, requestData, PodioRestHelper.RequestMethod.POST).Data;
+            return PodioRestHelper.JSONRequest<CreatedResponse>(Constants.PODIOAPI_BASEURL + "/space/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/spaces/get-available-spaces-1911961
         /// </summary>
         public IEnumerable<Space> GetAvailableSpaces(int orgId) {
-            return PodioRestHelper.Request<List<Space>>(Constants.PODIOAPI_BASEURL + "/space/org/" + orgId + "/available/", _client.AuthInfo.access_token).Data;
+            return PodioRestHelper.Request<List<Space>>(Constants.PODIOAPI_BASEURL + "/space/org/" + orgId + "/available/", _client.AuthInfo.AccessToken).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/spaces/get-space-22389
         /// </summary>
         public Space GetSpace(int spaceId) {
-            return PodioRestHelper.Request<Space>(Constants.PODIOAPI_BASEURL + "/space/" + spaceId, _client.AuthInfo.access_token).Data;
+            return PodioRestHelper.Request<Space>(Constants.PODIOAPI_BASEURL + "/space/" + spaceId, _client.AuthInfo.AccessToken).Data;
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Podio.API.Services
         /// </summary>
         public Space GetSpaceByOrgAndURLLabel(int orgId,string urlLabel)
         {
-            return PodioRestHelper.Request<Space>(Constants.PODIOAPI_BASEURL + "/space/org/" + orgId + "/" + urlLabel, _client.AuthInfo.access_token).Data;
+            return PodioRestHelper.Request<Space>(Constants.PODIOAPI_BASEURL + "/space/org/" + orgId + "/" + urlLabel, _client.AuthInfo.AccessToken).Data;
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Podio.API.Services
         /// </summary>
         public Space GetSpaceByUrl(string url)
         {
-            return PodioRestHelper.Request<Space>(Constants.PODIOAPI_BASEURL + "/space/url", _client.AuthInfo.access_token, new Dictionary<string, string>() { { "url", url } }).Data;
+            return PodioRestHelper.Request<Space>(Constants.PODIOAPI_BASEURL + "/space/url", _client.AuthInfo.AccessToken, new Dictionary<string, string>() { { "url", url } }).Data;
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Podio.API.Services
         /// </summary>
         public IEnumerable<Space> GetTopSpaces(int limit)
         {
-            return PodioRestHelper.Request<List<Space>>(Constants.PODIOAPI_BASEURL + "/space/top/", _client.AuthInfo.access_token, new Dictionary<string, string>() { { "limit", limit.ToString() } }).Data;
+            return PodioRestHelper.Request<List<Space>>(Constants.PODIOAPI_BASEURL + "/space/top/", _client.AuthInfo.AccessToken, new Dictionary<string, string>() { { "limit", limit.ToString() } }).Data;
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Podio.API.Services
         /// </summary>
         public void UpdateSpace(int spaceId, UpdateRequest requestData)
         {
-           PodioRestHelper.PodioResponse t = PodioRestHelper.JSONRequest(Constants.PODIOAPI_BASEURL + "/space/" + spaceId, _client.AuthInfo.access_token, requestData, PodioRestHelper.RequestMethod.PUT);
+           PodioRestHelper.PodioResponse t = PodioRestHelper.JSONRequest(Constants.PODIOAPI_BASEURL + "/space/" + spaceId, _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.PUT);
            if (t.PodioError != null)
                throw new Exceptions.PodioResponseException(t.PodioError.error_description, t.PodioError);
         }
