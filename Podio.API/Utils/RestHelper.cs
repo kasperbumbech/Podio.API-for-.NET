@@ -31,9 +31,8 @@ namespace Podio.API.Utils
             dict = new Dictionary<string, object>();
             foreach (var entry in info)
             {
-                Debug.Assert(entry.ObjectType.IsArray);
-                object[] array = entry.Value as object[];
-                dict.Add(entry.Name, array);
+                object obj = entry.Value as object;
+                dict.Add(entry.Name, obj);
             }
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
