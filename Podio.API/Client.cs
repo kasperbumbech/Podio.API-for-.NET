@@ -31,7 +31,7 @@ namespace Podio.API
             [DataMember(IsRequired = false, Name = "refresh_token")]
             public string RefreshToken { get; set; }
 
-            [DataMember(IsRequired = false, Name = "refresh_token")]
+            [DataMember(IsRequired = false, Name = "time_obtained")]
             public DateTime TimeObtained { get; set; }
         }
 
