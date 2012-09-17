@@ -49,7 +49,7 @@ namespace Podio.API
         private AuthorizationAccessToken _authinfo;
 
         /// <summary>
-        /// This should automagically refresh the token if its getting near an invalidated 
+        /// This automagically refreshes the token if its getting near an invalidated 
         /// state.
         /// </summary>
         public AuthorizationAccessToken AuthInfo

@@ -46,6 +46,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\PodioException.cs" />
+    <Compile Include="Exceptions\PodioRateLimitException.cs" />
     <Compile Include="Model\AccountProvider.cs" />
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\ActivationStatus.cs" />

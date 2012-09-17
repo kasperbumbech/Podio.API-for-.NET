@@ -78,7 +78,14 @@ namespace Podio.API.Utils
                 get
                 {
                     if (_response.HttpStatusCode != HttpStatusCode.OK || _response.PodioError != null)
+                    {
+                        // if you been nasty and abused the API you will hit the rate_limit
+                        if (_response.PodioError != null && _response.PodioError.error_description == "rate_limit") {
+                            throw new PodioRateLimitException();
+                        }
+                        
                         throw new PodioResponseException(_response.PodioError.error_description, _response.PodioError);
+                    }
 
                     return PodioRestHelper.Deserialise<T>(_response.Data);
                 }
