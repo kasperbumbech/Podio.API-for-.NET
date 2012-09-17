@@ -17,7 +17,7 @@ namespace Podio.API
         // This is what you want to hold on to if you
         // are to keep an open connection to Podio.
         [DataContract]
-        public class AuthenticationResponse
+        public class AuthorizationAccessToken
         {
             [DataMember(IsRequired = false, Name = "access_token")]
             public string AccessToken { get; set; }
@@ -39,20 +39,20 @@ namespace Podio.API
         /// Go use the static constructor
         /// </summary>
         
-        public Client(AuthenticationResponse authInfo, string clientId, string clientSecret)
+        public Client(AuthorizationAccessToken authInfo, string clientId, string clientSecret)
         {
             this.clientId = clientId;
             this.clientSecret = clientSecret;
             this._authinfo = authInfo;
         }
 
-        private AuthenticationResponse _authinfo;
+        private AuthorizationAccessToken _authinfo;
 
         /// <summary>
         /// This should automagically refresh the token if its getting near an invalidated 
         /// state.
         /// </summary>
-        public AuthenticationResponse AuthInfo
+        public AuthorizationAccessToken AuthInfo
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Podio.API
                     {"refresh_token",_authinfo.RefreshToken}
                 };
 
-                this._authinfo = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+                this._authinfo = PodioRestHelper.Request<AuthorizationAccessToken>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
                 this._authinfo.TimeObtained = DateTime.Now; // mark the date and time obtained
             }
         }
@@ -106,13 +106,12 @@ namespace Podio.API
                 {"client_secret",client_secret}
             };
 
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+            var _response = PodioRestHelper.Request<AuthorizationAccessToken>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
             _response.TimeObtained = DateTime.Now;
 
             return new Client(_response, client_id, client_secret);
         }
-
-
+        
         /// <summary>
         /// Connecting as an app requires that you have authorized the app using the "Server-side flow" use the returned "code" that
         /// is the result of this interaction.
@@ -136,7 +135,7 @@ namespace Podio.API
                 {"app_token",podioAppToken},
                 {"redirect_uri",redirectUri}
             };
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+            var _response = PodioRestHelper.Request<AuthorizationAccessToken>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
             _response.TimeObtained = DateTime.Now;
 
             return new Client(_response, clientId, clientSecret);
@@ -163,7 +162,7 @@ namespace Podio.API
                 {"redirect_uri",redirectUri}
             };
 
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+            var _response = PodioRestHelper.Request<AuthorizationAccessToken>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
             _response.TimeObtained = DateTime.Now;
 
             return new Client(_response, clientId, clientSecret);
