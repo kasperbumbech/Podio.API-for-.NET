@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "AuthenticationSuccess";
+}
+@{
+    Podio.API.Client.AuthenticationResponse response = @TempData["AuthenticationResponse"] as Podio.API.Client.AuthenticationResponse;
+    
+    
+    }
+<div class="page-header">
+    <h1>Authenticated successfully</h1>
+</div>
+<p class="alert alert-success">
+Your AccessToken is: @response.AccessToken
+</p>

@@ -74,7 +74,7 @@ namespace Podio.API
             {
                 string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
                 Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
-                    { "grant_type","password"},
+                    {"grant_type","refresh_token"},
                     {"client_id",clientId},
                     {"client_secret",clientSecret},
                     {"refresh_token",_authinfo.RefreshToken}
@@ -120,7 +120,7 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectAsApp(string clientId, string clientSecret, string podioAppId, string podioAppToken, string redirectUri = "http://domain.com")
+        public static Client ConnectAsApp(string clientId, string clientSecret, string podioAppId, string podioAppToken, string redirectUri)
         {
             // validate that the accessToken is valid.
             //grant_type=app&app_id=YOUR_PODIO_APP_ID&app_token=YOUR_PODIO_APP_TOKEN&client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&client_secret=YOUR_APP_SECRET
@@ -149,7 +149,7 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectWithAuthorizationCode(string clientId, string clientSecret, string authorizationCode, string redirectUri = "http://domain.com")
+        public static Client ConnectWithAuthorizationCode(string clientId, string clientSecret, string authorizationCode, string redirectUri)
         {
             // authenticate the username and password.
             string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";

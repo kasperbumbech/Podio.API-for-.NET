@@ -51,5 +51,27 @@ namespace Podio.API.Examples.MVC3.Controllers
             ViewData["code"] = code;
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AuthorizationSuccess(string authorization_code,string client_id,string client_secret, string client_domain)
+        {
+            // this is a "one-time" enjoyment
+            var authinfo = Podio.API.Client.ConnectWithAuthorizationCode(client_id, client_secret, authorization_code, client_domain).AuthInfo;
+
+            if (authinfo != null)
+            {
+                TempData["AuthenticationResponse"] = authinfo;
+                return RedirectToAction("AuthenticationSuccess");
+            }
+            else {
+                ViewData["code"] = authorization_code;
+                return View();
+            }
+        }
+
+        public ActionResult AuthenticationSuccess() {
+            return View();
+        }
+
     }
 }
