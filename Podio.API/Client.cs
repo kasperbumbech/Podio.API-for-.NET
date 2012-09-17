@@ -68,9 +68,9 @@ namespace Podio.API
         private string clientId { get; set; }
         private string clientSecret { get;set; }
 
-        public void ValidateConnection()
+        private void ValidateConnection()
         {
-            if (this._authinfo.TimeObtained.AddSeconds(this.AuthInfo.ExpiresIn) > DateTime.Now.AddSeconds(-10))
+            if (this._authinfo.TimeObtained.AddSeconds(this._authinfo.ExpiresIn) > DateTime.Now.AddSeconds(-10))
             {
                 string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
                 Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
