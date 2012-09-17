@@ -14,29 +14,76 @@ namespace Podio.API
     /// </summary>
     public class Client
     {
-        // give a damn . this is immutable
+        // This is what you want to hold on to if you
+        // are to keep an open connection to Podio.
         [DataContract]
-        public struct AuthenticationResponse
+        public class AuthenticationResponse
         {
-            [DataMember(IsRequired=false, Name="access_token")]
+            [DataMember(IsRequired = false, Name = "access_token")]
             public string AccessToken { get; set; }
-            [DataMember(IsRequired=false,Name="token_type")]
+            
+            [DataMember(IsRequired = false, Name = "token_type")]
             public string TokenType { get; set; }
-            [DataMember(IsRequired=false,Name = "expires_in")]
-            public int expires_in { get; set; }
-            [DataMember(IsRequired = false,Name="refresh_token")]
+            
+            [DataMember(IsRequired = false, Name = "expires_in")]
+            public int ExpiresIn { get; set; }
+            
+            [DataMember(IsRequired = false, Name = "refresh_token")]
             public string RefreshToken { get; set; }
+
+            [DataMember(IsRequired = false, Name = "refresh_token")]
+            public DateTime TimeObtained { get; set; }
         }
 
         /// <summary>
         /// Go use the static constructor
         /// </summary>
-        private Client() { }
+        
+        public Client(AuthenticationResponse authInfo, string clientId, string clientSecret)
+        {
+            client_id = clientId;
+            client_secret = clientSecret;
+            this.AuthInfo = authInfo;
+        }
 
-         // TODO: Implment refreshing the token if its invalid.
-        public AuthenticationResponse AuthInfo { get; private set; }
+        private AuthenticationResponse _authinfo;
+
+        /// <summary>
+        /// This should automagically refresh the token if its getting near an invalidated 
+        /// state.
+        /// </summary>
+        public AuthenticationResponse AuthInfo
+        {
+            get
+            {
+                ValidateConnection();
+                return this.AuthInfo;
+            }
+            private set
+            {
+                _authinfo = value;
+            }
+        }
+
         public string client_id { get; private set; }
-        public string client_secret_ { get; private set; }
+        public string client_secret { get; private set; }
+
+        public void ValidateConnection()
+        {
+            if (this.AuthInfo.TimeObtained.AddSeconds(this.AuthInfo.ExpiresIn) > DateTime.Now.AddSeconds(-10))
+            {
+                string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
+                Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
+                    { "grant_type","password"},
+                    {"client_id",client_id},
+                    {"client_secret",client_secret},
+                    {"refresh_token",_authinfo.RefreshToken}
+                };
+
+                this.AuthInfo = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+                this.AuthInfo.TimeObtained = DateTime.Now; // mark the date and time obtained
+            }
+        }
 
         /// <summary>
         /// Connecting as a User does not require that you have authorized the application.
@@ -48,7 +95,6 @@ namespace Podio.API
         /// <returns></returns>
         public static Client ConnectAsUser(string client_id, string client_secret, string username, string password)
         {
-            var retval = new Client();
             // authenticate the username and password.
             string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
 
@@ -60,11 +106,10 @@ namespace Podio.API
                 {"client_secret",client_secret}
             };
 
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
-            
-            retval.AuthInfo = _response.Data;
-            
-            return retval;
+            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+            _response.TimeObtained = DateTime.Now;
+
+            return new Client(_response, client_id, client_secret);
         }
 
 
@@ -75,28 +120,26 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectAsApp(string client_id, string client_secret, string podioAppId, string podioAppToken, string redirectUri = "http://domain.com")
+        public static Client ConnectAsApp(string clientId, string clientSecret, string podioAppId, string podioAppToken, string redirectUri = "http://domain.com")
         {
             // validate that the accessToken is valid.
             //grant_type=app&app_id=YOUR_PODIO_APP_ID&app_token=YOUR_PODIO_APP_TOKEN&client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&client_secret=YOUR_APP_SECRET
-            var retval = new Client();
+
             // authenticate the username and password.
             string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
 
             Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
                 { "grant_type","app"} ,
-                {"client_id",client_id},
-                {"client_secret",client_secret},
+                {"client_id",clientId},
+                {"client_secret",clientSecret},
                 {"app_id",podioAppId},
                 {"app_token",podioAppToken},
                 {"redirect_uri",redirectUri}
             };
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
+            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+            _response.TimeObtained = DateTime.Now;
 
-            retval.AuthInfo = _response.Data;
-
-            return retval;
-
+            return new Client(_response, clientId, clientSecret);
         }
 
         /// <summary>
@@ -106,26 +149,24 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectWithAuthorizationCode(string client_id, string client_secret, string authorizationCode, string redirectUri = "http://domain.com")
+        public static Client ConnectWithAuthorizationCode(string clientId, string clientSecret, string authorizationCode, string redirectUri = "http://domain.com")
         {
-
-            var retval = new Client();
             // authenticate the username and password.
             string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
 
             // grant_type=authorization_code&client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&client_secret=YOUR_APP_SECRET&code=THE_AUTHORIZATION_CODE
             Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
                 { "grant_type","authorization_code"} ,
-                {"client_id",client_id},
-                {"client_secret",client_secret},
+                {"client_id",clientId},
+                {"client_secret",clientSecret},
                 {"code",authorizationCode},
                 {"redirect_uri",redirectUri}
             };
-            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
 
-            retval.AuthInfo = _response.Data;
+            var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+            _response.TimeObtained = DateTime.Now;
 
-            return retval;
+            return new Client(_response, clientId, clientSecret);
         }
 
         public Services.OrganisationService OrganisationService { get { return new Services.OrganisationService(this); } }
