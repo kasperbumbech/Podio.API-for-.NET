@@ -41,8 +41,8 @@ namespace Podio.API
         
         public Client(AuthenticationResponse authInfo, string clientId, string clientSecret)
         {
-            client_id = clientId;
-            client_secret = clientSecret;
+            this.clientId = clientId;
+            this.clientSecret = clientSecret;
             this.AuthInfo = authInfo;
         }
 
@@ -65,8 +65,8 @@ namespace Podio.API
             }
         }
 
-        public string client_id { get; private set; }
-        public string client_secret { get; private set; }
+        private string clientId { get; set; }
+        private string clientSecret { get;set; }
 
         public void ValidateConnection()
         {
@@ -75,8 +75,8 @@ namespace Podio.API
                 string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
                 Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
                     { "grant_type","password"},
-                    {"client_id",client_id},
-                    {"client_secret",client_secret},
+                    {"client_id",clientId},
+                    {"client_secret",clientSecret},
                     {"refresh_token",_authinfo.RefreshToken}
                 };
 
