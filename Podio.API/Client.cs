@@ -89,6 +89,7 @@ namespace Podio.API
                 {"client_secret",client_secret},
                 {"app_id",podioAppId},
                 {"app_token",podioAppToken},
+                {"redirect_uri",""}
             };
             var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
 
@@ -118,6 +119,7 @@ namespace Podio.API
                 {"client_id",client_id},
                 {"client_secret",client_secret},
                 {"code",authorizationCode},
+                {"redirect_uri",""}
             };
             var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
 

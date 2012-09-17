@@ -52,10 +52,6 @@ namespace Podio.API.Utils
    /// </summary>
     public sealed class PodioRestHelper
     {
-        
-
-    
-
         public class PodioError
         {
             public bool error_propagate { get; set; }
