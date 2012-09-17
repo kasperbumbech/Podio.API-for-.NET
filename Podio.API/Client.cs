@@ -75,7 +75,7 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectAsApp(string client_id, string client_secret, string podioAppId, string podioAppToken)
+        public static Client ConnectAsApp(string client_id, string client_secret, string podioAppId, string podioAppToken, string redirectUri)
         {
             // validate that the accessToken is valid.
             //grant_type=app&app_id=YOUR_PODIO_APP_ID&app_token=YOUR_PODIO_APP_TOKEN&client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&client_secret=YOUR_APP_SECRET
@@ -89,7 +89,7 @@ namespace Podio.API
                 {"client_secret",client_secret},
                 {"app_id",podioAppId},
                 {"app_token",podioAppToken},
-                {"redirect_uri",""}
+                {"redirect_uri",redirectUri}
             };
             var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
 
@@ -106,7 +106,7 @@ namespace Podio.API
         /// <param name="app_id"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static Client ConnectWithAuthorizationCode(string client_id, string client_secret, string authorizationCode)
+        public static Client ConnectWithAuthorizationCode(string client_id, string client_secret, string authorizationCode, string redirectUri)
         {
 
             var retval = new Client();
@@ -119,7 +119,7 @@ namespace Podio.API
                 {"client_id",client_id},
                 {"client_secret",client_secret},
                 {"code",authorizationCode},
-                {"redirect_uri",""}
+                {"redirect_uri",redirectUri}
             };
             var _response = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST);
 
