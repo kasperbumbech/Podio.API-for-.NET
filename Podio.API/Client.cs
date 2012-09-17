@@ -43,7 +43,7 @@ namespace Podio.API
         {
             this.clientId = clientId;
             this.clientSecret = clientSecret;
-            this.AuthInfo = authInfo;
+            this._authinfo = authInfo;
         }
 
         private AuthenticationResponse _authinfo;
@@ -70,7 +70,7 @@ namespace Podio.API
 
         public void ValidateConnection()
         {
-            if (this.AuthInfo.TimeObtained.AddSeconds(this.AuthInfo.ExpiresIn) > DateTime.Now.AddSeconds(-10))
+            if (this._authinfo.TimeObtained.AddSeconds(this.AuthInfo.ExpiresIn) > DateTime.Now.AddSeconds(-10))
             {
                 string requestUri = Constants.PODIOAPI_BASEURL + "/oauth/token";
                 Dictionary<string, string> _requestbody = new Dictionary<string, string>() {
@@ -80,8 +80,8 @@ namespace Podio.API
                     {"refresh_token",_authinfo.RefreshToken}
                 };
 
-                this.AuthInfo = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
-                this.AuthInfo.TimeObtained = DateTime.Now; // mark the date and time obtained
+                this._authinfo = PodioRestHelper.Request<AuthenticationResponse>(requestUri, _requestbody, PodioRestHelper.RequestMethod.POST).Data;
+                this._authinfo.TimeObtained = DateTime.Now; // mark the date and time obtained
             }
         }
 
