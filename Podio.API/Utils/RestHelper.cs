@@ -17,22 +17,21 @@ using System.Web.Script.Serialization;
 
 namespace Podio.API.Utils
 {
-  
+
     [Serializable]
     public class SerializableDictionary : ISerializable
     {
-        public Dictionary<string, object[]> dict;
+        public Dictionary<string, object> dict;
         public SerializableDictionary()
         {
-            dict = new Dictionary<string, object[]>();
+            dict = new Dictionary<string, object>();
         }
-
-
         protected SerializableDictionary(SerializationInfo info, StreamingContext context)
         {
-            dict = new Dictionary<string, object[]>();
+            dict = new Dictionary<string, object>();
             foreach (var entry in info)
             {
+                Debug.Assert(entry.ObjectType.IsArray);
                 object[] array = entry.Value as object[];
                 dict.Add(entry.Name, array);
             }
@@ -62,7 +61,7 @@ namespace Podio.API.Utils
 
         public enum RequestMethod
         {
-            GET, POST, PUT
+            GET, POST, PUT, DELETE
         }
 
         public class PodioResponse<T>

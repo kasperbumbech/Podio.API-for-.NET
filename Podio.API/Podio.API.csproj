@@ -68,6 +68,7 @@
     <Compile Include="Model\Contract.cs" />
     <Compile Include="Model\ContractAccounting.cs" />
     <Compile Include="Model\ContractPrice.cs" />
+    <Compile Include="Model\ContractUser.cs" />
     <Compile Include="Model\Conversation.cs" />
     <Compile Include="Model\ConversationMessage.cs" />
     <Compile Include="Model\ConversationParticipant.cs" />
