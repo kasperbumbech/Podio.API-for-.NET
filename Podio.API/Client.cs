@@ -57,7 +57,7 @@ namespace Podio.API
             get
             {
                 ValidateConnection();
-                return this.AuthInfo;
+                return _authinfo;
             }
             private set
             {
