@@ -44,11 +44,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "owner", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Owner { get; set; }
+		public Podio.API.Utils.Hash Owner { get; set; }
 
 
 		[DataMember(Name = "config", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Config { get; set; }
+		public Podio.API.Utils.Hash Config { get; set; }
 
 
 		[DataMember(Name = "fields", IsRequired=false)]

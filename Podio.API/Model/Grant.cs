@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "people", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary People { get; set; }
+		public Podio.API.Utils.Hash People { get; set; }
 
 
 		[DataMember(Name = "action", IsRequired=false)]

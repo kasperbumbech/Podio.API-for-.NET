@@ -28,11 +28,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "capability_names", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary CapabilityNames { get; set; }
+		public Podio.API.Utils.Hash CapabilityNames { get; set; }
 
 
 		[DataMember(Name = "options", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Options { get; set; }
+		public Podio.API.Utils.Hash Options { get; set; }
 
 
 	}

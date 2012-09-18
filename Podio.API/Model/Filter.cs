@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "filters", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Filters { get; set; }
+		public Podio.API.Utils.Hash Filters { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

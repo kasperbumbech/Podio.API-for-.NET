@@ -24,7 +24,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "settings", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Settings { get; set; }
+		public Podio.API.Utils.Hash Settings { get; set; }
 
 
 		[DataMember(Name = "domains", IsRequired=false)]

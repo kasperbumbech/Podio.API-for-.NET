@@ -12,7 +12,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "profile", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Profile { get; set; }
+		public Podio.API.Utils.Hash Profile { get; set; }
 
 
 		[DataMember(Name = "admin", IsRequired=false)]

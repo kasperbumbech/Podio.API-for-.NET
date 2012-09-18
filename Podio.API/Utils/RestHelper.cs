@@ -19,14 +19,32 @@ namespace Podio.API.Utils
 {
 
     [Serializable]
-    public class SerializableDictionary : ISerializable
+    public class Hash : ISerializable
     {
-        public Dictionary<string, object> dict;
-        public SerializableDictionary()
+        private Dictionary<string, object> dict;
+
+        public Dictionary<string, object> AsDictionary() {
+            return dict;
+        }
+
+        public string AsJSON()
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(dict);
+        }
+
+        public T As<T>() { 
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string json = serializer.Serialize(dict);
+            return serializer.Deserialize<T>(json);
+        }
+
+        public Hash()
         {
             dict = new Dictionary<string, object>();
         }
-        protected SerializableDictionary(SerializationInfo info, StreamingContext context)
+
+        protected Hash(SerializationInfo info, StreamingContext context)
         {
             dict = new Dictionary<string, object>();
             foreach (var entry in info)

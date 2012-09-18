@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Ratings { get; set; }
+		public Podio.API.Utils.Hash Ratings { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary UserRatings { get; set; }
+		public Podio.API.Utils.Hash UserRatings { get; set; }
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]

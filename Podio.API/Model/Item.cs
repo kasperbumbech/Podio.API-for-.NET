@@ -16,7 +16,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "app", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary App { get; set; }
+		public Podio.API.Utils.Hash App { get; set; }
 
 
 		[DataMember(Name = "external_id", IsRequired=false)]
@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Ratings { get; set; }
+		public Podio.API.Utils.Hash Ratings { get; set; }
 
 
 		[DataMember(Name = "conversations", IsRequired=false)]
@@ -64,7 +64,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary UserRatings { get; set; }
+		public Podio.API.Utils.Hash UserRatings { get; set; }
 
 
 		[DataMember(Name = "link", IsRequired=false)]
@@ -72,11 +72,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "invite", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Invite { get; set; }
+		public Podio.API.Utils.Hash Invite { get; set; }
 
 
 		[DataMember(Name = "participants", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Participants { get; set; }
+		public Podio.API.Utils.Hash Participants { get; set; }
 
 
 		[DataMember(Name = "linked_account_id", IsRequired=false)]
@@ -84,7 +84,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ref", IsRequired=false)]
-		public Podio.API.Utils.SerializableDictionary Ref { get; set; }
+		public Podio.API.Utils.Hash Ref { get; set; }
 
 
 		[DataMember(Name = "priority", IsRequired=false)]
