@@ -24,7 +24,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "data", IsRequired=false)]
-		public Podio.API.Utils.Hash Data { get; set; }
+		public Podio.API.Utils.JSONVariableData Data { get; set; }
 
 
 		[DataMember(Name = "item", IsRequired=false)]

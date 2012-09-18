@@ -56,11 +56,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "context", IsRequired=false)]
-		public Podio.API.Utils.Hash Context { get; set; }
+		public Podio.API.Utils.JSONVariableData Context { get; set; }
 
 
 		[DataMember(Name = "external_contacts", IsRequired=false)]
-		public Podio.API.Utils.Hash ExternalContacts { get; set; }
+		public Podio.API.Utils.JSONVariableData[] ExternalContacts { get; set; }
 
 
 		[DataMember(Name = "user", IsRequired=false)]

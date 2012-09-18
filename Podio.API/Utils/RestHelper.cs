@@ -19,53 +19,54 @@ namespace Podio.API.Utils
 {
 
     [Serializable]
-    public class Hash : ISerializable
+    public class JSONVariableData : ISerializable
     {
-        public Dictionary<string, object[]> dict;  
-        public Hash()
-        {
-            dict = new Dictionary<string, object[]>();
-        }
-
-        public Dictionary<string, object[]> AsDictionary() {
-            return dict;
-        }
-
-        public string AsJSON()
-        {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            return serializer.Serialize(dict);
-        }
+        private string _value = null;
+        public string GetJSONValue() {  return _value;  }
 
         public T As<T>() {
-            // at this point of time we have a guestimate what the type is
-            return Utils.PodioRestHelper.Deserialize<T>(AsJSON());
+            return new JavaScriptSerializer().Deserialize<T>(_value);
         }
 
-        protected Hash(SerializationInfo info, StreamingContext context)
-        {
-             dict = new Dictionary<string, object[]>();  
-                foreach (var entry in info)  
-                {  
-                    Debug.Assert(entry.ObjectType.IsArray);  
-                    object[] array = entry.Value as object[];  
-                    dict.Add(entry.Name, array);  
-                }  
-        }
+        public JSONVariableData() { }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public JSONVariableData(SerializationInfo info, StreamingContext context)
         {
-            foreach (string key in dict.Keys)
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            SerializationInfoEnumerator enumerator = info.GetEnumerator();
+            StringBuilder sb = new StringBuilder();
+            
+            bool first = true;
+            sb.Append("{");
+            
+            while (enumerator.MoveNext())
             {
-                info.AddValue(key, dict[key]);
-            }  
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    sb.Append(",");
+                }
+                sb.Append("\"" + enumerator.Name + "\"");
+                sb.Append(":");
+                sb.Append(serializer.Serialize(enumerator.Value));
+            }
+            
+            sb.Append("}");
+
+            this._value = sb.ToString();
         }
-    }
 
+        // No properties no serialization .. this is just a way to deserialize the Ruby Hash's
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {}
+    }  
 
-   /// <summary>
-   ///  It smells like homebrew
-   /// </summary>
+    /// <summary>
+    ///  It smells like homebrew
+    /// </summary>
     public sealed class PodioRestHelper
     {
         public class PodioError
@@ -96,10 +97,11 @@ namespace Podio.API.Utils
                     if (_response.HttpStatusCode != HttpStatusCode.OK || _response.PodioError != null)
                     {
                         // if you been nasty and abused the API you will hit the rate_limit
-                        if (_response.PodioError != null && _response.PodioError.error_description == "rate_limit") {
+                        if (_response.PodioError != null && _response.PodioError.error_description == "rate_limit")
+                        {
                             throw new PodioRateLimitException();
                         }
-                        
+
                         throw new PodioResponseException(_response.PodioError.error_description, _response.PodioError);
                     }
 
@@ -136,16 +138,18 @@ namespace Podio.API.Utils
             }
         }
 
-        public static PodioResponse Request(string requestUri, Dictionary<string, string> requestData) {
-            return Request(requestUri,null,requestData);
+        public static PodioResponse Request(string requestUri, Dictionary<string, string> requestData)
+        {
+            return Request(requestUri, null, requestData);
         }
 
         public static PodioResponse<T> Request<T>(string requestUri, Dictionary<string, string> requestData, RequestMethod requestMethod = RequestMethod.GET)
         {
-            return new PodioResponse<T>(Request(requestUri, null, requestData,requestMethod));
+            return new PodioResponse<T>(Request(requestUri, null, requestData, requestMethod));
         }
-     
-        public static PodioResponse Request(string requestUri, string accessToken, Dictionary<string, string> requestData = null, RequestMethod requestMethod = RequestMethod.GET) {
+
+        public static PodioResponse Request(string requestUri, string accessToken, Dictionary<string, string> requestData = null, RequestMethod requestMethod = RequestMethod.GET)
+        {
             requestData = requestData ?? new Dictionary<string, string>();
 
             // add the oauth token to the dictionary
@@ -171,11 +175,11 @@ namespace Podio.API.Utils
             else
             {
                 request = (HttpWebRequest)WebRequest.Create(requestUri);
-                
+
                 request.Method = "POST";
 
                 if (requestMethod == RequestMethod.PUT) request.Method = "PUT";
-                    
+
 
                 string postData = string.Join("&", requestData.Select(x => x.Key != "" ? x.Key + "=" + x.Value : x.Value));
 
@@ -192,7 +196,7 @@ namespace Podio.API.Utils
             }
 
             PodioResponse retval = GetResponse(request);
-            
+
             retval.RequestData = requestData;
             retval.RequestUri = requestUri;
 
@@ -204,17 +208,19 @@ namespace Podio.API.Utils
             return new PodioResponse<T>(Request(requestUri, accessToken, requestData, requestMethod));
         }
 
-        public static PodioResponse JSONRequest(string requestUri, string accessToken, object requestData, RequestMethod requestMethod) {
-            if (requestMethod == RequestMethod.GET) {
+        public static PodioResponse JSONRequest(string requestUri, string accessToken, object requestData, RequestMethod requestMethod)
+        {
+            if (requestMethod == RequestMethod.GET)
+            {
                 throw new ArgumentException("Only works with PUT/POST/DELETE");
             }
             requestUri = requestUri + "?oauth_token=" + accessToken;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
-            
+
             request.Method = "POST";
-            
+
             if (requestMethod == RequestMethod.PUT) request.Method = "PUT";
-                   
+
             string postData = Serialize(requestData);
 
             byte[] data = Encoding.UTF8.GetBytes(postData);
@@ -294,11 +300,11 @@ namespace Podio.API.Utils
             using (MemoryStream ms = new MemoryStream())
             {
                 serializer.WriteObject(ms, t);
-                 retval = Encoding.UTF8.GetString(ms.ToArray());
+                retval = Encoding.UTF8.GetString(ms.ToArray());
                 ms.Close();
             }
             return retval;
-        }  
+        }
 
         private static HttpWebRequest SetupPOSTRequest(string requestUri, Dictionary<string, string> requestData)
         {
@@ -316,7 +322,7 @@ namespace Podio.API.Utils
                 requestStream.Write(data, 0, data.Length);
             }
             return request;
-           
+
         }
 
         #endregion

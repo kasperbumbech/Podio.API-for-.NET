@@ -24,11 +24,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Podio.API.Utils.Hash Image { get; set; }
+		public Podio.API.Utils.JSONVariableData Image { get; set; }
 
 
 		[DataMember(Name = "spaces", IsRequired=false)]
-		public Podio.API.Utils.Hash Spaces { get; set; }
+		public IEnumerable<Space> Spaces { get; set; }
 
 
 		[DataMember(Name = "url", IsRequired=false)]

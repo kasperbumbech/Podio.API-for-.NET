@@ -48,7 +48,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "responsible", IsRequired=false)]
-		public Podio.API.Utils.Hash Responsible { get; set; }
+		public Podio.API.Utils.JSONVariableData Responsible { get; set; }
 
 
 		[DataMember(Name = "space_id", IsRequired=false)]
@@ -100,7 +100,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ref", IsRequired=false)]
-		public Podio.API.Utils.Hash Ref { get; set; }
+		public Podio.API.Utils.JSONVariableData Ref { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

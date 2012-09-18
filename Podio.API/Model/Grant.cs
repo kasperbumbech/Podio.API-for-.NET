@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "people", IsRequired=false)]
-		public Podio.API.Utils.Hash People { get; set; }
+		public Podio.API.Utils.JSONVariableData People { get; set; }
 
 
 		[DataMember(Name = "action", IsRequired=false)]
@@ -29,6 +29,10 @@ namespace Podio.API.Model
 
 		[DataMember(Name = "message", IsRequired=false)]
 		public string Message { get; set; }
+
+
+		[DataMember(Name = "created_by", IsRequired=false)]
+		public ByLine CreatedBy { get; set; }
 
 
 	}

@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "filters", IsRequired=false)]
-		public Podio.API.Utils.Hash Filters { get; set; }
+		public Podio.API.Utils.JSONVariableData[] Filters { get; set; }
 
 
 		[DataMember(Name = "layout", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "fields", IsRequired=false)]
-		public Podio.API.Utils.Hash Fields { get; set; }
+		public Podio.API.Utils.JSONVariableData[] Fields { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

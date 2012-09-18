@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "data", IsRequired=false)]
-		public Podio.API.Utils.Hash Data { get; set; }
+		public Podio.API.Utils.JSONVariableData Data { get; set; }
 
 
 		[DataMember(Name = "comments_allowed", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Podio.API.Utils.Hash UserRatings { get; set; }
+		public Podio.API.Utils.JSONVariableData[] UserRatings { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]

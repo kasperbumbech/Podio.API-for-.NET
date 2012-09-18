@@ -36,11 +36,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "item_prices", IsRequired=false)]
-		public Podio.API.Utils.Hash ItemPrices { get; set; }
+		public Podio.API.Utils.JSONVariableData[] ItemPrices { get; set; }
 
 
 		[DataMember(Name = "item_limits", IsRequired=false)]
-		public Podio.API.Utils.Hash ItemLimits { get; set; }
+		public Podio.API.Utils.JSONVariableData[] ItemLimits { get; set; }
 
 
 		[DataMember(Name = "payment_id", IsRequired=false)]

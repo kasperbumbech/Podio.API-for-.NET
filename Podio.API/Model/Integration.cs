@@ -32,11 +32,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "config", IsRequired=false)]
-		public Podio.API.Utils.Hash Config { get; set; }
+		public Podio.API.Utils.JSONVariableData Config { get; set; }
 
 
 		[DataMember(Name = "mapping", IsRequired=false)]
-		public Podio.API.Utils.Hash Mapping { get; set; }
+		public Podio.API.Utils.JSONVariableData Mapping { get; set; }
 
 
 		[DataMember(Name = "updating", IsRequired=false)]

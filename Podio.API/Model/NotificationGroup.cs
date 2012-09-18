@@ -12,11 +12,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "context", IsRequired=false)]
-		public Podio.API.Utils.Hash Context { get; set; }
+		public Podio.API.Utils.JSONVariableData Context { get; set; }
 
 
 		[DataMember(Name = "notifications", IsRequired=false)]
-		public Podio.API.Utils.Hash Notifications { get; set; }
+		public Podio.API.Utils.JSONVariableData[] Notifications { get; set; }
 
 
 	}

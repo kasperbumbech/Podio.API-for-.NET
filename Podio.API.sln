@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Podio.API", "Podio.API\Podi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Podio.API.Examples.MVC3", "Podio.API.Examples.MVC3\Podio.API.Examples.MVC3.csproj", "{9FDDE21E-AD9C-4D48-B29B-EE10AE97AAD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertRubyModels", "ConvertRubyModels\ConvertRubyModels.csproj", "{7FFBE624-42A4-4429-8730-5811D29BDFDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{9FDDE21E-AD9C-4D48-B29B-EE10AE97AAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FDDE21E-AD9C-4D48-B29B-EE10AE97AAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FDDE21E-AD9C-4D48-B29B-EE10AE97AAD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FFBE624-42A4-4429-8730-5811D29BDFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FFBE624-42A4-4429-8730-5811D29BDFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FFBE624-42A4-4429-8730-5811D29BDFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FFBE624-42A4-4429-8730-5811D29BDFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

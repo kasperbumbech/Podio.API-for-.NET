@@ -52,11 +52,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "categories", IsRequired=false)]
-		public Podio.API.Utils.Hash Categories { get; set; }
+		public Podio.API.Utils.JSONVariableData[] Categories { get; set; }
 
 
 		[DataMember(Name = "org", IsRequired=false)]
-		public Podio.API.Utils.Hash Org { get; set; }
+		public Podio.API.Utils.JSONVariableData Org { get; set; }
 
 
 		[DataMember(Name = "author_apps", IsRequired=false)]
@@ -76,7 +76,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Podio.API.Utils.Hash Ratings { get; set; }
+		public Podio.API.Utils.JSONVariableData[] Ratings { get; set; }
 
 
 		[DataMember(Name = "user_rating", IsRequired=false)]
