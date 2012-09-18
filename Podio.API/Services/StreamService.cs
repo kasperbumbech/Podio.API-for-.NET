@@ -71,17 +71,15 @@ namespace Podio.API.Services
 
 
         /*
-        Get app stream
          * 
-Get global stream
-Get mutes in global stream
-Get organization stream
-Get personal stream
-Get space stream
-Get stream object
-Get user stream
-Mute object from global stream
-Unmute objects from the global stream
+        Get global stream
+        Get mutes in global stream
+        Get organization stream
+        Get personal stream
+        Get stream object
+        Get user stream
+        Mute object from global stream
+        Unmute objects from the global stream
         
     */
 

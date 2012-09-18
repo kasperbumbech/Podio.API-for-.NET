@@ -33,10 +33,8 @@ namespace Podio.API.Utils
             return serializer.Serialize(dict);
         }
 
-        public T As<T>() { 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string json = serializer.Serialize(dict);
-            return serializer.Deserialize<T>(json);
+        public T As<T>() {
+            return Utils.PodioRestHelper.Deserialize<T>(AsJSON());
         }
 
         public Hash()
@@ -206,7 +204,7 @@ namespace Podio.API.Utils
 
         public static PodioResponse JSONRequest(string requestUri, string accessToken, object requestData, RequestMethod requestMethod) {
             if (requestMethod == RequestMethod.GET) {
-                throw new ArgumentException("Only works with PUT/POST");
+                throw new ArgumentException("Only works with PUT/POST/DELETE");
             }
             requestUri = requestUri + "?oauth_token=" + accessToken;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
@@ -276,7 +274,7 @@ namespace Podio.API.Utils
             return retval;
         }
 
-        private static T Deserialize<T>(string json)
+        public static T Deserialize<T>(string json)
         {
             T obj = Activator.CreateInstance<T>();
             using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
@@ -287,7 +285,7 @@ namespace Podio.API.Utils
             }
         }
 
-        private static string Serialize(object t)
+        public static string Serialize(object t)
         {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(t.GetType());
             string retval;

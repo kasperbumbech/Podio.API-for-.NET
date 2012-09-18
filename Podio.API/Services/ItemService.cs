@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Podio.API.Services
 {
-    class ItemService
+    public class ItemService
     {
+
     }
 }
