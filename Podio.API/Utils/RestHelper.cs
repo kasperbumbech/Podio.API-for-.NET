@@ -21,9 +21,13 @@ namespace Podio.API.Utils
     [Serializable]
     public class Hash : ISerializable
     {
-        private Dictionary<string, object> dict;
+        public Dictionary<string, object[]> dict;  
+        public Hash()
+        {
+            dict = new Dictionary<string, object[]>();
+        }
 
-        public Dictionary<string, object> AsDictionary() {
+        public Dictionary<string, object[]> AsDictionary() {
             return dict;
         }
 
@@ -34,29 +38,27 @@ namespace Podio.API.Utils
         }
 
         public T As<T>() {
+            // at this point of time we have a guestimate what the type is
             return Utils.PodioRestHelper.Deserialize<T>(AsJSON());
-        }
-
-        public Hash()
-        {
-            dict = new Dictionary<string, object>();
         }
 
         protected Hash(SerializationInfo info, StreamingContext context)
         {
-            dict = new Dictionary<string, object>();
-            foreach (var entry in info)
-            {
-                object obj = entry.Value as object;
-                dict.Add(entry.Name, obj);
-            }
+             dict = new Dictionary<string, object[]>();  
+                foreach (var entry in info)  
+                {  
+                    Debug.Assert(entry.ObjectType.IsArray);  
+                    object[] array = entry.Value as object[];  
+                    dict.Add(entry.Name, array);  
+                }  
         }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             foreach (string key in dict.Keys)
             {
                 info.AddValue(key, dict[key]);
-            }
+            }  
         }
     }
 
