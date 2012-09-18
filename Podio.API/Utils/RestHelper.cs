@@ -103,7 +103,7 @@ namespace Podio.API.Utils
                         throw new PodioResponseException(_response.PodioError.error_description, _response.PodioError);
                     }
 
-                    return PodioRestHelper.Deserialise<T>(_response.Data);
+                    return PodioRestHelper.Deserialize<T>(_response.Data);
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace Podio.API.Utils
                     }
                     try
                     {
-                        return PodioRestHelper.Deserialise<PodioError>(Data);
+                        return PodioRestHelper.Deserialize<PodioError>(Data);
                     }
                     catch
                     {
@@ -276,7 +276,7 @@ namespace Podio.API.Utils
             return retval;
         }
 
-        private static T Deserialise<T>(string json)
+        private static T Deserialize<T>(string json)
         {
             T obj = Activator.CreateInstance<T>();
             using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
