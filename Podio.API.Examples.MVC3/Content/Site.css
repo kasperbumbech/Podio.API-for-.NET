@@ -6,6 +6,12 @@
 body {
     padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 }
+/* max-width of the site master */
+.page-container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
 table {
     table-layout: fixed;
 }

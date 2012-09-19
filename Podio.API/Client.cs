@@ -14,6 +14,7 @@ namespace Podio.API
     /// </summary>
     public class Client
     {
+
         // This is what you want to hold on to if you
         // are to keep an open connection to Podio.
         [DataContract]
@@ -21,18 +22,21 @@ namespace Podio.API
         {
             [DataMember(IsRequired = false, Name = "access_token")]
             public string AccessToken { get; set; }
-            
+
             [DataMember(IsRequired = false, Name = "token_type")]
             public string TokenType { get; set; }
-            
+
             [DataMember(IsRequired = false, Name = "expires_in")]
             public int ExpiresIn { get; set; }
-            
+
             [DataMember(IsRequired = false, Name = "refresh_token")]
             public string RefreshToken { get; set; }
 
             [DataMember(IsRequired = false, Name = "time_obtained")]
             public DateTime TimeObtained { get; set; }
+
+            [DataMember(IsRequired = false, Name = "ref")]
+            public Model.Ref Ref { get; set; }
         }
 
         /// <summary>

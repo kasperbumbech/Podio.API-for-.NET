@@ -25,7 +25,7 @@ namespace Podio.API.Utils
         public string GetJSONValue() {  return _value;  }
 
         public T As<T>() {
-            return new JavaScriptSerializer().Deserialize<T>(_value);
+            return PodioRestHelper.Deserialize<T>(_value);
         }
 
         public JSONVariableData() { }
@@ -69,6 +69,11 @@ namespace Podio.API.Utils
     /// </summary>
     public sealed class PodioRestHelper
     {
+        public enum RequestMethod
+        {
+            GET, POST, PUT, DELETE
+        }
+
         public class PodioError
         {
             public bool error_propagate { get; set; }
@@ -76,12 +81,7 @@ namespace Podio.API.Utils
             public string error_description { get; set; }
             public string error_detail { get; set; }
         }
-
-        public enum RequestMethod
-        {
-            GET, POST, PUT, DELETE
-        }
-
+       
         public class PodioResponse<T>
         {
             private PodioResponse _response;
