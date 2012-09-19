@@ -2,10 +2,37 @@
     ViewBag.Title = "Index";
 }
 <div class="hero-unit">
-    <h2>Hero unit</h2>
+    @if (!Podio.API.Examples.MVC3.Application.CurrentConnectionDetails.IsReadyToRubmble) { 
+        <h1>Get ready!</h1>
+        <h2>You need a <a href="http://podio.com">Podio</a> account before moving on</h2>
+        <p>1: <a href="https://developers.podio.com/api-key">Setting up an API Key in Podio is required <i class="icon-share-alt"></i></a> <small>(you will need both the client id, client secret and domain later)</small> </><br />
+           2: Go to the authorization/authentication section<br />
+           3: Select your prefered connection <small>(User & password, APP Authentication or Authorization code)</small><br />
+           4: Authorize and authenticate
+        <small>no worries - all details are kept in session - and wont be shared with anyone, this is just a testrun</small></p>
+        <a href="@Url.Action("index","authorization")" class="btn btn-primary btn-large">Go see the awesomesauce!</a>
+    } else {
+        <h1>You are authenticated</h1>
+        <p>
+            It sure does feel good - rigt!?
+        </p>
+        <a href="@Url.Action("index","authorization")" class="btn btn-primary btn-large">Check all the details out</a>
+    }
 </div>
 <div class="row-fluid">
-    <div class="span4">1</div>
-    <div class="span4">2</div>
-    <div class="span4">3</div>
+    <div class="span4">
+        <h2>What is this</h2>
+        <p>This is the demo/example application that are built to demo the .NET API that wraps the Podio REST API</p>
+        <p>You can download this at <a href="https://github.com/kasperbumbech/Podio.API-for-.NET">github</a> and you can go to <a href="http://podio.kasperb.dk">the project site</a> and learn more</p>
+    </div>
+    <div class="span4">
+        <h2>I like the layout</h2>
+        <p>This stuff is built using <a href="http://twitter.github.com/bootstrap/">Twitter bootstrap</a> - its a great framework for making prototypes and real webapps</p>
+    </div>
+    <div class="span4">
+        <h2>I need help</h2>
+        <p>
+            You might be lucky to get some support at <a href="https://help.podio.com/forums/21007072">Podio's developer forum</a>
+        </p>
+    </div>
 </div>

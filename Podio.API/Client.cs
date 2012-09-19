@@ -148,6 +148,9 @@ namespace Podio.API
         /// <summary>
         /// Connecting with the Authorization code requires that you have authorized using the "Server-side flow" and use
         /// the returned "code" that is the result of the authorization.
+        /// 
+        /// Rememeber that this is a one-time enjoyment and that you should hold on to the clients AuthorizationAccessToken if you want to 
+        /// keep your APP's ability to be re-authorized.
         /// </summary>
         /// <param name="app_id"></param>
         /// <param name="code"></param>
