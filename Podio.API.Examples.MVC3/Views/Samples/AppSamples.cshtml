@@ -1,0 +1,13 @@
+﻿@model Podio.API.Examples.MVC3.Models.PodioConnectionInfo
+@{
+    ViewBag.Title = "AppSamples";
+}
+<div class="page-header">
+    <h1>App samples</h1>
+</div>
+
+<p class="alert alert-block">
+    <strong>No samples for apps yet! - try a different auth method</strong>
+</p>
+
+@Html.Partial("AuthInfoSection",Model)

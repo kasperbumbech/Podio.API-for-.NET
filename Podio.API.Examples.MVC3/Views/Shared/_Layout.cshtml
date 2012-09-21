@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/themes/bootstrap/jquery-ui-1.8.16.custom.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap.min.css")" />
 
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
@@ -17,7 +17,9 @@
     <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
 </head>
 <body>
-    <div class="navbar navbar navbar-fixed-top">
+
+
+    <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid page-container">
                 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -33,15 +35,28 @@
                     <ul class="nav">
                         <li><a href="@Url.Action("index", "authorization")"><i class="icon-retweet"></i>&nbsp;Authorization & Authentication</a></li>
                     </ul>
+                    <ul class="nav pull-right">
+                        <li><a href="http://podio.kasperb.dk"> <span class="badge badge-success">Example website for the Podio API .NET Wrapper</span></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    @if (TempData["error"] != null) {
+        <div class="container-fluid page-container">
+            <div class="alert alert-error alert-block" >
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>An error occured!</h4> @TempData["error"]
+            </div>
+    </div>
+    }
 
     <div class="container-fluid page-container" id="site">
         @RenderBody()
     </div>
+
     <hr />
+
     <footer>
         <div class="container-fluid page-container">
             Get updated/in touch: <a href="http://twitter.com/kasperb">@("@kasperb")</a>

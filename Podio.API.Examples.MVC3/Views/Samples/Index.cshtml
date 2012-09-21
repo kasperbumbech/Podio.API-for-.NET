@@ -1,0 +1,182 @@
+﻿@model Podio.API.Examples.MVC3.Models.PodioConnectionInfo
+@{
+    ViewBag.Title = "Samples";
+}
+<div class="hero-unit">
+    <h1>Samples</h1>
+    <p>A few samples to show how to retrieve some data from the API, you can download this app from Github and see how its wired up</p>
+</div>
+
+@{
+    var client = Model.GetClient();
+
+    IEnumerable<Podio.API.Model.StreamObject> stream = client.StreamService.GetUserStream((int)client.AuthInfo.Ref.Id, 10, 0);
+    var orgs = Model.GetClient().OrganisationService.GetOrganizations();
+}
+<div class="page-header">
+    <h1>Organisations for user: @client.AuthInfo.Ref.Id</h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created by</th>
+            <th>status</th>
+            <th>Premium</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var org in orgs)
+        {
+            <tr>
+                <td>@org.OrgId</td>
+                <td>@org.Name
+                    <br />
+                    <strong>Spaces</strong>
+                    <ul>
+                        @foreach (var space in org.Spaces) {
+                            <li>@space.Name</li>
+                        }
+                    </ul>
+                </td>
+                <td>@(org.CreatedBy != null ? org.CreatedBy.Name : null)</td>
+                <td>@org.Status</td>
+                <td>@org.Premium</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="page-header">
+    <h1>Stream for user: @client.AuthInfo.Ref.Id</h1>
+</div>
+<div class="stream">
+    <ul>
+        @foreach (var so in stream)
+        {
+            var thumbnail = ""; // not all users/apps has images
+
+            if (so.CreatedBy.AvatarId != null && so.CreatedBy.Image != null)
+            {
+                //  thumbnail = so.CreatedBy.Image.
+                var p = so.CreatedBy.Image.As<Podio.API.Model.FileAttachment>();
+                thumbnail = p.Link + "/small";
+            }
+            else
+            {
+                thumbnail = "https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_small.png"; // I have currently no idea on how to get a "default" avatar without hotlinking it - or making a copy
+            }
+            <li class="clearfix">
+                <div class="pull-left podio-small-avatar">
+                    <a href="https://podio.com/users/@so.CreatedBy.Id">
+                        <img alt="Small" src="@thumbnail" class="img-rounded" />
+                    </a>
+                </div>
+                <div class="pull-left podio-stream-item">
+                    <a href="@so.Link">@so.Title</a>
+                    @if (@so.Type == "item")
+                    {
+                        <br />
+                        <small><a href="@so.App.Link">@so.App.Name</a> by @so.CreatedBy.Name</small>
+                    }
+                    else if (@so.Type == "task")
+                    {
+                        <br />
+                        <small><i class="icon-ok"></i>Task by @so.CreatedBy.Name</small>
+                    }
+                    else if (@so.Type == "action")
+                    {
+                        <br />
+                        <small><i class="icon-share-alt"></i>Action by @so.CreatedBy.Name</small>
+                    }
+                    @if (so.Activity.Count() > 0)
+                    {
+                        <div class="">
+                            <ul>
+                                @foreach (var activity in so.Activity)
+                                {
+                                    <li>
+                                        <small>
+                                            @if (activity.Data != null)
+                                            {
+                                                switch (activity.Type)
+                                                {
+                                                    case "item_revision": 
+                                                <text><i class="icon-edit"></i> <a href="@activity.CreatedBy.Url" >@activity.CreatedBy.Name</a> edited this</text>
+                                                        break;
+                                                    case "status": 
+                                                <text>status</text>
+                                                        break;
+                                                    case "task": 
+                                                <text><i class="icon-ok"></i> <a href="@activity.CreatedBy.Url">@activity.CreatedBy.Name</a> added task: <a href="@(activity.Data.As<Podio.API.Model.Task>().Link)">@(activity.Data.As<Podio.API.Model.Task>().Text)</a></text>
+                                                        break;
+                                                    case "task_action": 
+                                                <text>
+                                                <i class="icon-pencil"></i><a href="@activity.CreatedBy.Url">@activity.CreatedBy.Name</a> updated this task's @(activity.Data.As<Podio.API.Model.Action>().Type)
+                                                </text>
+                                                        break;
+                                                    case "file": 
+                                                <text>file</text>
+                                                        break;
+                                                    case "comment": 
+                                                <text>
+
+
+                                                </text>
+                                                        break;
+                                                    case "rating": 
+                                                <text>rating</text>
+                                                        break;
+                                                    case "answer":
+                                                <text>answer</text>
+                                                        break;
+                                                    case "rsvp": 
+                                                <text>rsvp</text>
+                                                        break;
+                                                    default: <text>default</text>
+                                                        break;
+                                                }
+                                            }
+                                        </small>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @if (so.Comments.Count() > 0)
+                    {
+                        <div class="comments">
+                            <ul>
+                                @foreach (var comment in so.Comments)
+                                {
+                                    if (comment.CreatedBy.AvatarId != null && comment.CreatedBy.Image != null)
+                                    {
+                                        //  thumbnail = so.CreatedBy.Image.
+                                        var p = comment.CreatedBy.Image.As<Podio.API.Model.FileAttachment>();
+                                        thumbnail = p.Link + "/tiny";
+                                    }
+                                    else
+                                    {
+                                        thumbnail = "https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_tiny.png"; // I have currently no idea on how to get a "default" avatar without hotlinking it - or making a copy
+                                    }
+                                                    
+                                    <li>
+                                        <small>
+                                            <img src="@thumbnail" />
+                                            @comment.CreatedBy.Name commented on this</small>
+                                        <p class="comment"><small><em>@comment.Value</em></small></p>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+
+            </li>
+                        
+        }
+    </ul>
+</div>
+<br />
+@Html.Partial("AuthInfoSection")

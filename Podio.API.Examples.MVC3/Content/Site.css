@@ -18,3 +18,34 @@ table {
 .thumbnail .well {
     margin-bottom: 0;
 }
+
+
+
+
+/** PODIO GOES HERE */
+.stream ul,.podio .stream ul li {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.stream ul li {
+    padding:0 0 10px 5px;
+}
+
+ .stream ul li ul li {
+        padding:0 0 2px 5px;
+    }
+
+.podio-small-avatar {
+    margin-top:4px;
+}
+
+.podio-stream-item {
+    margin-left:10px;
+}
+
+ .stream .comment {
+padding-left:20px;
+
+}

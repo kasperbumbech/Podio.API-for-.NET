@@ -1,0 +1,61 @@
+﻿@{
+    var Model = Podio.API.Examples.MVC3.Application.CurrentConnectionDetails;
+}
+
+@if (!string.IsNullOrEmpty(Model.ClientAppInfo.ClientSecret))
+{
+    <div class="well">
+        <h5>Your app</h5>
+        <dl class="dl-horizontal">
+            <dt>Client id</dt>
+            <dd>@Model.ClientAppInfo.ClientId</dd>
+            <dt>Client secret</dt>
+            <dd>@Model.ClientAppInfo.ClientSecret</dd>
+            <dt>Domain</dt>
+            <dd>@Model.ClientAppInfo.Domain</dd>
+        </dl>
+        @if (Model.IsReadyToRubmble)
+        {
+            <h5>Podio auth</h5>
+            <dl class="dl-horizontal">
+                <dt>Access token</dt>
+                <dd>@Model.AuthorizationAccessToken.AccessToken</dd>
+                <dt>Type</dt>
+                <dd>@Model.AuthorizationAccessToken.Ref.Type</dd>
+                <dt>Id</dt>
+                <dd>@Model.AuthorizationAccessToken.Ref.Id</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Seconds left</dt>
+                <dd>@Model.AuthorizationAccessToken.ExpiresIn</dd>
+                <dt>Last auth</dt>
+                <dd>@Model.AuthorizationAccessToken.TimeObtained.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+            </dl>
+        }
+        <p>
+            <a href="@Url.Action("Reset", "Authorization")" class="btn btn-warning">Reset / Restart</a>
+        </p>
+    </div>
+
+}
+<p>
+    <span class="badge badge-info"><strong>Note: data will be stored in session only</strong></span>
+    <small>
+        <a href="#info-modal" role="button" data-toggle="modal">Read more</a>
+    </small>
+</p>
+
+
+<div class="modal hide" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Info</h3>
+    </div>
+    <div class="modal-body">
+        <p>This site is just an playground and are distributed on Github alongside the Podio API Wrapper for .NET</p>
+        <p>In order to present the features of the API - you need to input stuff that might be sensitive - NOTHING will be saved or shared with anyone - its keept in memory (session) - and will be wiped when you stop using the site</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>

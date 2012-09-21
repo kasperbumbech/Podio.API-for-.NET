@@ -98,6 +98,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Controllers\StreamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,11 +203,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Authorization\Index.cshtml" />
-    <Content Include="Views\Authorization\HandleAuthorizationResponse.cshtml" />
-    <Content Include="Views\Authorization\AuthorizationSuccess.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Authorization\AuthenticationSuccess.cshtml" />
     <Content Include="Views\Stream\Index.cshtml" />
+    <Content Include="Views\Authorization\ReadyToRumble.cshtml" />
+    <Content Include="Views\Authorization\SetupConnection.cshtml" />
+    <Content Include="Views\Shared\AuthInfoSection.cshtml" />
+    <Content Include="Views\Samples\Index.cshtml" />
+    <Content Include="Views\Samples\AppSamples.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,16 @@
+﻿@model Podio.API.Examples.MVC3.Models.PodioConnectionInfo
+@{
+    ViewBag.Title = "ReadyToRumble";
+}
+<div class="hero-unit">
+    <h1>You've been authorized <small>as @Model.AuthorizationAccessToken.Ref.Type</small></h1>
+    <p>
+    You have authorized your podio login with this app and are able to connect customers to workspaces,
+    and see their workspace streams and interactions. 
+    </p>
+    <p>
+        <a href="@Url.Action("Index","Samples")" class="btn btn-large btn-success">Go to the samples section</a>
+    </p>
+</div>
+
+@Html.Partial("AuthInfoSection")

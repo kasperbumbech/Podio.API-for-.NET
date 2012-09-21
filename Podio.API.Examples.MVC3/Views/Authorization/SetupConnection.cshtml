@@ -1,0 +1,86 @@
+﻿@model Podio.API.Examples.MVC3.Models.PodioConnectionInfo
+@{
+    ViewBag.Title = "SetupConnection";
+}
+<div class="page-header">
+    <h1>Authorize/authentication method</h1>
+</div>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="row">
+    <div class="span4">
+        <h2>Connect using authorization code</h2>
+        <p>
+            This server-side flow works by sending you to Podio to authorize. It's a four step process:
+            <ol>
+                <li>redirects you user to Podio for authorization</li>
+                <li>Podio redirects you back to this web app with an authorization code</li>
+                <li>You use the authorization code to obtain an access token</li>
+                <li>You use the access token for all API requests</li>
+            </ol>
+        </p>
+
+    </div>
+    <div class="span4">
+        <h2>Connect as Podio app</h2>
+        <p>
+            The app authentication flow is suitable in situations where you only need data from a single app and do not wish authenticate as a specific user. It is similar to the username & password flow, but uses the app ID and a special app token as the login credentials.
+        </p>
+        <p>
+            When you authenticate as an app you can only access that specific app and if you create content it will appear as having been created by the app itself rather than a specific user. 
+        </p>
+        <p>Uses for the app authentication flow are automated scripts that run without any user interaction.</p>
+    </div>
+    <div class="span4">
+        <h2>Connect with Username & Password</h2>
+        <p>
+            The username and password flow is suitable for clients capable of asking end-users for their usernames and passwords. The advantage over HTTP Basic, is that the user credentials are used in a single request and are exchanged for an access token and refresh token. This eliminates the need to store the username and password.
+        </p>
+        <p>
+            Unlike the server-side flow there are no redirects to the Podio authorization page because the user provides their username and password directly. The access token is also provided immediately and there's no authorization code which must be exchanged for an access token.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span4">
+        <div class="well">
+            <strong class="pull-right">Or</strong>
+            <p>No user input is needed in this end</p>
+            @using (Html.BeginForm(Html.BeginForm("StartAuthorizeFlow", "Authorization")))
+            {
+                <button type="submit" class="btn btn-primary" value="Create">Start authorization flow</button>
+            }
+        </div>
+    </div>
+    <div class="span4">
+        <div class="well">
+            <strong class="pull-right">Or</strong>
+            @using (Html.BeginForm("ConnectApp", "Authorization"))
+            { 
+                <label for="appid">App Id</label>
+                <input type="text" id="appid" name="appid" />
+                <label for="apptoken">App token</label>
+                <input type="text" id="apptoken" name="apptoken" />
+                <button type="submit" class="btn btn-primary" value="Create">Connect as App</button>
+            }
+        </div>
+    </div>
+    <div class="span4">
+        <div class="well">
+            @using (Html.BeginForm("ConnectUserAndPass", "Authorization"))
+            { 
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" />
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" />
+                <button type="submit" class="btn btn-primary" value="Create">Connect with Username & Password</button>
+            }
+        </div>
+    </div>
+</div>
+
+@Html.Partial("AuthInfoSection",Model)
+
+
