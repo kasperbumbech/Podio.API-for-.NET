@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
+
 using System.Web;
 using System.Web.Script.Serialization;
 
@@ -165,7 +165,7 @@ namespace Podio.API.Utils
                 // lets add the different arguments if they are present
                 if (requestData.Count > 0)
                 {
-                    requestUri = requestUri + "?" + string.Join("&", requestData.Select(x => x.Key + "=" + HttpUtility.UrlEncode(x.Value)));
+                    requestUri = requestUri + "?" + string.Join("&", requestData.Select(x => x.Key + "=" + HttpUtility.UrlEncode(x.Value)).ToArray());
                 }
                 request = (HttpWebRequest)WebRequest.Create(requestUri);
                 request.ContentType = "application/x-www-form-urlencoded";
@@ -181,7 +181,7 @@ namespace Podio.API.Utils
                 if (requestMethod == RequestMethod.PUT) request.Method = "PUT";
 
 
-                string postData = string.Join("&", requestData.Select(x => x.Key != "" ? x.Key + "=" + x.Value : x.Value));
+                string postData = string.Join("&", requestData.Select(x => x.Key != "" ? x.Key + "=" + x.Value : x.Value).ToArray());
 
                 byte[] data = Encoding.UTF8.GetBytes(postData);
 
@@ -310,7 +310,7 @@ namespace Podio.API.Utils
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.Method = "POST";
-            string postData = string.Join("&", requestData.Select(x => x.Key + "=" + x.Value));
+            string postData = string.Join("&", requestData.Select(x => x.Key + "=" + x.Value).ToArray());
             byte[] data = Encoding.UTF8.GetBytes(postData);
 
             request.ContentType = "application/x-www-form-urlencoded";
