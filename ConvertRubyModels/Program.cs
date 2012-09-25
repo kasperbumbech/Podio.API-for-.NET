@@ -171,7 +171,7 @@ namespace ConvertRubyModels
 
             if (type == "integer") return "int?";
             if (type == "datetime" || type == "date" || type == "time") return "string"; // JSON does not do Dates
-            if (type == "boolean") return "bool";
+            if (type == "boolean") return "bool?";
             if (type == "hash" && rubyname.EndsWith("s")) return "Podio.API.Utils.JSONVariableData[]"; // A take on the Ruby Hash datatype
             if (type == "hash" && !rubyname.EndsWith("s")) return "Podio.API.Utils.JSONVariableData"; // A take on the Ruby Hash datatype
 

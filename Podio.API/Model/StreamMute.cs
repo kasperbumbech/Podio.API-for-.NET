@@ -28,15 +28,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "item", IsRequired=false)]
-		public bool Item { get; set; }
+		public bool? Item { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]
-		public bool Status { get; set; }
+		public bool? Status { get; set; }
 
 
 		[DataMember(Name = "task", IsRequired=false)]
-		public bool Task { get; set; }
+		public bool? Task { get; set; }
 
 
 	}

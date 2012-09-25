@@ -48,15 +48,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "post_on_new_app", IsRequired=false)]
-		public bool PostOnNewApp { get; set; }
+		public bool? PostOnNewApp { get; set; }
 
 
 		[DataMember(Name = "post_on_new_member", IsRequired=false)]
-		public bool PostOnNewMember { get; set; }
+		public bool? PostOnNewMember { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]
-		public bool Subscribed { get; set; }
+		public bool? Subscribed { get; set; }
 
 
 		[DataMember(Name = "privacy", IsRequired=false)]
@@ -64,7 +64,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "auto_join", IsRequired=false)]
-		public bool AutoJoin { get; set; }
+		public bool? AutoJoin { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]
@@ -72,7 +72,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "premium", IsRequired=false)]
-		public bool Premium { get; set; }
+		public bool? Premium { get; set; }
 
 
 		[DataMember(Name = "last_activity_on", IsRequired=false)]

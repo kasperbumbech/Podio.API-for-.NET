@@ -24,7 +24,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "removable", IsRequired=false)]
-		public bool Removable { get; set; }
+		public bool? Removable { get; set; }
 
 
 		[DataMember(Name = "type", IsRequired=false)]

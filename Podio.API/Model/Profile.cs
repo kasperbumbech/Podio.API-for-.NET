@@ -128,7 +128,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "is_employee", IsRequired=false)]
-		public bool IsEmployee { get; set; }
+		public bool? IsEmployee { get; set; }
 
 
 	}

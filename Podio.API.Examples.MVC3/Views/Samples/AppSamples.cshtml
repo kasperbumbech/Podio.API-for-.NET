@@ -5,9 +5,58 @@
 <div class="page-header">
     <h1>App samples</h1>
 </div>
-
-<p class="alert alert-block">
-    <strong>No samples for apps yet! - try a different auth method</strong>
-</p>
+@{
+    var client = Model.GetClient();
+    // the ref id is App when we got authenticated as an APP
+    var items = client.ItemService.GetItems((int)Model.AuthorizationAccessToken.Ref.Id,100,0);
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <td></td>
+            <td>Task count</td>
+            <td>External Id</td>
+            <td>Fields</td>
+        </tr>
+        
+    </thead>
+    <tbody>
+    @foreach (var item in items) { 
+        <tr>
+            <td>@item.ItemId</td>
+            <td>@item.Title
+                @if ((item.TaskCount ?? 0) > 0) { 
+                <strong>Tasks</strong>    
+                    <ul>
+                        @foreach (var task in item.Tasks) { 
+                        <li>@task</li>
+                        }
+                    </ul>
+                }
+                @if ((item.References ?? new string[0]).Length > 0) { 
+                   <strong>References</strong>
+                    <ul>
+                        @foreach (var reference in item.References) { 
+                         <li>@reference</li>   
+                        }
+                    </ul>
+                }
+            </td>
+            <td></td>
+            <td>@item.TaskCount</td>
+            <td>@item.ExternalId</td>
+            <td>
+                <ul>
+                    @foreach (var field in item.Fields) { 
+                    <li>@field</li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
 
 @Html.Partial("AuthInfoSection",Model)

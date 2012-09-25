@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "silent", IsRequired=false)]
-		public bool Silent { get; set; }
+		public bool? Silent { get; set; }
 
 
 		[DataMember(Name = "config", IsRequired=false)]
@@ -40,7 +40,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "updating", IsRequired=false)]
-		public bool Updating { get; set; }
+		public bool? Updating { get; set; }
 
 
 		[DataMember(Name = "last_updated_on", IsRequired=false)]

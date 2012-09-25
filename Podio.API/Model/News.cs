@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "more", IsRequired=false)]
-		public bool More { get; set; }
+		public bool? More { get; set; }
 
 
 		[DataMember(Name = "priority", IsRequired=false)]
@@ -52,11 +52,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "stream_display", IsRequired=false)]
-		public bool StreamDisplay { get; set; }
+		public bool? StreamDisplay { get; set; }
 
 
 		[DataMember(Name = "email_display", IsRequired=false)]
-		public bool EmailDisplay { get; set; }
+		public bool? EmailDisplay { get; set; }
 
 
 		[DataMember(Name = "email_views", IsRequired=false)]

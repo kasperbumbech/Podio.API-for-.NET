@@ -24,7 +24,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "display", IsRequired=false)]
-		public bool Display { get; set; }
+		public bool? Display { get; set; }
 
 
 	}

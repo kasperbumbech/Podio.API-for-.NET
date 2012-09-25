@@ -40,7 +40,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]
-		public bool Subscribed { get; set; }
+		public bool? Subscribed { get; set; }
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]

@@ -40,7 +40,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "comments_allowed", IsRequired=false)]
-		public bool CommentsAllowed { get; set; }
+		public bool? CommentsAllowed { get; set; }
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]

@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "starred", IsRequired=false)]
-		public bool Starred { get; set; }
+		public bool? Starred { get; set; }
 
 
 		[DataMember(Name = "space", IsRequired=false)]

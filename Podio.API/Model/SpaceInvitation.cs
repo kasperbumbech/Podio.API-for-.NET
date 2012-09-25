@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "notify", IsRequired=false)]
-		public bool Notify { get; set; }
+		public bool? Notify { get; set; }
 
 
 		[DataMember(Name = "users", IsRequired=false)]

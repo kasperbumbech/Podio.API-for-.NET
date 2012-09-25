@@ -32,7 +32,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "private", IsRequired=false)]
-		public bool Private { get; set; }
+		public bool? Private { get; set; }
 
 
 		[DataMember(Name = "due_date", IsRequired=false)]

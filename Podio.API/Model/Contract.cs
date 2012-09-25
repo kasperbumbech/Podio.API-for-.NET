@@ -56,11 +56,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "full", IsRequired=false)]
-		public bool Full { get; set; }
+		public bool? Full { get; set; }
 
 
 		[DataMember(Name = "premium_emp_network", IsRequired=false)]
-		public bool PremiumEmpNetwork { get; set; }
+		public bool? PremiumEmpNetwork { get; set; }
 
 
 		[DataMember(Name = "premium_space_ids", IsRequired=false)]

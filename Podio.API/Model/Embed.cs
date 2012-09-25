@@ -48,7 +48,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "embed_height", IsRequired=false)]
-		public bool EmbedHeight { get; set; }
+		public bool? EmbedHeight { get; set; }
 
 
 		[DataMember(Name = "embed_width", IsRequired=false)]

@@ -16,11 +16,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "admin", IsRequired=false)]
-		public bool Admin { get; set; }
+		public bool? Admin { get; set; }
 
 
 		[DataMember(Name = "employee", IsRequired=false)]
-		public bool Employee { get; set; }
+		public bool? Employee { get; set; }
 
 
 		[DataMember(Name = "space_memberships", IsRequired=false)]

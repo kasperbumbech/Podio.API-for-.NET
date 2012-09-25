@@ -16,15 +16,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "verified", IsRequired=false)]
-		public bool Verified { get; set; }
+		public bool? Verified { get; set; }
 
 
 		[DataMember(Name = "primary", IsRequired=false)]
-		public bool Primary { get; set; }
+		public bool? Primary { get; set; }
 
 
 		[DataMember(Name = "disabled", IsRequired=false)]
-		public bool Disabled { get; set; }
+		public bool? Disabled { get; set; }
 
 
 	}

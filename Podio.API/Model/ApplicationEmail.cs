@@ -12,7 +12,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "attachments", IsRequired=false)]
-		public bool Attachments { get; set; }
+		public bool? Attachments { get; set; }
 
 
 		[DataMember(Name = "mappings", IsRequired=false)]

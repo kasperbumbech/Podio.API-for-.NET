@@ -10,7 +10,7 @@
 @{
     var client = Model.GetClient();
 
-    IEnumerable<Podio.API.Model.StreamObject> stream = client.StreamService.GetUserStream((int)client.AuthInfo.Ref.Id, 10, 0);
+    IEnumerable<Podio.API.Model.StreamObject> stream = client.StreamService.GetGlobalStream(100, 0);
     var orgs = Model.GetClient().OrganisationService.GetOrganizations();
 }
 <div class="page-header">

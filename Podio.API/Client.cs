@@ -183,5 +183,7 @@ namespace Podio.API
 
         public Services.StreamService StreamService { get { return new Services.StreamService(this); } }
 
+        public Services.ItemService ItemService { get { return new Services.ItemService(this); } }
+
     }
 }
