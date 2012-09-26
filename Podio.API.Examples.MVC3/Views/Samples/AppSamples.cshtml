@@ -9,8 +9,9 @@
     var client = Model.GetClient();
     // the ref id is App when we got authenticated as an APP
     var items = client.ItemService.GetItems((int)Model.AuthorizationAccessToken.Ref.Id,100,0);
-    //var items = new Podio.API.Model.Item[] { client.ItemService.GetItem(4241277) };
+    /*var items = new Podio.API.Model.Item[] { client.ItemService.GetItem(15326888) };*/
 }
+
 <table class="table">
     <thead>
         <tr>
@@ -25,10 +26,12 @@
     </thead>
     <tbody>
     @foreach (var item in items.Items) { 
+        
         <tr>
             <td>@item.ItemId</td>
             <td>@item.Title
-                @if ((item.TaskCount ?? 0) > 0) { 
+
+               @if ((item.TaskCount ?? 0) > 0) { 
                 <strong>Tasks</strong>    
                     <ul>
                         @foreach (var task in item.Tasks) { 

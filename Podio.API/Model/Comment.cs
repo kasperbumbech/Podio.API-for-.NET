@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]
-		public string[] FileIds { get; set; }
+		public List<int> FileIds { get; set; }
 
 
 		[DataMember(Name = "embed_id", IsRequired=false)]

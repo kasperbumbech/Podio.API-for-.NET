@@ -252,6 +252,8 @@ namespace Podio.API.Utils
 
         private static PodioResponse GetResponse(HttpWebRequest request)
         {
+            //Console.WriteLine(String.Format("\n==> {0} {1} \n\n"));
+
             PodioResponse retval = new PodioResponse();
             try
             {

@@ -11,6 +11,18 @@ namespace Podio.API.Model
 	{
 
 
+		[DataMember(Name = "user_id", IsRequired=false)]
+		public int? UserId { get; set; }
+
+
+		[DataMember(Name = "status", IsRequired=false)]
+		public string Status { get; set; }
+
+
+		[DataMember(Name = "mail", IsRequired=false)]
+		public string Mail { get; set; }
+
+
 		[DataMember(Name = "space_count", IsRequired=false)]
 		public int? SpaceCount { get; set; }
 

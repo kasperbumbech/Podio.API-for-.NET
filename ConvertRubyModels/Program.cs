@@ -16,9 +16,9 @@ namespace ConvertRubyModels
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Kasper Andersen\Documents\GitHub\podio-rb\lib\podio\models");
+            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Casper\Documents\GitHub\podio-rb\lib\podio\models");
 
-            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Work\Git\Podio.API\Podio.API-for-.NET\Podio.API\Model"); 
+            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Users\Casper\Documents\GitHub\Podio.API-for-.NET\Podio.API\Model"); 
           
             // convert all ruby files and output it to outputdir
             foreach (var fi in inputdir.GetFiles("*.rb"))
@@ -39,6 +39,8 @@ namespace ConvertRubyModels
         {
 
             StringBuilder sb = new StringBuilder();
+
+            string className = Regex.Match(rubyFileContent, @"class.*::(.*)<").Groups[1].Value.Trim();
 
             sb.AppendLine("using System;");
             sb.AppendLine("using System.Collections.Generic;");
@@ -69,7 +71,7 @@ namespace ConvertRubyModels
                 StringBuilder tmp = new StringBuilder();
 
                 tmp.AppendLine(Indent(2) + "[DataMember(Name = \"" + rubyName + "\", IsRequired=false)]");
-                tmp.AppendLine(Indent(2) + "public " + ConvertValueType(rubyType, rubyName) + " " + ConvertCaseString(rubyName, Case.PascalCase) + " { get; set; }");
+                tmp.AppendLine(Indent(2) + "public " + ConvertValueType(rubyType, rubyName, className) + " " + ConvertCaseString(rubyName, Case.PascalCase) + " { get; set; }");
                 tmp.AppendLine("");
 
                 properties.Add(new KeyValuePair<string, string>(rubyName, tmp.ToString()));
@@ -159,14 +161,33 @@ namespace ConvertRubyModels
             PascalCase,
             CamelCase
         }
+        /// <summary>
+        /// Add domain knowlegde and compensate for the lazyness of Ruby devs
+        /// </summary>
+        static Dictionary<string, string> knownhashes = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase) {
+            { "spaces", "IEnumerable<Space>" }, 
+            { "space", "Space" }, 
+            { "item>tasks", "List<Task>" }, 
+            { "item>references", "List<Reference>" }, 
+            { "item>refs", "List<Ref>" },
+            { "item>tags", "List<Tag>" } ,
+            { "item>fields", "List<ItemField>" } ,
+            { "item>conversations", "List<Conversation>" } ,
+            { "itemfield>Values", "List<Podio.API.Utils.JSONVariableData>" },
+            { "file_ids", "List<int>" }
+        };
 
-        static Dictionary<string, string> knownhashes = new Dictionary<string, string> { { "spaces", "IEnumerable<Space>" }, { "space", "Space" } };
-
-        public static string ConvertValueType(string type, string rubyname)
+        public static string ConvertValueType(string type, string rubyname, string className)
         {
-            if (type == "hash" && knownhashes.ContainsKey(rubyname.ToLower()))
+            if ((type == "hash" || type== "array") && knownhashes.ContainsKey(rubyname.ToLower()))
             {
                 return knownhashes[rubyname.ToLower()];
+            }
+
+            string key = className + ">" + rubyname.ToLower();
+            if (type != "hash" && knownhashes.ContainsKey(key))
+            {
+                return knownhashes[key];
             }
 
             if (type == "integer") return "int?";

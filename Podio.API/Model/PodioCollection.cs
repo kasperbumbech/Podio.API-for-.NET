@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Podio.API.Model
 {
-    [DataContract]
+    [DataContract(Name="PodioCollection")]
     public class PodioCollection<T>
     {
         [DataMember(Name = "items", IsRequired = false)]
