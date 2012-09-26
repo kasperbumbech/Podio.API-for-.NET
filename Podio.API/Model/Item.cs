@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "fields", IsRequired=false)]
-		public string[] Fields { get; set; }
+        public List<ItemField> Fields { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]
@@ -40,23 +40,23 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "conversations", IsRequired=false)]
-		public string[] Conversations { get; set; }
+		public List<Conversation> Conversations { get; set; }
 
 
 		[DataMember(Name = "tasks", IsRequired=false)]
-		public string[] Tasks { get; set; }
+        public List<Task> Tasks { get; set; }
 
 
 		[DataMember(Name = "references", IsRequired=false)]
-		public string[] References { get; set; }
+		public List<Reference> References { get; set; }
 
 
 		[DataMember(Name = "refs", IsRequired=false)]
-		public string[] Refs { get; set; }
+		public List<Ref> Refs { get; set; }
 
 
 		[DataMember(Name = "tags", IsRequired=false)]
-		public string[] Tags { get; set; }
+		public List<Tag> Tags { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]

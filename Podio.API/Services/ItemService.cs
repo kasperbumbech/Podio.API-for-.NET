@@ -31,7 +31,8 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/get-items-27803
         /// </summary>
-        public IEnumerable<Item> GetItems(int appId, int limit, int offset, string key = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null, int? viewId = null) {
+        public PodioCollection<Item> GetItems(int appId, int limit, int offset, string key = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null, int? viewId = null)
+        {
             Dictionary<string, string> args = new Dictionary<string, string>();
 
             args.Add("limit", limit.ToString());
@@ -50,7 +51,7 @@ namespace Podio.API.Services
             if (viewId != null)
                 args.Add("view_id", viewId.ToString());
 
-            return PodioRestHelper.Request<List<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken,args).Data;
+            return PodioRestHelper.Request<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken,args).Data;
         }
 
         /*

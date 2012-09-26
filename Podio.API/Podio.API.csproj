@@ -97,6 +97,7 @@
     <Compile Include="Model\OrganizationContact.cs" />
     <Compile Include="Model\OrganizationMember.cs" />
     <Compile Include="Model\OrganizationProfile.cs" />
+    <Compile Include="Model\PodioCollection.cs" />
     <Compile Include="Model\PodioDateTime.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\Question.cs" />

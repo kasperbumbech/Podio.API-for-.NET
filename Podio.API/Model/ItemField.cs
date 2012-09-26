@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "values", IsRequired=false)]
-		public string[] Values { get; set; }
+        public Podio.API.Utils.JSONVariableData[] Values { get; set; }
 
 
 		[DataMember(Name = "config", IsRequired=false)]

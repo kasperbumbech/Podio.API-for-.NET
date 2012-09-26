@@ -9,6 +9,7 @@
     var client = Model.GetClient();
     // the ref id is App when we got authenticated as an APP
     var items = client.ItemService.GetItems((int)Model.AuthorizationAccessToken.Ref.Id,100,0);
+    //var items = new Podio.API.Model.Item[] { client.ItemService.GetItem(4241277) };
 }
 <table class="table">
     <thead>
@@ -23,7 +24,7 @@
         
     </thead>
     <tbody>
-    @foreach (var item in items) { 
+    @foreach (var item in items.Items) { 
         <tr>
             <td>@item.ItemId</td>
             <td>@item.Title
@@ -35,7 +36,7 @@
                         }
                     </ul>
                 }
-                @if ((item.References ?? new string[0]).Length > 0) { 
+                @if ((item.References ?? new List<Podio.API.Model.Reference>()).Count > 0) { 
                    <strong>References</strong>
                     <ul>
                         @foreach (var reference in item.References) { 
@@ -50,7 +51,12 @@
             <td>
                 <ul>
                     @foreach (var field in item.Fields) { 
-                    <li>@field</li>
+                        <li>
+                            @foreach (var value in field.Values)
+                            {
+                                @value.GetJSONValue()    
+                            }
+                        </li>
                     }
                 </ul>
             </td>
