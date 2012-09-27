@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.9\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -63,6 +66,7 @@
     <Compile Include="Model\CalendarEvent.cs" />
     <Compile Include="Model\CalendarMute.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\ItemExpanded.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\Contact.cs" />
@@ -92,6 +96,7 @@
     <Compile Include="Model\News.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\NotificationGroup.cs" />
+    <Compile Include="Model\OAuth.cs" />
     <Compile Include="Model\OAuthClient.cs" />
     <Compile Include="Model\Organization.cs" />
     <Compile Include="Model\OrganizationContact.cs" />
@@ -128,6 +133,7 @@
     <Compile Include="Model\Via.cs" />
     <Compile Include="Model\View.cs" />
     <Compile Include="Model\Widget.cs" />
+    <Compile Include="Model\PodioObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\CalendarService.cs" />
@@ -140,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "config", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Config { get; set; }
+		public Dictionary<string,object> Config { get; set; }
 
 
 		[DataMember(Name = "step", IsRequired=false)]

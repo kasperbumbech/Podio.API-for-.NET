@@ -84,7 +84,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "internal", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Internal { get; set; }
+		public Dictionary<string,object> Internal { get; set; }
 
 
 		[DataMember(Name = "marketo_cookie", IsRequired=false)]

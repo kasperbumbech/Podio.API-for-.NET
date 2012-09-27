@@ -32,11 +32,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "config", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Config { get; set; }
+		public Dictionary<string,object> Config { get; set; }
 
 
 		[DataMember(Name = "ref", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Ref { get; set; }
+		public Dictionary<string,object> Ref { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "data", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Data { get; set; }
+		public Dictionary<string,object> Data { get; set; }
 
 
 	}

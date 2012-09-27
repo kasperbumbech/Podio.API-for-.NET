@@ -21,6 +21,7 @@
             <td>Task count</td>
             <td>External Id</td>
             <td>Fields</td>
+            <td>JSON</td>
         </tr>
         
     </thead>
@@ -57,11 +58,17 @@
                         <li>
                             @foreach (var value in field.Values)
                             {
-                                @value.GetJSONValue()    
+                                @value.Count
+                                
                             }
                         </li>
                     }
                 </ul>
+            </td>
+            <td>
+                <textarea>
+               
+                </textarea>
             </td>
         </tr>
     }

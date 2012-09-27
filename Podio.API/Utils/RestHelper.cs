@@ -1,4 +1,5 @@
-﻿using Podio.API.Exceptions;
+﻿using Newtonsoft.Json;
+using Podio.API.Exceptions;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -11,58 +12,11 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
-
 using System.Web;
 using System.Web.Script.Serialization;
 
 namespace Podio.API.Utils
 {
-
-    [Serializable]
-    public class JSONVariableData : ISerializable
-    {
-        private string _value = null;
-        public string GetJSONValue() {  return _value;  }
-
-        public T As<T>() {
-            return PodioRestHelper.Deserialize<T>(_value);
-        }
-
-        public JSONVariableData() { }
-
-        public JSONVariableData(SerializationInfo info, StreamingContext context)
-        {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            SerializationInfoEnumerator enumerator = info.GetEnumerator();
-            StringBuilder sb = new StringBuilder();
-            
-            bool first = true;
-            sb.Append("{");
-            
-            while (enumerator.MoveNext())
-            {
-                if (first)
-                {
-                    first = false;
-                }
-                else
-                {
-                    sb.Append(",");
-                }
-                sb.Append("\"" + enumerator.Name + "\"");
-                sb.Append(":");
-                sb.Append(serializer.Serialize(enumerator.Value));
-            }
-            
-            sb.Append("}");
-
-            this._value = sb.ToString();
-        }
-
-        // No properties no serialization .. this is just a way to deserialize the Ruby Hash's
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {}
-    }  
 
     /// <summary>
     ///  It smells like homebrew
@@ -243,7 +197,7 @@ namespace Podio.API.Utils
 
         public static PodioResponse<T> JSONRequest<T>(string requestUri, string accessToken, object requestData, RequestMethod requestMethod)
         {
-
+            
             PodioResponse<T> retval = new PodioResponse<T>(JSONRequest(requestUri, accessToken, requestData, requestMethod));
             return retval;
         }
@@ -286,13 +240,7 @@ namespace Podio.API.Utils
 
         public static T Deserialize<T>(string json)
         {
-            T obj = Activator.CreateInstance<T>();
-            using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
-            {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(ms);
-                return obj;
-            }
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public static string Serialize(object t)

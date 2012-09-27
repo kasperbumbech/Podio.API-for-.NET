@@ -16,9 +16,9 @@ namespace ConvertRubyModels
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Casper\Documents\GitHub\podio-rb\lib\podio\models");
+            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Kasper Andersen\Documents\GitHub\podio-rb\lib\podio\models");
 
-            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Users\Casper\Documents\GitHub\Podio.API-for-.NET\Podio.API\Model"); 
+            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Work\Git\Podio.API\Podio.API-for-.NET\Podio.API\Model"); 
           
             // convert all ruby files and output it to outputdir
             foreach (var fi in inputdir.GetFiles("*.rb"))
@@ -173,7 +173,7 @@ namespace ConvertRubyModels
             { "item>tags", "List<Tag>" } ,
             { "item>fields", "List<ItemField>" } ,
             { "item>conversations", "List<Conversation>" } ,
-            { "itemfield>Values", "List<Podio.API.Utils.JSONVariableData>" },
+            { "itemfield>Values", "List<Dictionary<string,object>>" },
             { "file_ids", "List<int>" }
         };
 
@@ -193,8 +193,8 @@ namespace ConvertRubyModels
             if (type == "integer") return "int?";
             if (type == "datetime" || type == "date" || type == "time") return "string"; // JSON does not do Dates
             if (type == "boolean") return "bool?";
-            if (type == "hash" && rubyname.EndsWith("s")) return "Podio.API.Utils.JSONVariableData[]"; // A take on the Ruby Hash datatype
-            if (type == "hash" && !rubyname.EndsWith("s")) return "Podio.API.Utils.JSONVariableData"; // A take on the Ruby Hash datatype
+            if (type == "hash" && rubyname.EndsWith("s")) return "Dictionary<string,object>[]"; // A take on the Ruby Hash datatype
+            if (type == "hash" && !rubyname.EndsWith("s")) return "Dictionary<string,object>"; // A take on the Ruby Hash datatype
 
             if (type == "array") return "string[]"; // 
 

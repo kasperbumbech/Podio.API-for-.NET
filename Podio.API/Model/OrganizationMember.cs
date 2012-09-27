@@ -12,7 +12,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "profile", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Profile { get; set; }
+		public Dictionary<string,object> Profile { get; set; }
 
 
 		[DataMember(Name = "admin", IsRequired=false)]

@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData[] Ratings { get; set; }
+		public Dictionary<string,object>[] Ratings { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData[] UserRatings { get; set; }
+		public Dictionary<string,object>[] UserRatings { get; set; }
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]

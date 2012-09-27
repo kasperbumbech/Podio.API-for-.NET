@@ -32,7 +32,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "data", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Data { get; set; }
+		public Dictionary<string,object> Data { get; set; }
 
 
 		[DataMember(Name = "starred", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "org", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Org { get; set; }
+		public Dictionary<string,object> Org { get; set; }
 
 
 		[DataMember(Name = "data_link", IsRequired=false)]
@@ -60,7 +60,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "context", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Context { get; set; }
+		public Dictionary<string,object> Context { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

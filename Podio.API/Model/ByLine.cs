@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Image { get; set; }
+		public Dictionary<string,object> Image { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]

@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "people", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData People { get; set; }
+		public Dictionary<string,object> People { get; set; }
 
 
 		[DataMember(Name = "action", IsRequired=false)]
@@ -33,10 +33,6 @@ namespace Podio.API.Model
 
 		[DataMember(Name = "created_by", IsRequired=false)]
 		public ByLine CreatedBy { get; set; }
-
-
-		[DataMember(Name = "user", IsRequired=false)]
-		public Contact User { get; set; }
 
 
 	}

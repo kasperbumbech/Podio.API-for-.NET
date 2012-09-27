@@ -32,11 +32,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "config", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Config { get; set; }
+		public Dictionary<string,object> Config { get; set; }
 
 
 		[DataMember(Name = "mapping", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Mapping { get; set; }
+		public Dictionary<string,object> Mapping { get; set; }
 
 
 		[DataMember(Name = "updating", IsRequired=false)]

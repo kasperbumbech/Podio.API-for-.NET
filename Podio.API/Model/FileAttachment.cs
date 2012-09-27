@@ -48,7 +48,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "context", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Context { get; set; }
+		public Dictionary<string,object> Context { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]

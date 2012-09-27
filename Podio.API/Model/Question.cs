@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ref", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Ref { get; set; }
+		public Dictionary<string,object> Ref { get; set; }
 
 
 		[DataMember(Name = "answers", IsRequired=false)]

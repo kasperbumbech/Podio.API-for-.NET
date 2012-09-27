@@ -28,11 +28,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "values", IsRequired=false)]
-		public List<Podio.API.Utils.JSONVariableData> Values { get; set; }
+		public List<Dictionary<string,object>> Values { get; set; }
 
 
 		[DataMember(Name = "config", IsRequired=false)]
-		public Podio.API.Utils.JSONVariableData Config { get; set; }
+		public Dictionary<string,object> Config { get; set; }
 
 
 	}
