@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Dictionary<string,object>[] UserRatings { get; set; }
+		public Dictionary<string,object> UserRatings { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]

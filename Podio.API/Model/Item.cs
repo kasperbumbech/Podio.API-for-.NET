@@ -35,8 +35,8 @@ namespace Podio.API.Model
 		public string[] Rights { get; set; }
 
 
-        //[DataMember(Name = "ratings", IsRequired=false)]
-        //public Dictionary<string,object>[] Ratings { get; set; }
+		[DataMember(Name = "ratings", IsRequired=false)]
+		public Dictionary<string,object> Ratings { get; set; }
 
 
 		[DataMember(Name = "conversations", IsRequired=false)]
@@ -64,7 +64,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "user_ratings", IsRequired=false)]
-		public Dictionary<string,object>[] UserRatings { get; set; }
+		public Dictionary<string,object> UserRatings { get; set; }
 
 
 		[DataMember(Name = "link", IsRequired=false)]
@@ -126,14 +126,14 @@ namespace Podio.API.Model
 		[DataMember(Name = "revisions", IsRequired=false)]
 		public List<ItemRevision> Revisions { get; set; }
 
+        /*
+		[DataMember(Name = "files", IsRequired=false)]
+		public List<FileAttachment> Files { get; set; }
 
-        //[DataMember(Name = "files", IsRequired=false)]
-        //public List<FileAttachment> Files { get; set; }
 
-
-        //[DataMember(Name = "comments", IsRequired=false)]
-        //public List<Comment> Comments { get; set; }
-
+		[DataMember(Name = "comments", IsRequired=false)]
+		public List<Comment> Comments { get; set; }
+        */
 
 		[DataMember(Name = "shares", IsRequired=false)]
 		public List<AppStoreShare> Shares { get; set; }

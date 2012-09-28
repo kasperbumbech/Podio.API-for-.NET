@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "image", IsRequired=false)]
-		public Dictionary<string,object> Image { get; set; }
+		public FileAttachment Image { get; set; }
 
 
 		[DataMember(Name = "name", IsRequired=false)]

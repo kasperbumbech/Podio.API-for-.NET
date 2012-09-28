@@ -35,6 +35,10 @@ namespace Podio.API.Model
 		public ByLine CreatedBy { get; set; }
 
 
+		[DataMember(Name = "user", IsRequired=false)]
+		public Contact User { get; set; }
+
+
 	}
 }
 

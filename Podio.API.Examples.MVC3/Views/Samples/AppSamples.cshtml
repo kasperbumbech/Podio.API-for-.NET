@@ -12,6 +12,24 @@
     /*var items = new Podio.API.Model.Item[] { client.ItemService.GetItem(15326888) };*/
 }
 
+@helper FieldValueTree(Dictionary<string, object> values) {
+    <ul>
+        @foreach(KeyValuePair<string, object> pair in values) {
+            <li>
+                @pair.Key
+                =
+                @if(pair.Value is Dictionary<string, object>) {
+                    @FieldValueTree((Dictionary<string, object>)pair.Value);
+                } else {
+                    @pair.Value
+                }
+            </li>
+        }
+    </ul>
+    }
+}
+
+
 <table class="table">
     <thead>
         <tr>
@@ -56,10 +74,10 @@
                 <ul>
                     @foreach (var field in item.Fields) { 
                         <li>
+                            <b>@field.ExternalId</b>
                             @foreach (var value in field.Values)
                             {
-                                @value.Count
-                                
+                                @FieldValueTree(value)
                             }
                         </li>
                     }

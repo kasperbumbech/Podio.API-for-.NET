@@ -59,9 +59,7 @@
 
             if (so.CreatedBy.AvatarId != null && so.CreatedBy.Image != null)
             {
-                //  thumbnail = so.CreatedBy.Image.
-                var p = so.CreatedBy.Image.As<Podio.API.Model.FileAttachment>();
-                thumbnail = p.Link + "/small";
+                thumbnail = so.CreatedBy.Image.Link + "/small";
             }
             else
             {
@@ -109,7 +107,11 @@
                                                 <text>status</text>
                                                         break;
                                                     case "task": 
-                                                <text><i class="icon-ok"></i> <a href="@activity.CreatedBy.Url">@activity.CreatedBy.Name</a> added task: <a href="@(activity.Data.As<Podio.API.Model.Task>().Link)">@(activity.Data.As<Podio.API.Model.Task>().Text)</a></text>
+                                                <text><i class="icon-ok"></i>
+                                                    <a href="@activity.CreatedBy.Url">@activity.CreatedBy.Name</a> added task:
+                                                    <a href="@(activity.Data.As<Podio.API.Model.Task>().Link)">
+                                                    @(activity.Data.As<Podio.API.Model.Task>().Text)</a>
+                                                </text>
                                                         break;
                                                     case "task_action": 
                                                 <text>
@@ -152,9 +154,7 @@
                                 {
                                     if (comment.CreatedBy.AvatarId != null && comment.CreatedBy.Image != null)
                                     {
-                                        //  thumbnail = so.CreatedBy.Image.
-                                        var p = comment.CreatedBy.Image.As<Podio.API.Model.FileAttachment>();
-                                        thumbnail = p.Link + "/tiny";
+                                        thumbnail = comment.CreatedBy.Image.Link + "/tiny";
                                     }
                                     else
                                     {

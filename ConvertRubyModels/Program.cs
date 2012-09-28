@@ -16,9 +16,11 @@ namespace ConvertRubyModels
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Kasper Andersen\Documents\GitHub\podio-rb\lib\podio\models");
+            //DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Kasper Andersen\Documents\GitHub\podio-rb\lib\podio\models");
+            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Projects\podio-rb\lib\podio\models");
 
-            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Work\Git\Podio.API\Podio.API-for-.NET\Podio.API\Model"); 
+            //DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Work\Git\Podio.API\Podio.API-for-.NET\Podio.API\Model"); 
+            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Projects\Podio.API-for-.NET\Podio.API\Model");
           
             // convert all ruby files and output it to outputdir
             foreach (var fi in inputdir.GetFiles("*.rb"))
@@ -174,7 +176,11 @@ namespace ConvertRubyModels
             { "item>fields", "List<ItemField>" } ,
             { "item>conversations", "List<Conversation>" } ,
             { "itemfield>Values", "List<Dictionary<string,object>>" },
-            { "file_ids", "List<int>" }
+            { "file_ids", "List<int>" },
+            { "application>fields", "List<ApplicationField>" },
+            { "ByLine>image", "FileAttachment" },
+            { "user_ratings", "Dictionary<string,object>" },
+            { "ratings", "Dictionary<string,object>" }
         };
 
         public static string ConvertValueType(string type, string rubyname, string className)
@@ -185,7 +191,7 @@ namespace ConvertRubyModels
             }
 
             string key = className + ">" + rubyname.ToLower();
-            if (type != "hash" && knownhashes.ContainsKey(key))
+            if(knownhashes.ContainsKey(key))
             {
                 return knownhashes[key];
             }

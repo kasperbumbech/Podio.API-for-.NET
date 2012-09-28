@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "external_id", IsRequired=false)]
-		public int? ExternalId { get; set; }
+		public string ExternalId { get; set; }
 
 
 		[DataMember(Name = "label", IsRequired=false)]

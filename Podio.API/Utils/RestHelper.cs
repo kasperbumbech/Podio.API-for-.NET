@@ -35,7 +35,36 @@ namespace Podio.API.Utils
             public string error_description { get; set; }
             public string error_detail { get; set; }
         }
-       
+
+        #region Dictionary converter
+        private class NestedDictionaryConverter : Newtonsoft.Json.Converters.CustomCreationConverter<IDictionary<string, object>>
+        {
+            public override IDictionary<string, object> Create(Type objectType)
+            {
+                return new Dictionary<string, object>();
+            }
+
+            public override bool CanConvert(Type objectType)
+            {
+                // in addition to handling IDictionary<string, object>
+                // we want to handle the deserialization of dict value
+                // which is of type object
+                return objectType == typeof(object) || base.CanConvert(objectType);
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                if (reader.TokenType == JsonToken.StartObject
+                    || reader.TokenType == JsonToken.Null)
+                    return base.ReadJson(reader, objectType, existingValue, serializer);
+
+                // if the next token is not an object
+                // then fall back on standard deserializer (strings, numbers etc.)
+                return serializer.Deserialize(reader);
+            }
+        }
+        #endregion
+
         public class PodioResponse<T>
         {
             private PodioResponse _response;
@@ -240,7 +269,14 @@ namespace Podio.API.Utils
 
         public static T Deserialize<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json);
+            //if (typeof(T) is IDictionary<string, object>)
+            //{
+                return JsonConvert.DeserializeObject<T>(json, new JsonConverter[] { new NestedDictionaryConverter() });
+            //}
+            //else
+            //{
+            //    return JsonConvert.DeserializeObject<T>(json);
+            //}
         }
 
         public static string Serialize(object t)
@@ -276,5 +312,44 @@ namespace Podio.API.Utils
         }
 
         #endregion
+    }
+}
+
+public static class ObjectExtensions
+{
+    public static T As<T>(this IDictionary<string, object> source)
+        where T : class, new()
+    {
+        T someObject = new T();
+        var propertyMap = new Dictionary<string, PropertyInfo>();
+        foreach (var property in someObject.GetType().GetProperties())
+	    {
+            var name = ((DataMemberAttribute[])property.GetCustomAttributes(typeof(DataMemberAttribute), false)).First().Name;
+            propertyMap[name] = property;
+	    }
+        //((DataMemberAttribute[])someObject.GetType().GetProperties().First().GetCustomAttributes(typeof(DataMemberAttribute), false)).First().Name
+
+        foreach (KeyValuePair<string, object> item in source)
+        {
+            //someObject.GetType().GetProperty(item.Key).SetValue(someObject, item.Value, null);
+            if (propertyMap.ContainsKey(item.Key)) {
+                var value = item.Value;
+                if (value is Int64)
+                {
+                    value = Convert.ToInt32(value);
+                } 
+                propertyMap[item.Key].SetValue(someObject, value, null);
+            }
+        }
+        return someObject;
+    }
+
+    public static IDictionary<string, object> AsDictionary(this object source, BindingFlags bindingAttr = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+    {
+        return source.GetType().GetProperties(bindingAttr).ToDictionary
+        (
+            propInfo => propInfo.Name,
+            propInfo => propInfo.GetValue(source, null)
+        );
     }
 }

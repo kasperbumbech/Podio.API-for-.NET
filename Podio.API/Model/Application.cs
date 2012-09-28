@@ -52,7 +52,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "fields", IsRequired=false)]
-		public string[] Fields { get; set; }
+		public List<ApplicationField> Fields { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]
