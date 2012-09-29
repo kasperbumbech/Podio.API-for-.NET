@@ -26,9 +26,7 @@
             </li>
         }
     </ul>
-    }
 }
-
 
 <table class="table">
     <thead>
@@ -74,10 +72,18 @@
                 <ul>
                     @foreach (var field in item.Fields) { 
                         <li>
-                            <b>@field.ExternalId</b>
-                            @foreach (var value in field.Values)
-                            {
-                                @FieldValueTree(value)
+                            <b>@field.ExternalId (@field.Type)</b>
+
+                            @switch (field.Type) {
+                                case "text":
+                                    @(item.Field<Podio.API.Utils.ItemFields.TextItemField>(field.ExternalId).Value());
+                                   break;
+                                default:
+                                    foreach (var value in field.Values)
+                                    {
+                                        @FieldValueTree(value)
+                                    }
+                                    break;
                             }
                         </li>
                     }
