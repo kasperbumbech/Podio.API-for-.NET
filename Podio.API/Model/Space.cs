@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Space 
+	public partial class Space 
 	{
 
 
@@ -76,11 +76,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_activity_on", IsRequired=false)]
-		public string LastActivityOn { get; set; }
+		public DateTime LastActivityOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

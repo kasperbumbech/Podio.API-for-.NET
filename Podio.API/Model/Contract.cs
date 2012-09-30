@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Contract 
+	public partial class Contract 
 	{
 
 
@@ -24,15 +24,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public string StartedOn { get; set; }
+		public DateTime StartedOn { get; set; }
 
 
 		[DataMember(Name = "ended_on", IsRequired=false)]
-		public string EndedOn { get; set; }
+		public DateTime EndedOn { get; set; }
 
 
 		[DataMember(Name = "item_prices", IsRequired=false)]
@@ -68,11 +68,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "next_period_start", IsRequired=false)]
-		public string NextPeriodStart { get; set; }
+		public DateTime NextPeriodStart { get; set; }
 
 
 		[DataMember(Name = "next_period_end", IsRequired=false)]
-		public string NextPeriodEnd { get; set; }
+		public DateTime NextPeriodEnd { get; set; }
 
 
 		[DataMember(Name = "invoice_interval", IsRequired=false)]

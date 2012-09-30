@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Batch 
+	public partial class Batch 
 	{
 
 
@@ -40,15 +40,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public string StartedOn { get; set; }
+		public DateTime StartedOn { get; set; }
 
 
 		[DataMember(Name = "ended_on", IsRequired=false)]
-		public string EndedOn { get; set; }
+		public DateTime EndedOn { get; set; }
 
 
 		[DataMember(Name = "file", IsRequired=false)]

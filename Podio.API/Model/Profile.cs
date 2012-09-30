@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Profile 
+	public partial class Profile 
 	{
 
 
@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "birthdate", IsRequired=false)]
-		public string Birthdate { get; set; }
+		public DateTime Birthdate { get; set; }
 
 
 		[DataMember(Name = "department", IsRequired=false)]
@@ -124,7 +124,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_seen_on", IsRequired=false)]
-		public string LastSeenOn { get; set; }
+		public DateTime LastSeenOn { get; set; }
 
 
 		[DataMember(Name = "is_employee", IsRequired=false)]

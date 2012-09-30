@@ -7,12 +7,12 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class ConversationParticipant 
+	public partial class ConversationParticipant 
 	{
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "user", IsRequired=false)]

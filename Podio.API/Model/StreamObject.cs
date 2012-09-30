@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class StreamObject 
+	public partial class StreamObject 
 	{
 
 
@@ -20,7 +20,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_update_on", IsRequired=false)]
-		public string LastUpdateOn { get; set; }
+		public DateTime LastUpdateOn { get; set; }
 
 
 		[DataMember(Name = "title", IsRequired=false)]
@@ -48,7 +48,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

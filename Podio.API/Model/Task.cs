@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Task 
+	public partial class Task 
 	{
 
 
@@ -36,15 +36,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "due_date", IsRequired=false)]
-		public string DueDate { get; set; }
+		public DateTime DueDate { get; set; }
 
 
 		[DataMember(Name = "due_time", IsRequired=false)]
-		public string DueTime { get; set; }
+		public DateTime DueTime { get; set; }
 
 
 		[DataMember(Name = "due_on", IsRequired=false)]
-		public string DueOn { get; set; }
+		public DateTime DueOn { get; set; }
 
 
 		[DataMember(Name = "responsible", IsRequired=false)]
@@ -60,11 +60,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "completed_on", IsRequired=false)]
-		public string CompletedOn { get; set; }
+		public DateTime CompletedOn { get; set; }
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]

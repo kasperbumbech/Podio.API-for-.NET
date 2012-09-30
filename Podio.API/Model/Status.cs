@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Status 
+	public partial class Status 
 	{
 
 
@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "alerts", IsRequired=false)]
@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Dictionary<string,object>[] Ratings { get; set; }
+		public Dictionary<string,object> Ratings { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]

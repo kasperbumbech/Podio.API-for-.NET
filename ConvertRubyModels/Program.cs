@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace ConvertRubyModels
 {
@@ -16,11 +17,8 @@ namespace ConvertRubyModels
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            //DirectoryInfo inputdir = new DirectoryInfo(@"C:\Users\Kasper Andersen\Documents\GitHub\podio-rb\lib\podio\models");
-            DirectoryInfo inputdir = new DirectoryInfo(@"C:\Projects\podio-rb\lib\podio\models");
-
-            //DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Work\Git\Podio.API\Podio.API-for-.NET\Podio.API\Model"); 
-            DirectoryInfo outputdir = Directory.CreateDirectory(@"C:\Projects\Podio.API-for-.NET\Podio.API\Model");
+            DirectoryInfo inputdir = new DirectoryInfo(ConfigurationManager.AppSettings["InputDirectory"]);
+            DirectoryInfo outputdir = Directory.CreateDirectory(ConfigurationManager.AppSettings["OutputDirectory"]);
           
             // convert all ruby files and output it to outputdir
             foreach (var fi in inputdir.GetFiles("*.rb"))
@@ -54,7 +52,7 @@ namespace ConvertRubyModels
             sb.AppendLine("namespace Podio.API.Model");
             sb.AppendLine("{");
             sb.AppendLine(Indent(1) + "[DataContract]");
-            sb.AppendLine(Indent(1) + "public class " + Regex.Match(rubyFileContent, @"class.*::(.*)<").Groups[1].Value);
+            sb.AppendLine(Indent(1) + "public partial class " + Regex.Match(rubyFileContent, @"class.*::(.*)<").Groups[1].Value);
             sb.AppendLine(Indent(1) + "{");
             sb.AppendLine("");
             sb.AppendLine("");
@@ -197,7 +195,7 @@ namespace ConvertRubyModels
             }
 
             if (type == "integer") return "int?";
-            if (type == "datetime" || type == "date" || type == "time") return "string"; // JSON does not do Dates
+            if (type == "datetime" || type == "date" || type == "time") return "DateTime";
             if (type == "boolean") return "bool?";
             if (type == "hash" && rubyname.EndsWith("s")) return "Dictionary<string,object>[]"; // A take on the Ruby Hash datatype
             if (type == "hash" && !rubyname.EndsWith("s")) return "Dictionary<string,object>"; // A take on the Ruby Hash datatype

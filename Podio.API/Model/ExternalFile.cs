@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class ExternalFile 
+	public partial class ExternalFile 
 	{
 
 
@@ -24,11 +24,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "updated_on", IsRequired=false)]
-		public string UpdatedOn { get; set; }
+		public DateTime UpdatedOn { get; set; }
 
 
 	}

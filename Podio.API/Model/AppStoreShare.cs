@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class AppStoreShare 
+	public partial class AppStoreShare 
 	{
 
 
@@ -76,7 +76,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "ratings", IsRequired=false)]
-		public Dictionary<string,object>[] Ratings { get; set; }
+		public Dictionary<string,object> Ratings { get; set; }
 
 
 		[DataMember(Name = "user_rating", IsRequired=false)]

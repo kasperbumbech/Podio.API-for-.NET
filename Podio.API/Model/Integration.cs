@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Integration 
+	public partial class Integration 
 	{
 
 
@@ -44,11 +44,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_updated_on", IsRequired=false)]
-		public string LastUpdatedOn { get; set; }
+		public DateTime LastUpdatedOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

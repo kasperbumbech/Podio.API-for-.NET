@@ -2,6 +2,8 @@
 bin
 obj
 *.suo
+ConvertRubyModels/App.Config
+*.user
 
 # mstest test results
 TestResults

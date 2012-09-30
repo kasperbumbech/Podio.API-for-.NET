@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class CalendarEvent 
+	public partial class CalendarEvent 
 	{
 
 
@@ -40,11 +40,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "start", IsRequired=false)]
-		public string Start { get; set; }
+		public DateTime Start { get; set; }
 
 
 		[DataMember(Name = "start_date", IsRequired=false)]
-		public string StartDate { get; set; }
+		public DateTime StartDate { get; set; }
 
 
 		[DataMember(Name = "start_time", IsRequired=false)]
@@ -52,11 +52,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "end", IsRequired=false)]
-		public string End { get; set; }
+		public DateTime End { get; set; }
 
 
 		[DataMember(Name = "end_date", IsRequired=false)]
-		public string EndDate { get; set; }
+		public DateTime EndDate { get; set; }
 
 
 		[DataMember(Name = "end_time", IsRequired=false)]

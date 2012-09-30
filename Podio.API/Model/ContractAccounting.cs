@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class ContractAccounting 
+	public partial class ContractAccounting 
 	{
 
 

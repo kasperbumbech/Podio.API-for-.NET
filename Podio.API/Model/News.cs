@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class News 
+	public partial class News 
 	{
 
 
@@ -44,11 +44,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "run_from", IsRequired=false)]
-		public string RunFrom { get; set; }
+		public DateTime RunFrom { get; set; }
 
 
 		[DataMember(Name = "run_to", IsRequired=false)]
-		public string RunTo { get; set; }
+		public DateTime RunTo { get; set; }
 
 
 		[DataMember(Name = "stream_display", IsRequired=false)]

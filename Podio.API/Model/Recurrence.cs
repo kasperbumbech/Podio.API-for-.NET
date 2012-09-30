@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Recurrence 
+	public partial class Recurrence 
 	{
 
 
@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "until", IsRequired=false)]
-		public string Until { get; set; }
+		public DateTime Until { get; set; }
 
 
 	}

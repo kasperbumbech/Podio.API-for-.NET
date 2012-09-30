@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Bulletin 
+	public partial class Bulletin 
 	{
 
 
@@ -36,11 +36,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "sent_on", IsRequired=false)]
-		public string SentOn { get; set; }
+		public DateTime SentOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class Connection 
+	public partial class Connection 
 	{
 
 
@@ -24,11 +24,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_load_on", IsRequired=false)]
-		public string LastLoadOn { get; set; }
+		public DateTime LastLoadOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public string CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
 
 
 		[DataMember(Name = "contact_count", IsRequired=false)]

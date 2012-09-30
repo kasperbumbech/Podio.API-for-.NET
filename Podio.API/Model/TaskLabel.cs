@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public class TaskLabel 
+	public partial class TaskLabel 
 	{
 
 
