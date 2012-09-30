@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
 
 		[DataMember(Name = "embed", IsRequired=false)]

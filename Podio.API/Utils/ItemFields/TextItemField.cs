@@ -8,11 +8,16 @@ namespace Podio.API.Utils.ItemFields
 {
     public class TextItemField : ItemField
     {
-        public string Value() {
-            if (this.HasValue()) {
-                return (string)this.Values.First()["value"];
-            } else {
-                return null;
+        public string Value {
+            get {
+                if (this.HasValue("value"))
+                {
+                    return (string)this.Values.First()["value"];
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
     }

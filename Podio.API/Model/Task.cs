@@ -36,15 +36,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "due_date", IsRequired=false)]
-		public DateTime DueDate { get; set; }
+		public DateTime? DueDate { get; set; }
 
 
 		[DataMember(Name = "due_time", IsRequired=false)]
-		public DateTime DueTime { get; set; }
+		public DateTime? DueTime { get; set; }
 
 
 		[DataMember(Name = "due_on", IsRequired=false)]
-		public DateTime DueOn { get; set; }
+		public DateTime? DueOn { get; set; }
 
 
 		[DataMember(Name = "responsible", IsRequired=false)]
@@ -60,11 +60,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
 
 		[DataMember(Name = "completed_on", IsRequired=false)]
-		public DateTime CompletedOn { get; set; }
+		public DateTime? CompletedOn { get; set; }
 
 
 		[DataMember(Name = "file_ids", IsRequired=false)]

@@ -40,7 +40,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_seen_on", IsRequired=false)]
-		public DateTime LastSeenOn { get; set; }
+		public DateTime? LastSeenOn { get; set; }
 
 
 		[DataMember(Name = "rights", IsRequired=false)]

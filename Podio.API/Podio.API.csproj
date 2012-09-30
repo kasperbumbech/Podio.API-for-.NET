@@ -140,6 +140,8 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\SpaceService.cs" />
     <Compile Include="Utils\Item.cs" />
+    <Compile Include="Utils\ItemFields\DateItemField.cs" />
+    <Compile Include="Utils\ItemFields\EmbedItemField.cs" />
     <Compile Include="Utils\ItemFields\ItemField.cs" />
     <Compile Include="Utils\ItemFields\TextItemField.cs" />
     <Compile Include="Utils\PodioCollection.cs" />

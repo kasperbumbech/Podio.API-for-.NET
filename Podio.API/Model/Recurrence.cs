@@ -28,7 +28,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "until", IsRequired=false)]
-		public DateTime Until { get; set; }
+		public DateTime? Until { get; set; }
 
 
 	}

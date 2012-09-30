@@ -76,11 +76,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_activity_on", IsRequired=false)]
-		public DateTime LastActivityOn { get; set; }
+		public DateTime? LastActivityOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

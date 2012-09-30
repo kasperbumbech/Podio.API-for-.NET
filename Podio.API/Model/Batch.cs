@@ -40,15 +40,15 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public DateTime StartedOn { get; set; }
+		public DateTime? StartedOn { get; set; }
 
 
 		[DataMember(Name = "ended_on", IsRequired=false)]
-		public DateTime EndedOn { get; set; }
+		public DateTime? EndedOn { get; set; }
 
 
 		[DataMember(Name = "file", IsRequired=false)]

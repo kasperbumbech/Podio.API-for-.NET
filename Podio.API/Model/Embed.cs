@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
 
 		[DataMember(Name = "provider_name", IsRequired=false)]
@@ -48,7 +48,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "embed_height", IsRequired=false)]
-		public bool? EmbedHeight { get; set; }
+		public int? EmbedHeight { get; set; }
 
 
 		[DataMember(Name = "embed_width", IsRequired=false)]

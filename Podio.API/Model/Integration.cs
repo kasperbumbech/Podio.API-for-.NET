@@ -44,11 +44,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "last_updated_on", IsRequired=false)]
-		public DateTime LastUpdatedOn { get; set; }
+		public DateTime? LastUpdatedOn { get; set; }
 
 
 		[DataMember(Name = "created_on", IsRequired=false)]
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

@@ -44,11 +44,11 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "run_from", IsRequired=false)]
-		public DateTime RunFrom { get; set; }
+		public DateTime? RunFrom { get; set; }
 
 
 		[DataMember(Name = "run_to", IsRequired=false)]
-		public DateTime RunTo { get; set; }
+		public DateTime? RunTo { get; set; }
 
 
 		[DataMember(Name = "stream_display", IsRequired=false)]

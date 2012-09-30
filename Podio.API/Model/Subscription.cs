@@ -12,7 +12,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "started_on", IsRequired=false)]
-		public DateTime StartedOn { get; set; }
+		public DateTime? StartedOn { get; set; }
 
 
 		[DataMember(Name = "notifications", IsRequired=false)]

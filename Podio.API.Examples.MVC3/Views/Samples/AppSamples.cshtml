@@ -31,13 +31,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <td></td>
-            <td>Task count</td>
-            <td>External Id</td>
+            <th style="width:100px;">Id</th>
+            <th style="width:150px;">Title</th>
+@*            <td>Task count</td>
+            <td>External Id</td>*@
             <td>Fields</td>
-            <td>JSON</td>
         </tr>
         
     </thead>
@@ -65,9 +63,8 @@
                     </ul>
                 }
             </td>
-            <td></td>
-            <td>@item.TaskCount</td>
-            <td>@item.ExternalId</td>
+@*            <td>@item.TaskCount</td>
+            <td>@item.ExternalId</td>*@
             <td>
                 <ul>
                     @foreach (var field in item.Fields) { 
@@ -76,8 +73,37 @@
 
                             @switch (field.Type) {
                                 case "text":
-                                    @(item.Field<Podio.API.Utils.ItemFields.TextItemField>(field.ExternalId).Value());
+                                    @(item.Field<Podio.API.Utils.ItemFields.TextItemField>(field.ExternalId).Value);
                                    break;
+                                case "date":
+                                   var dateField = item.Field<Podio.API.Utils.ItemFields.DateItemField>(field.ExternalId);
+                                    <ul>
+                                        <li>Start: @(dateField.Start)</li>
+                                        <li>End: @(dateField.End)</li>
+                                        <li>StartDate: @(dateField.StartDate)</li>
+                                        <li>EndDate: @(dateField.EndDate)</li>
+                                        <li>StartTime: @(dateField.StartTime)</li>
+                                        <li>EndTime: @(dateField.EndTime)</li>
+                                    </ul>
+                                    break;
+                                case "embed":
+                                    var embeds = item.Field<Podio.API.Utils.ItemFields.EmbedItemField>(field.ExternalId).Embeds;
+                                    foreach (var embed in embeds)
+                                    {
+                                        if(embed.EmbedHtml != null) {
+                                            @Html.Raw(embed.EmbedHtml)
+                                        } else {
+                                            <a href="@embed.OriginalUrl">
+                                                @embed.Title
+                                                @if (embed.Files != null && embed.Files.Count > 0)
+                                                {
+                                                    <img src="@embed.Files.First().Link" />
+                                                }
+                                            </a>
+                                        }
+                                        
+                                    }
+                                    break;
                                 default:
                                     foreach (var value in field.Values)
                                     {
@@ -88,11 +114,6 @@
                         </li>
                     }
                 </ul>
-            </td>
-            <td>
-                <textarea>
-               
-                </textarea>
             </td>
         </tr>
     }

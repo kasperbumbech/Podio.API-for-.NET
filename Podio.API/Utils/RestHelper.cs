@@ -337,7 +337,11 @@ public static class ObjectExtensions
                 if (value is Int64)
                 {
                     value = Convert.ToInt32(value);
-                } 
+                }
+                else if (propertyMap[item.Key].PropertyType == typeof(DateTime?))
+                {
+                    value = DateTime.Parse((string)value);
+                }
                 propertyMap[item.Key].SetValue(someObject, value, null);
             }
         }
