@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Item Create";
+}
+
+@{
+    var app = (Podio.API.Model.Application)Model;
+}
+
+<div class="page-header">
+    <h1>Create new @app.Config["item_name"]</h1>
+</div>
+
+<div class="well">
+    @using (Html.BeginForm(new { action = "Create", controller = "Item", app_id = app.AppId }))
+    {
+        foreach (var appField in app.Fields)
+        {
+            <label>@appField.Label (@appField.Type)</label>
+            switch (appField.Type)
+            {
+                case "duration":
+                    <input type="text" name="@appField.ExternalId" /> <span>seconds</span>
+                    break;
+                case "progress":
+                    <input type="text" name="@appField.ExternalId" /> <span>%</span>
+                    break;
+                case "text":
+                    switch ((string)(((Dictionary<string, object>)appField.Config["settings"])["size"])) {
+                        case "large":
+                            <textarea name="@appField.ExternalId"></textarea>
+                            break;
+                        default:
+                            <input type="text" name="@appField.ExternalId" />
+                            break;
+                    }
+                    break;                
+                case "app":
+                    <input type="text" name="@appField.ExternalId" /> <span>(enter app ids separated by commas)</span>
+                    break;
+                case "contact":
+                    <input type="text" name="@appField.ExternalId" /> <span>(enter profile ids separated by commas)</span>
+                    break;
+                case "location":
+                    <input type="text" name="@appField.ExternalId" /> <span>(enter an address)</span>
+                    break;                
+                case "date":
+                    <p>Start date: <input type="text" name="@(appField.ExternalId)_start" /> <span>(must be parsable by DateTime.parse)</span></p>
+                    <p>End date: <input type="text" name="@(appField.ExternalId)_end" /> <span>(optional)</span></p>
+                    break; 
+                case "money":
+                    <p>Amount: <input type="text" name="@(appField.ExternalId)_amount" /></p>
+                    <p>Currency: <input type="text" name="@(appField.ExternalId)_currency" /></p>
+                    break;
+                default:
+                    <p><i>Not implemented yet in this sample app</i></p>
+                    break;
+            }
+        }
+        <button type="submit" class="btn btn-primary" value="Create">Create Item</button>
+    }
+</div>

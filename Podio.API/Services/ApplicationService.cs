@@ -28,7 +28,10 @@ namespace Podio.API.Services
             }
         }
 
-
+        public Model.Application GetApp(int appId)
+        {
+            return PodioRestHelper.Request<Model.Application>(Constants.PODIOAPI_BASEURL + "/app/" + appId, _client.AuthInfo.AccessToken).Data;
+        }
 
 
         #region notimplemented
@@ -39,7 +42,6 @@ namespace Podio.API.Services
         //DeleteApp
         //DeleteAppField
         //GetAllUserApps
-        //GetApp
         //GetAppDependencies
         //GetAppField
         //GetAppOnSpaceByURLLabel

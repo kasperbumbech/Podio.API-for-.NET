@@ -27,5 +27,23 @@ namespace Podio.API.Examples.MVC3.Controllers
             }
         }
 
+        //
+        // GET: /Samples/
+        public ActionResult CreateItem()
+        {
+            if (!Application.CurrentConnectionDetails.IsReadyToRubmble)
+            {
+                return RedirectToAction("Index", "Authorization");
+            }
+
+            if (Application.CurrentConnectionDetails.AuthorizationAccessToken.Ref.Type.Equals("app", StringComparison.CurrentCultureIgnoreCase))
+            {
+                return View("AppSamples", Application.CurrentConnectionDetails);
+            }
+            else
+            {
+                return View(Application.CurrentConnectionDetails);
+            }
+        }
     }
 }

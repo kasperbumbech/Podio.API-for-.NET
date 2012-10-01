@@ -19,6 +19,11 @@ namespace Podio.API.Utils.ItemFields
                     return null;
                 }
             }
+
+            set {
+                ensureValuesInitialized(true);
+                this.Values.First()["value"] = value;
+            }
         }
     }
 }

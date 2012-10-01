@@ -10,6 +10,10 @@
     </p>
     <p>
         <a href="@Url.Action("Index","Samples")" class="btn btn-large btn-success">Go to the samples section</a>
+        @if (Model.AuthorizationAccessToken.Ref.Type == "app") {
+            <a href="@Url.Action("Create", "Item", new { app_id = Model.AuthorizationAccessToken.Ref.Id })" class="btn btn-large btn-primary">Create new item</a>
+        }
+
     </p>
 </div>
 

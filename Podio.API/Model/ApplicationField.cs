@@ -31,6 +31,10 @@ namespace Podio.API.Model
 		public string Status { get; set; }
 
 
+		[DataMember(Name = "label", IsRequired=false)]
+		public string Label { get; set; }
+
+
 	}
 }
 

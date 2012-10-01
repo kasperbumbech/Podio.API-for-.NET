@@ -36,5 +36,14 @@ namespace Podio.API.Model
             }
             return list;        
         }
+
+        protected void ensureValuesInitialized(bool includeFirstChildDict = false) {
+            if (this.Values == null) {
+                this.Values = new List<Dictionary<string, object>>();
+            }
+            if (includeFirstChildDict && this.Values.First() == null) {
+                this.Values.Add(new Dictionary<string, object>());
+            }
+        }
     }
 }
