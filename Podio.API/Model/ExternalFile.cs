@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace Podio.API.Model
 {
 	[DataContract]
-	public partial class ExternalFile 
+	public partial class ExternalFile
 	{
 
 

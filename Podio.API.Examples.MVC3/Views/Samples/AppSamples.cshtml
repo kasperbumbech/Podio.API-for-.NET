@@ -104,7 +104,85 @@
                                         
                                     }
                                     break;
-                                default:
+                                case "contact":
+                                    var contacts = item.Field<Podio.API.Utils.ItemFields.ContactItemField>(field.ExternalId).Contacts;
+                                    <ul>
+                                        @foreach (var contact in contacts)
+                                        {
+                                            <li>
+                                                @if (contact.Image != null) {
+                                                    <img src="@(contact.Image.As<Podio.API.Model.FileAttachment>().Link)" />   
+                                                }
+                                                <a href="@contact.Link">@contact.Name</a>
+                                                @if (contact.Mail != null)
+                                                {
+                                                    foreach (var mail in contact.Mail)
+	                                                {
+		                                                <a href="mailto:@mail">@mail</a>
+	                                                }
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                    break;    
+                                case "location": 
+                                    var locations = item.Field<Podio.API.Utils.ItemFields.LocationItemField>(field.ExternalId).Locations; 
+                                    <ul>
+                                        @foreach (var location in locations)
+                                        {
+                                            <li>@location</li>
+                                        }
+                                    </ul>
+                                    break;
+                                case "app":
+                                    var appItems = item.Field<Podio.API.Utils.ItemFields.AppItemField>(field.ExternalId).Items;
+                                    <ul>
+                                        @foreach (var appItem in appItems)
+                                        {
+                                            <li>
+                                                <a href="@appItem.Link">@appItem.Title</a> (<a href="@(appItem.App.As<Podio.API.Model.Application>().Link)">@(appItem.App.As<Podio.API.Model.Application>().Name)</a>)
+                                            </li>
+                                        }  
+                                    </ul>
+                                    break;
+                                case "category":
+                                    var answers = item.Field<Podio.API.Utils.ItemFields.CategoryItemField>(field.ExternalId).Answers;
+                                    foreach (var answer in answers)
+                                    {
+                                        <span style="background-color:#@answer.Color;">@answer.Text</span>
+                                    }  
+                                    break;
+                                case "question":
+                                    var qAnswers = item.Field<Podio.API.Utils.ItemFields.QuestionItemField>(field.ExternalId).Answers;
+                                    foreach (var answer in qAnswers)
+                                    {
+                                        <span style="background-color:#@answer.Color;">@answer.Text</span>
+                                    }  
+                                    break;   
+                                case "image":
+                                    var images = item.Field<Podio.API.Utils.ItemFields.ImageItemField>(field.ExternalId).Images;
+                                    foreach (var image in images)
+                                    {
+                                       <img src="@image.Link" />  
+                                    }
+                                    break;     
+                                case "money":  
+                                    var money = item.Field<Podio.API.Utils.ItemFields.MoneyItemField>(field.ExternalId);
+                                    <p>@money.Currency @money.Value</p>
+                                    break;                                                      
+                                case "duration":  
+                                    var duration = item.Field<Podio.API.Utils.ItemFields.DurationItemField>(field.ExternalId);
+                                    <p>@duration.Value</p>
+                                    break;
+                                case "progress":  
+                                    var progress = item.Field<Podio.API.Utils.ItemFields.ProgressItemField>(field.ExternalId);
+                                    <p>@progress.Value %</p>
+                                    break;
+                                case "calculation":
+                                    var calculation = item.Field<Podio.API.Utils.ItemFields.CalculationItemField>(field.ExternalId);
+                                    <p>@calculation.Value</p>
+                                    break;                                                                          
+                                 default:
                                     foreach (var value in field.Values)
                                     {
                                         @FieldValueTree(value)

@@ -40,7 +40,11 @@ namespace ConvertRubyModels
 
             StringBuilder sb = new StringBuilder();
 
-            string className = Regex.Match(rubyFileContent, @"class.*::(.*)<").Groups[1].Value.Trim();
+            var matchData = Regex.Match(rubyFileContent, @"class.*::(.*)< (.*)::(.*)");
+
+            string className = matchData.Groups[1].Value.Trim();
+            string ancestorNameSpace = matchData.Groups[2].Value.Trim();
+            string ancestorClassName = matchData.Groups[3].Value.Trim();
 
             sb.AppendLine("using System;");
             sb.AppendLine("using System.Collections.Generic;");
@@ -52,7 +56,7 @@ namespace ConvertRubyModels
             sb.AppendLine("namespace Podio.API.Model");
             sb.AppendLine("{");
             sb.AppendLine(Indent(1) + "[DataContract]");
-            sb.AppendLine(Indent(1) + "public partial class " + Regex.Match(rubyFileContent, @"class.*::(.*)<").Groups[1].Value);
+            sb.AppendLine(Indent(1) + "public partial class " + className + (ancestorNameSpace == "Podio" ? " : " + ancestorClassName : ""));
             sb.AppendLine(Indent(1) + "{");
             sb.AppendLine("");
             sb.AppendLine("");
