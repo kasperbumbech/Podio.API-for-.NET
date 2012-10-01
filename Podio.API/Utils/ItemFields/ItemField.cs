@@ -41,7 +41,7 @@ namespace Podio.API.Model
             if (this.Values == null) {
                 this.Values = new List<Dictionary<string, object>>();
             }
-            if (includeFirstChildDict && this.Values.First() == null) {
+            if (includeFirstChildDict && this.Values.Count == 0) {
                 this.Values.Add(new Dictionary<string, object>());
             }
         }

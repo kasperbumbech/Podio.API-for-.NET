@@ -3,6 +3,7 @@ using Podio.API.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 
@@ -54,11 +55,39 @@ namespace Podio.API.Services
             return PodioRestHelper.Request<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken,args).Data;
         }
 
+        [DataContract]
+        public struct CreateRequest
+        {
+            [DataMember(IsRequired = false, Name = "fields")]
+            public IEnumerable<IDictionary<string, object>> Fields { get; set; }
 
+            [DataMember(IsRequired = false, Name = "file_ids")]
+            public IEnumerable<int> FileIds { get; set; }
+
+            [DataMember(IsRequired = false, Name = "tags")]
+            public IEnumerable<string> Tags { get; set; }
+        }
+
+        public int AddNewItem(int appId, Item item) {
+            var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
+            var requestData = new CreateRequest()
+            {
+                Fields = fieldValues,
+                FileIds = item.FileIds,
+                Tags = item.Tags.Select(tag => tag.Text)
+            };
+            var newItem = AddNewItem(appId, requestData);
+            item.ItemId = newItem.ItemId;
+            item.Title = newItem.Title;
+            return (int)item.ItemId;
+        }
+
+        public Item AddNewItem(int appId, CreateRequest requestData) {
+            return PodioRestHelper.JSONRequest<Item>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
+        }
 
         /*
          * 
-AddNewItem
 Calculate
 DeleteItem
 Delete item reference

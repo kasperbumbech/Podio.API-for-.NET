@@ -1,4 +1,5 @@
 ﻿using Podio.API.Model;
+using Podio.API.Services;
 using Podio.API.Utils.ItemFields;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Podio.API.Examples.MVC3.Controllers
 {
     public class ItemController : Controller
     {
+        public Client Client { get; set; }
         public Podio.API.Model.Application Application { get; set; }
 
         //
@@ -40,8 +42,10 @@ namespace Podio.API.Examples.MVC3.Controllers
                         break;
                 }
             }
-                
-                return RedirectToRoute(new { controller = "Samples", action = "Index" });
+
+            this.Client.ItemService.AddNewItem((int)this.Application.AppId, item);
+
+            return RedirectToRoute(new { controller = "Samples", action = "Index" });
             //}
             //catch
             //{
@@ -60,6 +64,7 @@ namespace Podio.API.Examples.MVC3.Controllers
 
                 var client = Podio.API.Examples.MVC3.Application.CurrentConnectionDetails.GetClient();
                 Podio.API.Model.Application app = client.ApplicationService.GetApp(Int32.Parse(filterContext.HttpContext.Request.QueryString["app_id"]));
+                ((ItemController)filterContext.Controller).Client = client;
                 ((ItemController)filterContext.Controller).Application = app;
             }
         }

@@ -7,17 +7,23 @@ namespace Podio.API.Model
 {
     public partial class Item
     {
+        public Item() {
+            this.Fields = new List<ItemField>();
+            this.FileIds = new List<int>();
+            this.Tags = new List<Tag>();
+        }
+
         public T Field<T>(string externalId)
             where T : ItemField, new()
         {
-            var genericField = this.Fields.Single(field => field.ExternalId == externalId);
+            var genericField = this.Fields.Find(field => field.ExternalId == externalId);
             return fieldInstance<T>(genericField);
         }
 
         public T Field<T>(int fieldId)
             where T : ItemField, new()
         {
-            var genericField = this.Fields.Single(field => field.FieldId == fieldId);
+            var genericField = this.Fields.Find(field => field.FieldId == fieldId);
             return fieldInstance<T>(genericField);
         }
 
@@ -25,10 +31,16 @@ namespace Podio.API.Model
                     where T : ItemField, new()
         {
             T specificField = new T();
-            foreach (var property in genericField.GetType().GetProperties())
-            {
-                specificField.GetType().GetProperty(property.Name).SetValue(specificField, property.GetValue(genericField, null), null);
+            if(genericField != null) {
+                foreach (var property in genericField.GetType().GetProperties())
+                {
+                    specificField.GetType().GetProperty(property.Name).SetValue(specificField, property.GetValue(genericField, null), null);
+                }
+                this.Fields.Remove(genericField);
             }
+
+            this.Fields.Add(specificField);
+
             return specificField;
         }
     }
