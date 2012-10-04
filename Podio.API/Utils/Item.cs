@@ -36,10 +36,10 @@ namespace Podio.API.Model
                 {
                     specificField.GetType().GetProperty(property.Name).SetValue(specificField, property.GetValue(genericField, null), null);
                 }
-                this.Fields.Remove(genericField);
+               // this.Fields.Remove(genericField);
             }
 
-            this.Fields.Add(specificField);
+           // this.Fields.Add(specificField);
 
             return specificField;
         }

@@ -226,7 +226,7 @@ namespace Podio.API.Utils
 
         public static PodioResponse<T> JSONRequest<T>(string requestUri, string accessToken, object requestData, RequestMethod requestMethod)
         {
-            
+
             PodioResponse<T> retval = new PodioResponse<T>(JSONRequest(requestUri, accessToken, requestData, requestMethod));
             return retval;
         }
@@ -269,27 +269,13 @@ namespace Podio.API.Utils
 
         public static T Deserialize<T>(string json)
         {
-            //if (typeof(T) is IDictionary<string, object>)
-            //{
-                return JsonConvert.DeserializeObject<T>(json, new JsonConverter[] { new NestedDictionaryConverter() });
-            //}
-            //else
-            //{
-            //    return JsonConvert.DeserializeObject<T>(json);
-            //}
+            return JsonConvert.DeserializeObject<T>(json, new JsonConverter[] { new NestedDictionaryConverter() });
+
         }
 
         public static string Serialize(object t)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(t.GetType());
-            string retval;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                serializer.WriteObject(ms, t);
-                retval = Encoding.UTF8.GetString(ms.ToArray());
-                ms.Close();
-            }
-            return retval;
+            return JsonConvert.SerializeObject(t);
         }
 
         private static HttpWebRequest SetupPOSTRequest(string requestUri, Dictionary<string, string> requestData)
@@ -368,7 +354,8 @@ public static class ObjectExtensions
                 else if (value is Newtonsoft.Json.Linq.JArray)
                 {
                     var castedValue = (Newtonsoft.Json.Linq.JArray)value;
-                    switch(propertyMap[item.Key].PropertyType.Name) {
+                    switch (propertyMap[item.Key].PropertyType.Name)
+                    {
                         case "String[]":
                             value = castedValue.Select(s => s.ToString()).ToArray();
                             break;

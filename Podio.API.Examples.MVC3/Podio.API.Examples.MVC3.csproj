@@ -98,6 +98,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Controllers\StreamController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,7 @@
     <Content Include="Views\Shared\AuthInfoSection.cshtml" />
     <Content Include="Views\Samples\Index.cshtml" />
     <Content Include="Views\Samples\AppSamples.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
