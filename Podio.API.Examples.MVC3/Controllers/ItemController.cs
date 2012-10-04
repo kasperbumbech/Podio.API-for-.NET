@@ -30,9 +30,6 @@ namespace Podio.API.Examples.MVC3.Controllers
         public ActionResult Create(FormCollection collection)
         {
             var item = new Item();
-
-            //try
-            //{
             foreach (var appField in Application.Fields)
             {
                 switch (appField.Type) {
@@ -40,20 +37,13 @@ namespace Podio.API.Examples.MVC3.Controllers
                         var field = item.Field<TextItemField>(appField.ExternalId);
                         field.ExternalId = appField.ExternalId;
                         field.Value = collection[appField.ExternalId];
-
                         item.Fields.Add(field);
                         break;
                 }
             }
 
             this.Client.ItemService.AddNewItem((int)this.Application.AppId, item);
-
             return RedirectToRoute(new { controller = "Samples", action = "Index" });
-            //}
-            //catch
-            //{
-            //    return View(this.Application);
-            //}
         }
 
         private class LoadAppAttribute : ActionFilterAttribute
