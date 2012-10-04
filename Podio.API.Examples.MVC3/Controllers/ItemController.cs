@@ -34,10 +34,16 @@ namespace Podio.API.Examples.MVC3.Controllers
             {
                 switch (appField.Type) {
                     case "text":
-                        var field = item.Field<TextItemField>(appField.ExternalId);
-                        field.ExternalId = appField.ExternalId;
-                        field.Value = collection[appField.ExternalId];
-                        item.Fields.Add(field);
+                        var textField = item.Field<TextItemField>(appField.ExternalId);
+                        textField.ExternalId = appField.ExternalId;
+                        textField.Value = collection[appField.ExternalId];
+                        item.Fields.Add(textField);
+                        break;
+                    case "app":
+                        var appRefField = item.Field<AppItemField>(appField.ExternalId);
+                        appRefField.ExternalId = appField.ExternalId;
+                        appRefField.ItemIds = collection[appField.ExternalId].Split(',').Select(id => int.Parse(id));
+                        item.Fields.Add(appRefField);
                         break;
                 }
             }

@@ -17,5 +17,17 @@ namespace Podio.API.Utils.ItemFields
                 return this.valuesAs<Item>(_items);
             }
         }
+
+        public IEnumerable<int> ItemIds {
+            set {
+                ensureValuesInitialized(true);
+                foreach (var itemId in value)
+	            {
+                    var dict = new Dictionary<string, object>();
+                    dict["value"] = itemId;
+		            this.Values.Add(dict);
+	            }
+            }
+        }
     }
 }
