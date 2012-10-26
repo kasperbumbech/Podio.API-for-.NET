@@ -21,6 +21,17 @@ namespace Podio.API.Utils.ItemFields
                     return null;
                 }
             }
+            set
+            {
+                ensureValuesInitialized(true);
+                if (value != null)
+                {
+                    this.Values.First()["value"] = (Int64)value.Value.TotalSeconds;
+                }
+                else {
+                    this.Values.First()["value"] = null;
+                }
+            }
         }
 
     }

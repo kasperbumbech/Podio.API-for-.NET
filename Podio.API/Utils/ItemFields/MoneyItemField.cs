@@ -21,6 +21,11 @@ namespace Podio.API.Utils.ItemFields
                     return null;
                 }
             }
+            set
+            {
+                ensureValuesInitialized(true);
+                this.Values.First()["currency"] = value;
+            }
         }
 
         public decimal? Value
@@ -35,6 +40,11 @@ namespace Podio.API.Utils.ItemFields
                 {
                     return null;
                 }
+            }
+            set
+            {
+                ensureValuesInitialized(true);
+                this.Values.First()["value"] = value;
             }
         }
 

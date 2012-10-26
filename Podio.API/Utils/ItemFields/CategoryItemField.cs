@@ -11,7 +11,7 @@ namespace Podio.API.Utils.ItemFields
     {
         private List<Answer> _answers;
 
-        public List<Answer> Answers
+        public IEnumerable<Answer> Answers
         {
             get
             {

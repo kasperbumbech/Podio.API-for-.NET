@@ -10,7 +10,7 @@ namespace Podio.API.Utils.ItemFields
     {
         private List<FileAttachment> _images;
 
-        public List<FileAttachment> Images
+        public IEnumerable<FileAttachment> Images
         {
             get
             {

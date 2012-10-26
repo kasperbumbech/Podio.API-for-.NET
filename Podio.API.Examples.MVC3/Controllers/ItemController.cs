@@ -54,6 +54,46 @@ namespace Podio.API.Examples.MVC3.Controllers
                             contactField.ContactIds = rawValue.Split(',').Select(id => int.Parse(id));
                             item.Fields.Add(contactField);
                             break;
+                        case "location":
+                            var locationField = item.Field<LocationItemField>(appField.ExternalId);
+                            locationField.ExternalId = appField.ExternalId;
+                            locationField.Locations = new List<string>(rawValue.Split(','));
+                            item.Fields.Add(locationField);
+                            break;
+                        case "duration":
+                            var durationField = item.Field<DurationItemField>(appField.ExternalId);
+                            durationField.ExternalId = appField.ExternalId;
+                            durationField.Value = TimeSpan.FromSeconds(Int64.Parse(rawValue));
+                            item.Fields.Add(durationField);
+                            break;
+                        case "progress":
+                            var progressField = item.Field<ProgressItemField>(appField.ExternalId);
+                            progressField.ExternalId = appField.ExternalId;
+                            progressField.Value = int.Parse(rawValue);
+                            item.Fields.Add(progressField);
+                            break;
+                        case "money":
+                            var currency = collection[appField.ExternalId + "_currency"];
+                            if (!String.IsNullOrEmpty(currency))
+                            {
+                                var moneyField = item.Field<MoneyItemField>(appField.ExternalId);
+                                moneyField.ExternalId = appField.ExternalId;
+                                moneyField.Value = int.Parse(rawValue);
+                                moneyField.Currency = currency;
+                                item.Fields.Add(moneyField);
+                            }
+                            break;
+                        case "date":
+                            var dateField = item.Field<DateItemField>(appField.ExternalId);
+                            dateField.ExternalId = appField.ExternalId;
+                            dateField.Start = DateTime.Parse(rawValue);
+                            var endString = collection[appField.ExternalId + "_end"];
+                            if (!String.IsNullOrEmpty(endString))
+                            {
+                                dateField.End = DateTime.Parse(endString);
+                            }
+                            item.Fields.Add(dateField);
+                            break;
                     }
                 }
             }

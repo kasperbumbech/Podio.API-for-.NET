@@ -10,7 +10,7 @@ namespace Podio.API.Utils.ItemFields
     {
         private List<Embed> _embeds;
 
-        public List<Embed> Embeds
+        public IEnumerable<Embed> Embeds
         {
             get
             {

@@ -10,7 +10,7 @@ namespace Podio.API.Utils.ItemFields
     {
         private List<Contact> _contacts;
 
-        public List<Contact> Contacts
+        public IEnumerable<Contact> Contacts
         {
             get
             {

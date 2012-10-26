@@ -41,14 +41,14 @@
                     <input type="text" name="@appField.ExternalId" /> <span>(enter profile ids separated by commas)</span>
                     break;
                 case "location":
-                    <input type="text" name="@appField.ExternalId" /> <span>(enter an address)</span>
+                    <input type="text" name="@appField.ExternalId" /> <span>(enter addresses seperated by comma)</span>
                     break;                
                 case "date":
-                    <p>Start date: <input type="text" name="@(appField.ExternalId)_start" /> <span>(must be parsable by DateTime.parse)</span></p>
+                    <p>Start date: <input type="text" name="@(appField.ExternalId)" /> <span>(must be parsable by DateTime.parse)</span></p>
                     <p>End date: <input type="text" name="@(appField.ExternalId)_end" /> <span>(optional)</span></p>
                     break; 
                 case "money":
-                    <p>Amount: <input type="text" name="@(appField.ExternalId)_amount" /></p>
+                    <p>Amount: <input type="text" name="@(appField.ExternalId)" /></p>
                     <p>Currency: <input type="text" name="@(appField.ExternalId)_currency" /></p>
                     break;
                 default:

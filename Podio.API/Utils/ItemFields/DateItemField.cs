@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Podio.API.Model;
+using System.Globalization;
 
 namespace Podio.API.Utils.ItemFields
 {
@@ -20,6 +21,10 @@ namespace Podio.API.Utils.ItemFields
                     return null;
                 }
             }
+            set
+            {
+                setDateTime(value, "start");
+            }
         }
 
         public DateTime? End
@@ -34,6 +39,10 @@ namespace Podio.API.Utils.ItemFields
                 {
                     return null;
                 }
+            }
+            set
+            {
+                setDateTime(value, "end");
             }
         }
 
@@ -93,6 +102,16 @@ namespace Podio.API.Utils.ItemFields
                     return null;
                 }
             }
+        }
+
+        protected void setDateTime(DateTime? value, string attribute) {
+            ensureValuesInitialized(true);
+            string stringValue = null;
+            if (value != null)
+            {
+                stringValue = String.Format("{0:yyyy-MM-dd HH:mm:ss}", value);
+            }
+            this.Values.First()[attribute] = stringValue;        
         }
     }
 
