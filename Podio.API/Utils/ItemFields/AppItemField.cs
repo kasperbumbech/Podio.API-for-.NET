@@ -20,7 +20,7 @@ namespace Podio.API.Utils.ItemFields
 
         public IEnumerable<int> ItemIds {
             set {
-                ensureValuesInitialized(true);
+                ensureValuesInitialized();
                 foreach (var itemId in value)
 	            {
                     var dict = new Dictionary<string, object>();

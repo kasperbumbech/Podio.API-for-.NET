@@ -32,19 +32,23 @@ namespace Podio.API.Examples.MVC3.Controllers
             var item = new Item();
             foreach (var appField in Application.Fields)
             {
-                switch (appField.Type) {
-                    case "text":
-                        var textField = item.Field<TextItemField>(appField.ExternalId);
-                        textField.ExternalId = appField.ExternalId;
-                        textField.Value = collection[appField.ExternalId];
-                        item.Fields.Add(textField);
-                        break;
-                    case "app":
-                        var appRefField = item.Field<AppItemField>(appField.ExternalId);
-                        appRefField.ExternalId = appField.ExternalId;
-                        appRefField.ItemIds = collection[appField.ExternalId].Split(',').Select(id => int.Parse(id));
-                        item.Fields.Add(appRefField);
-                        break;
+                var rawValue = collection[appField.ExternalId];
+                if(!String.IsNullOrEmpty(rawValue)) {
+                    switch (appField.Type)
+                    {
+                        case "text":
+                            var textField = item.Field<TextItemField>(appField.ExternalId);
+                            textField.ExternalId = appField.ExternalId;
+                            textField.Value = rawValue;
+                            item.Fields.Add(textField);
+                            break;
+                        case "app":
+                            var appRefField = item.Field<AppItemField>(appField.ExternalId);
+                            appRefField.ExternalId = appField.ExternalId;
+                            appRefField.ItemIds = rawValue.Split(',').Select(id => int.Parse(id));
+                            item.Fields.Add(appRefField);
+                            break;
+                    }
                 }
             }
 
