@@ -48,6 +48,12 @@ namespace Podio.API.Examples.MVC3.Controllers
                             appRefField.ItemIds = rawValue.Split(',').Select(id => int.Parse(id));
                             item.Fields.Add(appRefField);
                             break;
+                        case "contact":
+                            var contactField = item.Field<ContactItemField>(appField.ExternalId);
+                            contactField.ExternalId = appField.ExternalId;
+                            contactField.ContactIds = rawValue.Split(',').Select(id => int.Parse(id));
+                            item.Fields.Add(contactField);
+                            break;
                     }
                 }
             }

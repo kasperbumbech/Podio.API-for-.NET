@@ -17,5 +17,19 @@ namespace Podio.API.Utils.ItemFields
                 return this.valuesAs<Contact>(_contacts);
             }
         }
+
+        public IEnumerable<int> ContactIds
+        {
+            set
+            {
+                ensureValuesInitialized();
+                foreach (var contactId in value)
+                {
+                    var dict = new Dictionary<string, object>();
+                    dict["value"] = contactId;
+                    this.Values.Add(dict);
+                }
+            }
+        }
     }
 }
