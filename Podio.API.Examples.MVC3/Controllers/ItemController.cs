@@ -110,6 +110,24 @@ namespace Podio.API.Examples.MVC3.Controllers
                             }
                             item.Fields.Add(categoryItemField);
                             break;
+                        case "embed":
+                            var embedField = item.Field<EmbedItemField>(appField.ExternalId);
+                            embedField.ExternalId = appField.ExternalId;
+                            var embedUrls = new List<string>(rawValue.Split(','));
+                            foreach (var embedUrl in embedUrls)
+                            {
+                                var embed = this.Client.EmbedService.AddAnEmbed(embedUrl.Trim());
+                                if (embed.Files.Count > 0)
+                                {
+                                    embedField.AddEmbed((int)embed.EmbedId, embed.Files.First().FileId);
+                                }
+                                else
+                                {
+                                    embedField.AddEmbed((int)embed.EmbedId);
+                                }
+                            }
+                            item.Fields.Add(embedField);
+                            break;
                     }
                 }
             }

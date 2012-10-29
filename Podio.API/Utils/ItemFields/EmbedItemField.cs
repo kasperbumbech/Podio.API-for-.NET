@@ -34,5 +34,17 @@ namespace Podio.API.Utils.ItemFields
                 return _embeds;
             }
         }
+
+        public void AddEmbed(int embedId, int? fileId = null)
+        {
+            ensureValuesInitialized();
+            var dict = new Dictionary<string, object>();
+            dict["embed"] = embedId;
+            if (fileId != null)
+            {
+                dict["file"] = fileId;
+            }
+            this.Values.Add(dict);
+        }
     }
 }

@@ -61,8 +61,10 @@
 		                    <option value="@option.Id">@option.Text</option>
 	                    }
                     </select>
-                            
-                break;
+                    break;
+                case "embed":
+                    <input type="text" name="@appField.ExternalId" /> <span>(enter urls seperated by comma)</span>
+                    break;                              
                 default:
                     <p><i>Not implemented yet in this sample app</i></p>
                     break;
