@@ -231,6 +231,77 @@ namespace Podio.API.Utils
             return retval;
         }
 
+        #region File upload
+        public class FileParameter {
+            public byte[] Data { get; set; }
+            public string FileName { get; set; }
+            public string ContentType { get; set; }
+            public FileParameter(byte[] data) : this(data, null) { }
+            public FileParameter(byte[] data, string filename) : this(data, filename, null) { }
+            public FileParameter(byte[] data, string filename, string contenttype) {
+                Data = data;
+                FileName = filename;
+                ContentType = contenttype;
+            }
+        }
+
+        public static PodioResponse<T> MultipartFormDataRequest<T>(string requestUri, string accessToken, Dictionary<string, object> requestData)
+        {
+            string boundary = String.Format("----------{0:N}", Guid.NewGuid());
+            string contentType = "multipart/form-data; boundary=" + boundary;
+
+            MemoryStream ms = new MemoryStream();
+            bool first = true;
+            foreach (var key in requestData.Keys)
+            {
+                if (!first)
+                    ms.Write(Encoding.UTF8.GetBytes("\r\n"), 0, Encoding.UTF8.GetByteCount("\r\n"));
+                first = false;
+
+                var value = requestData[key];
+                if (value is FileParameter) {
+                    FileParameter upload = (FileParameter)value;
+
+                    string header = string.Format("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\";\r\nContent-Type: {3}\r\n\r\n",
+                        boundary,
+                        key,
+                        upload.FileName ?? key,
+                        upload.ContentType ?? "application/octet-stream");
+                    ms.Write(Encoding.UTF8.GetBytes(header), 0, Encoding.UTF8.GetByteCount(header));
+
+                    ms.Write(upload.Data, 0, upload.Data.Length);
+                } else {
+                    string postData = string.Format("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}",
+                        boundary,
+                        key,
+                        value);
+                    ms.Write(Encoding.UTF8.GetBytes(postData), 0, Encoding.UTF8.GetByteCount(postData));
+                }
+            }
+            string footer = "\r\n--" + boundary + "--\r\n";
+            ms.Write(Encoding.UTF8.GetBytes(footer), 0, Encoding.UTF8.GetByteCount(footer));
+            byte[] inputData = ms.ToArray(); ;
+
+            requestUri = requestUri + "?oauth_token=" + accessToken;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
+
+            request.Method = "POST";
+            request.ContentType = contentType;
+            request.Accept = "application/json";
+            request.ContentLength = inputData.Length;
+
+            using (Stream requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(inputData, 0, inputData.Length);
+            }
+            PodioResponse retval = GetResponse(request);
+                
+            retval.RequestUri = requestUri;
+            PodioResponse<T> podioResponse = new PodioResponse<T>(retval);
+            return podioResponse;
+        }
+        #endregion
+
         #region Privates and Helpers
 
         private static PodioResponse GetResponse(HttpWebRequest request)

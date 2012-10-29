@@ -135,6 +135,7 @@
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\EmbedService.cs" />
+    <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\OrganisationService.cs" />
     <Compile Include="Services\StreamService.cs" />
