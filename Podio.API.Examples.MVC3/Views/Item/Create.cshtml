@@ -25,7 +25,8 @@
                     <input type="text" name="@appField.ExternalId" /> <span>%</span>
                     break;
                 case "text":
-                    switch ((string)(((Dictionary<string, object>)appField.Config["settings"])["size"])) {
+                    switch (app.Field<Podio.API.Utils.ApplicationFields.TextApplicationField>(appField.ExternalId).Size)
+                    {
                         case "large":
                             <textarea name="@appField.ExternalId"></textarea>
                             break;
@@ -51,6 +52,17 @@
                     <p>Amount: <input type="text" name="@(appField.ExternalId)" /></p>
                     <p>Currency: <input type="text" name="@(appField.ExternalId)_currency" /></p>
                     break;
+                case "category":
+                case "question":
+                    var categoryField = app.Field<Podio.API.Utils.ApplicationFields.CategoryApplicationField>(appField.ExternalId);
+                    <select @(categoryField.Multiple ? "multiple=\"multiple\"" : "" ) name="@(appField.ExternalId)">
+                        @foreach (var option in categoryField.Options)
+	                    {
+		                    <option value="@option.Id">@option.Text</option>
+	                    }
+                    </select>
+                            
+                break;
                 default:
                     <p><i>Not implemented yet in this sample app</i></p>
                     break;

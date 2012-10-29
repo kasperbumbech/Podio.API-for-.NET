@@ -34,5 +34,35 @@ namespace Podio.API.Utils.ItemFields
             [DataMember(Name = "color", IsRequired = false)]
             public string Color { get; set; }
         }
+
+        public int OptionId {
+            set
+            {
+                ensureValuesInitialized(true);
+                this.Values.First()["value"] = value;
+            }
+        }
+
+        public IEnumerable<int> OptionIds
+        {
+            set
+            {
+                ensureValuesInitialized();
+                foreach (var optionId in value)
+                {
+                    var dict = new Dictionary<string, object>();
+                    dict["value"] = optionId;
+                    this.Values.Add(dict);
+                }
+            }
+            /*
+            set
+            {
+
+                ensureValuesInitialized(true);
+                this.Values.First()["value"] = value;
+            }
+            */
+        }
     }
 }

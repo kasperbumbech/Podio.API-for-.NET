@@ -35,8 +35,12 @@ namespace Podio.API.Model
 		public int? ContactCount { get; set; }
 
 
-		[DataMember(Name = "members", IsRequired=false)]
-		public int? Members { get; set; }
+		[DataMember(Name = "member_count", IsRequired=false)]
+		public int? MemberCount { get; set; }
+
+
+		[DataMember(Name = "app_count", IsRequired=false)]
+		public int? AppCount { get; set; }
 
 
 		[DataMember(Name = "role", IsRequired=false)]
@@ -85,6 +89,10 @@ namespace Podio.API.Model
 
 		[DataMember(Name = "created_by", IsRequired=false)]
 		public ByLine CreatedBy { get; set; }
+
+
+		[DataMember(Name = "org", IsRequired=false)]
+		public Organization Org { get; set; }
 
 
 	}

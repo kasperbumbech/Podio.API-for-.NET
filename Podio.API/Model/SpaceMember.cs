@@ -27,6 +27,10 @@ namespace Podio.API.Model
 		public DateTime? EndedOn { get; set; }
 
 
+		[DataMember(Name = "grants", IsRequired=false)]
+		public int? Grants { get; set; }
+
+
 		[DataMember(Name = "user", IsRequired=false)]
 		public User User { get; set; }
 

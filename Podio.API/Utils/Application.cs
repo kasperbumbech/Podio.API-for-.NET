@@ -5,33 +5,28 @@ using System.Text;
 
 namespace Podio.API.Model
 {
-    public partial class Item
+    public partial class Application
     {
-        public Item() {
-            this.Fields = new List<ItemField>();
-            this.FileIds = new List<int>();
-            this.Tags = new List<Tag>();
-        }
-
         public T Field<T>(string externalId)
-            where T : ItemField, new()
+            where T : ApplicationField, new()
         {
             var genericField = this.Fields.Find(field => field.ExternalId == externalId);
             return fieldInstance<T>(genericField);
         }
 
         public T Field<T>(int fieldId)
-            where T : ItemField, new()
+            where T : ApplicationField, new()
         {
             var genericField = this.Fields.Find(field => field.FieldId == fieldId);
             return fieldInstance<T>(genericField);
         }
 
-        protected T fieldInstance<T>(ItemField genericField)
-                    where T : ItemField, new()
+        protected T fieldInstance<T>(ApplicationField genericField)
+                    where T : ApplicationField, new()
         {
             T specificField = new T();
-            if(genericField != null) {
+            if (genericField != null)
+            {
                 foreach (var property in genericField.GetType().GetProperties())
                 {
                     specificField.GetType().GetProperty(property.Name).SetValue(specificField, property.GetValue(genericField, null), null);

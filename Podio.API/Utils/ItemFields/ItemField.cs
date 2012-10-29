@@ -16,6 +16,25 @@ namespace Podio.API.Model
                 this.Values.First().ContainsKey(key)));
         }
 
+        public object GetSetting(string key) {
+            if (this.Config.ContainsKey("settings"))
+            {
+                var settings = (Dictionary<string, object>)this.Config["settings"];
+                if (settings.ContainsKey(key))
+                {
+                    return settings[key];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         protected T valueAs<T>(Dictionary<string,object> value, string key)
             where T : class, new()
         {

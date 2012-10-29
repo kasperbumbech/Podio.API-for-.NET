@@ -31,6 +31,10 @@ namespace Podio.API.Model
 		public string Message { get; set; }
 
 
+		[DataMember(Name = "ref", IsRequired=false)]
+		public Dictionary<string,object> Ref { get; set; }
+
+
 		[DataMember(Name = "created_by", IsRequired=false)]
 		public ByLine CreatedBy { get; set; }
 

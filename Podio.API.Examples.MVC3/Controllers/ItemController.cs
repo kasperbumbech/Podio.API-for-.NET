@@ -1,5 +1,6 @@
 ﻿using Podio.API.Model;
 using Podio.API.Services;
+using Podio.API.Utils.ApplicationFields;
 using Podio.API.Utils.ItemFields;
 using System;
 using System.Collections.Generic;
@@ -93,6 +94,21 @@ namespace Podio.API.Examples.MVC3.Controllers
                                 dateField.End = DateTime.Parse(endString);
                             }
                             item.Fields.Add(dateField);
+                            break;
+                        case "question":
+                        case "category":
+                            var categoryAppField = Application.Field<CategoryApplicationField>(appField.ExternalId);
+                            var categoryItemField = item.Field<CategoryItemField>(appField.ExternalId);
+                            categoryItemField.ExternalId = appField.ExternalId;
+                            if (categoryAppField.Multiple)
+                            {
+                                categoryItemField.OptionIds = rawValue.Split(',').Select(id => int.Parse(id));
+                            }
+                            else
+                            {
+                                categoryItemField.OptionId = int.Parse(rawValue);
+                            }
+                            item.Fields.Add(categoryItemField);
                             break;
                     }
                 }

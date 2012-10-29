@@ -182,7 +182,8 @@ namespace ConvertRubyModels
             { "application>fields", "List<ApplicationField>" },
             { "ByLine>image", "FileAttachment" },
             { "user_ratings", "Dictionary<string,object>" },
-            { "ratings", "Dictionary<string,object>" }
+            { "ratings", "Dictionary<string,object>" },
+            { "applicationfield>config", "ApplicationFieldConfig" }
         };
 
         public static string ConvertValueType(string type, string rubyname, string className)

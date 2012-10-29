@@ -139,6 +139,11 @@
     <Compile Include="Services\StreamService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\SpaceService.cs" />
+    <Compile Include="Utils\Application.cs" />
+    <Compile Include="Utils\ApplicationFields\ApplicationField.cs" />
+    <Compile Include="Utils\ApplicationFields\ApplicationFieldConfig.cs" />
+    <Compile Include="Utils\ApplicationFields\CategoryApplicationField.cs" />
+    <Compile Include="Utils\ApplicationFields\TextApplicationField.cs" />
     <Compile Include="Utils\Item.cs" />
     <Compile Include="Utils\ItemFields\AppItemField.cs" />
     <Compile Include="Utils\ItemFields\CalculationItemField.cs" />
