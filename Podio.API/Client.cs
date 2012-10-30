@@ -187,5 +187,7 @@ namespace Podio.API
 
         public Services.EmbedService EmbedService { get { return new Services.EmbedService(this); } }
 
+        public Services.FileService FileService { get { return new Services.FileService(this); } }
+
     }
 }

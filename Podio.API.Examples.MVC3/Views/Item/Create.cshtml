@@ -11,7 +11,7 @@
 </div>
 
 <div class="well">
-    @using (Html.BeginForm(new { action = "Create", controller = "Item", app_id = app.AppId }))
+    @using (Html.BeginForm("Create", "Item", new { app_id = app.AppId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         foreach (var appField in app.Fields)
         {
@@ -64,6 +64,9 @@
                     break;
                 case "embed":
                     <input type="text" name="@appField.ExternalId" /> <span>(enter urls seperated by comma)</span>
+                    break;                              
+                case "image":
+                    <input type="file" name="@appField.ExternalId" />
                     break;                              
                 default:
                     <p><i>Not implemented yet in this sample app</i></p>

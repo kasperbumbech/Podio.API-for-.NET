@@ -17,5 +17,19 @@ namespace Podio.API.Utils.ItemFields
                 return this.valuesAs<FileAttachment>(_images);
             }
         }
+
+        public IEnumerable<int> FileIds
+        {
+            set
+            {
+                ensureValuesInitialized();
+                foreach (var fileId in value)
+                {
+                    var dict = new Dictionary<string, object>();
+                    dict["value"] = fileId;
+                    this.Values.Add(dict);
+                }
+            }
+        }
     }
 }

@@ -34,7 +34,8 @@ namespace Podio.API.Examples.MVC3.Controllers
             foreach (var appField in Application.Fields)
             {
                 var rawValue = collection[appField.ExternalId];
-                if(!String.IsNullOrEmpty(rawValue)) {
+                if (!String.IsNullOrEmpty(rawValue) || appField.Type == "image")
+                {
                     switch (appField.Type)
                     {
                         case "text":
@@ -127,6 +128,29 @@ namespace Podio.API.Examples.MVC3.Controllers
                                 }
                             }
                             item.Fields.Add(embedField);
+                            break;
+                        case "image":
+                            // This will break if app has more than one image field - each will get all the uploaded images
+                            var fileIds = new List<int>();
+                            foreach (string requestFile in Request.Files)
+                            {
+                                HttpPostedFileBase file = Request.Files[requestFile]; 
+                                if(file.ContentLength > 0)
+                                {
+                                    byte[] data = new byte[file.ContentLength];
+                                    file.InputStream.Read(data, 0, file.ContentLength);
+                                    FileAttachment fileAttachment = this.Client.FileService.UploadFile(data, file.FileName, file.ContentType);
+                                    fileIds.Add((int)fileAttachment.FileId);
+                                }
+                            }
+
+                            if(fileIds.Count > 0)
+                            {
+                                var imageField = item.Field<ImageItemField>(appField.ExternalId);
+                                imageField.ExternalId = appField.ExternalId;
+                                imageField.FileIds = fileIds;
+                                item.Fields.Add(imageField);
+                            }
                             break;
                     }
                 }
