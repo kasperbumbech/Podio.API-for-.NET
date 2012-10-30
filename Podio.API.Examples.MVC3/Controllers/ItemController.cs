@@ -15,10 +15,11 @@ namespace Podio.API.Examples.MVC3.Controllers
     {
         public Client Client { get; set; }
         public Podio.API.Model.Application Application { get; set; }
+        public Podio.API.Model.Item Item { get; set; }
 
         //
         // GET: /Item/Create
-        [LoadClient, LoadApp]
+        [LoadClient(Order = 1), LoadApp(Order = 2)]
         public ActionResult Create()
         {
             return View(this.Application);
@@ -27,10 +28,45 @@ namespace Podio.API.Examples.MVC3.Controllers
         //
         // POST: /Item/Create
 
-        [HttpPost, LoadClient, LoadApp]
+        [HttpPost, LoadClient(Order = 1), LoadApp(Order = 2)]
         public ActionResult Create(FormCollection collection)
         {
             var item = new Item();
+            applyFieldValues(item, collection);
+
+            this.Client.ItemService.AddNewItem((int)this.Application.AppId, item);
+            return RedirectToRoute(new { controller = "Samples", action = "Index" });
+        }
+
+        //
+        // GET: /Item/Update/1
+        [LoadClient(Order = 1), LoadItem(Order = 2)]
+        public ActionResult Update()
+        {
+            ViewData["app"] = this.Application;
+            ViewData["item"] = this.Item;
+            return View();
+        }
+
+        [HttpPut, LoadClient(Order = 1), LoadItem(Order = 2)]
+        public ActionResult Update(FormCollection collection)
+        {
+            var item = new Item();
+            item.ItemId = this.Item.ItemId;
+            applyFieldValues(item, collection);
+            this.Client.ItemService.UpdateItem(item);
+            return RedirectToRoute(new { controller = "Samples", action = "Index" });
+        }
+
+        [HttpDelete, LoadClient]
+        public ActionResult Delete(int itemId)
+        {
+            this.Client.ItemService.DeleteItem(itemId);
+            return RedirectToRoute(new { controller = "Samples", action = "Index" });
+        }
+
+        private void applyFieldValues(Podio.API.Model.Item item, FormCollection collection)
+        {
             foreach (var appField in Application.Fields)
             {
                 var rawValue = collection[appField.ExternalId];
@@ -134,8 +170,8 @@ namespace Podio.API.Examples.MVC3.Controllers
                             var fileIds = new List<int>();
                             foreach (string requestFile in Request.Files)
                             {
-                                HttpPostedFileBase file = Request.Files[requestFile]; 
-                                if(file.ContentLength > 0)
+                                HttpPostedFileBase file = Request.Files[requestFile];
+                                if (file.ContentLength > 0)
                                 {
                                     byte[] data = new byte[file.ContentLength];
                                     file.InputStream.Read(data, 0, file.ContentLength);
@@ -144,7 +180,7 @@ namespace Podio.API.Examples.MVC3.Controllers
                                 }
                             }
 
-                            if(fileIds.Count > 0)
+                            if (fileIds.Count > 0)
                             {
                                 var imageField = item.Field<ImageItemField>(appField.ExternalId);
                                 imageField.ExternalId = appField.ExternalId;
@@ -155,16 +191,6 @@ namespace Podio.API.Examples.MVC3.Controllers
                     }
                 }
             }
-
-            this.Client.ItemService.AddNewItem((int)this.Application.AppId, item);
-            return RedirectToRoute(new { controller = "Samples", action = "Index" });
-        }
-
-        [HttpDelete, LoadClient]
-        public ActionResult Delete(int itemId)
-        {
-            this.Client.ItemService.DeleteItem(itemId);
-            return RedirectToRoute(new { controller = "Samples", action = "Index" });
         }
 
         private class LoadClientAttribute : ActionFilterAttribute
@@ -186,6 +212,18 @@ namespace Podio.API.Examples.MVC3.Controllers
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
                 Podio.API.Model.Application app = ((ItemController)filterContext.Controller).Client.ApplicationService.GetApp(Int32.Parse(filterContext.HttpContext.Request.QueryString["app_id"]));
+                ((ItemController)filterContext.Controller).Application = app;
+            }
+        }
+
+        private class LoadItemAttribute : ActionFilterAttribute
+        {
+            public override void OnActionExecuting(ActionExecutingContext filterContext)
+            {
+                Podio.API.Model.Item item = ((ItemController)filterContext.Controller).Client.ItemService.GetItem(Int32.Parse((string)filterContext.RouteData.Values["id"]));
+                ((ItemController)filterContext.Controller).Item = item;
+
+                Podio.API.Model.Application app = ((ItemController)filterContext.Controller).Client.ApplicationService.GetApp(Convert.ToInt32(item.App["app_id"]));
                 ((ItemController)filterContext.Controller).Application = app;
             }
         }

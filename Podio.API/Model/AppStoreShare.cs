@@ -52,7 +52,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "categories", IsRequired=false)]
-		public Dictionary<string,object>[] Categories { get; set; }
+		public Dictionary<string,object> Categories { get; set; }
 
 
 		[DataMember(Name = "org", IsRequired=false)]

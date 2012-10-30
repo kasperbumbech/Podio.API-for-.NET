@@ -1,0 +1,21 @@
+﻿@using System.Web.Mvc.Html;
+@{
+    var item = (Podio.API.Model.Item)ViewData["item"];
+    var app = (Podio.API.Model.Application)ViewData["app"];
+    ViewBag.Title = "Item Update: " + item.Title;
+}
+
+<div class="page-header">
+    <h1>Edit @item.Title</h1>
+    <p><i><b>Notice:</b> This form is not prepopulated with the existing values of the item. Any field you change will be updated, any you leave blank will keep their current value.</i></p>
+</div>
+
+
+<div class="well">
+    @using (Html.BeginForm("Update", "Item", new { id = item.ItemId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        @Html.Partial("_Form", app)
+        <button type="submit" class="btn btn-primary" value="Update">Update Item</button>
+    }
+</div>

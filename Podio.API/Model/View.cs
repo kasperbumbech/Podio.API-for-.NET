@@ -36,7 +36,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "filters", IsRequired=false)]
-		public Dictionary<string,object>[] Filters { get; set; }
+		public Dictionary<string,object> Filters { get; set; }
 
 
 		[DataMember(Name = "layout", IsRequired=false)]
@@ -44,7 +44,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "fields", IsRequired=false)]
-		public Dictionary<string,object>[] Fields { get; set; }
+		public Dictionary<string,object> Fields { get; set; }
 
 
 		[DataMember(Name = "created_by", IsRequired=false)]

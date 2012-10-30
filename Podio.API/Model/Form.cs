@@ -24,7 +24,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "settings", IsRequired=false)]
-		public Dictionary<string,object>[] Settings { get; set; }
+		public Dictionary<string,object> Settings { get; set; }
 
 
 		[DataMember(Name = "domains", IsRequired=false)]

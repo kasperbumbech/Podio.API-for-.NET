@@ -76,7 +76,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "participants", IsRequired=false)]
-		public Dictionary<string,object>[] Participants { get; set; }
+		public Dictionary<string,object> Participants { get; set; }
 
 
 		[DataMember(Name = "linked_account_id", IsRequired=false)]

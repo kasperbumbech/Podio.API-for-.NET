@@ -60,7 +60,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "external_contacts", IsRequired=false)]
-		public Dictionary<string,object>[] ExternalContacts { get; set; }
+		public Dictionary<string,object> ExternalContacts { get; set; }
 
 
 		[DataMember(Name = "user", IsRequired=false)]

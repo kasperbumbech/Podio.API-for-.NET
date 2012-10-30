@@ -56,7 +56,7 @@ namespace Podio.API.Services
         }
 
         [DataContract]
-        public struct CreateRequest
+        public struct CreateUpdateRequest
         {
             [DataMember(IsRequired = false, Name = "fields")]
             public IEnumerable<IDictionary<string, object>> Fields { get; set; }
@@ -66,6 +66,18 @@ namespace Podio.API.Services
 
             [DataMember(IsRequired = false, Name = "tags")]
             public IEnumerable<string> Tags { get; set; }
+
+            [DataMember(IsRequired = false, Name = "reminder")]
+            public Reminder Reminder { get; set; }
+
+            [DataMember(IsRequired = false, Name = "recurrence")]
+            public Recurrence Recurrence { get; set; }
+
+            [DataMember(IsRequired = false, Name = "linked_account_id")]
+            public int? LinkedAccountId { get; set; }
+
+            [DataMember(IsRequired = false, Name = "ref")]
+            public Ref Ref { get; set; }
         }
 
         /// <summary>
@@ -73,7 +85,7 @@ namespace Podio.API.Services
         /// </summary>
         public int AddNewItem(int appId, Item item) {
             var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
-            var requestData = new CreateRequest()
+            var requestData = new CreateUpdateRequest()
             {
                 Fields = fieldValues,
                 FileIds = item.FileIds,
@@ -88,11 +100,34 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/add-new-item-22362
         /// </summary>
-        public Item AddNewItem(int appId, CreateRequest requestData)
+        public Item AddNewItem(int appId, CreateUpdateRequest requestData)
         {
             return PodioRestHelper.JSONRequest<Item>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
         }
 
+        /// <summary>
+        /// https://developers.podio.com/doc/items/update-item-22363
+        /// </summary>
+        public void UpdateItem(Item item)
+        {
+            var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
+            var requestData = new CreateUpdateRequest()
+            {
+                Fields = fieldValues,
+                FileIds = item.FileIds,
+                Tags = item.Tags.Select(tag => tag.Text),
+
+            };
+            UpdateItem((int)item.ItemId, requestData);
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/update-item-22363
+        /// </summary>
+        public void UpdateItem(int itemId, CreateUpdateRequest requestData)
+        {
+            PodioRestHelper.JSONRequest<Item>(Constants.PODIOAPI_BASEURL + "/item/" + itemId, _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.PUT);
+        }
         /// <summary>
         /// https://developers.podio.com/doc/items/delete-item-s-22364
         /// </summary>

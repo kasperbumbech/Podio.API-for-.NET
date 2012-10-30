@@ -1,0 +1,63 @@
+﻿@{
+    var app = (Podio.API.Model.Application)Model;
+}
+@foreach (var appField in app.Fields)
+{
+    <label>@appField.Label (@appField.Type)</label>
+    switch (appField.Type)
+    {
+        case "duration":
+            <input type="text" name="@appField.ExternalId" /> <span>seconds</span>
+            break;
+        case "progress":
+            <input type="text" name="@appField.ExternalId" /> <span>%</span>
+            break;
+        case "text":
+            switch (app.Field<Podio.API.Utils.ApplicationFields.TextApplicationField>(appField.ExternalId).Size)
+            {
+                case "large":
+                    <textarea name="@appField.ExternalId"></textarea>
+                    break;
+                default:
+                    <input type="text" name="@appField.ExternalId" />
+                    break;
+            }
+            break;                
+        case "app":
+            <input type="text" name="@appField.ExternalId" /> <span>(enter item ids separated by commas)</span>
+            break;
+        case "contact":
+            <input type="text" name="@appField.ExternalId" /> <span>(enter profile ids separated by commas)</span>
+            break;
+        case "location":
+            <input type="text" name="@appField.ExternalId" /> <span>(enter addresses seperated by comma)</span>
+            break;                
+        case "date":
+            <p>Start date: <input type="text" name="@(appField.ExternalId)" /> <span>(must be parsable by DateTime.parse)</span></p>
+            <p>End date: <input type="text" name="@(appField.ExternalId)_end" /> <span>(optional)</span></p>
+            break; 
+        case "money":
+            <p>Amount: <input type="text" name="@(appField.ExternalId)" /></p>
+            <p>Currency: <input type="text" name="@(appField.ExternalId)_currency" /></p>
+            break;
+        case "category":
+        case "question":
+            var categoryField = app.Field<Podio.API.Utils.ApplicationFields.CategoryApplicationField>(appField.ExternalId);
+            <select @(categoryField.Multiple ? "multiple=\"multiple\"" : "" ) name="@(appField.ExternalId)">
+                @foreach (var option in categoryField.Options)
+	            {
+		            <option value="@option.Id">@option.Text</option>
+	            }
+            </select>
+            break;
+        case "embed":
+            <input type="text" name="@appField.ExternalId" /> <span>(enter urls seperated by comma)</span>
+            break;                              
+        case "image":
+            <input type="file" name="@appField.ExternalId" />
+            break;                              
+        default:
+            <p><i>Not implemented yet in this sample app</i></p>
+            break;
+    }
+}

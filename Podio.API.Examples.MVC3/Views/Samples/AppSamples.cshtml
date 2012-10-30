@@ -194,6 +194,8 @@
                 </ul>
             </td>
             <td>
+                @Html.ActionLink("Edit", "Update", new { Controller = "Item", Action = "Item", Id = item.ItemId })
+
                 @using (Html.BeginForm(
                     "Delete", 
                     "Item", 

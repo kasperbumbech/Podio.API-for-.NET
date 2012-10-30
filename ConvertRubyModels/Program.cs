@@ -202,8 +202,9 @@ namespace ConvertRubyModels
             if (type == "integer") return "int?";
             if (type == "datetime" || type == "date" || type == "time") return "DateTime?";
             if (type == "boolean") return "bool?";
-            if (type == "hash" && rubyname.EndsWith("s")) return "Dictionary<string,object>[]"; // A take on the Ruby Hash datatype
-            if (type == "hash" && !rubyname.EndsWith("s")) return "Dictionary<string,object>"; // A take on the Ruby Hash datatype
+            //if (type == "hash" && rubyname.EndsWith("s")) return "Dictionary<string,object>[]"; // A take on the Ruby Hash datatype
+            //if (type == "hash" && !rubyname.EndsWith("s")) return "Dictionary<string,object>"; // A take on the Ruby Hash datatype
+            if (type == "hash") return "Dictionary<string,object>";
 
             if (type == "array") return "string[]"; // 
 

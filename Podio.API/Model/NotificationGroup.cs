@@ -16,7 +16,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "notifications", IsRequired=false)]
-		public Dictionary<string,object>[] Notifications { get; set; }
+		public Dictionary<string,object> Notifications { get; set; }
 
 
 	}
