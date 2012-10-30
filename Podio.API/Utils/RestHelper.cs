@@ -203,6 +203,7 @@ namespace Podio.API.Utils
             request.Method = "POST";
 
             if (requestMethod == RequestMethod.PUT) request.Method = "PUT";
+            if (requestMethod == RequestMethod.DELETE) request.Method = "DELETE";
 
             string postData = Serialize(requestData);
 

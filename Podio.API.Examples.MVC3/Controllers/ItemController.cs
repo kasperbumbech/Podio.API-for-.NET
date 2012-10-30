@@ -18,7 +18,7 @@ namespace Podio.API.Examples.MVC3.Controllers
 
         //
         // GET: /Item/Create
-        [LoadApp]
+        [LoadClient, LoadApp]
         public ActionResult Create()
         {
             return View(this.Application);
@@ -27,7 +27,7 @@ namespace Podio.API.Examples.MVC3.Controllers
         //
         // POST: /Item/Create
 
-        [HttpPost, LoadApp]
+        [HttpPost, LoadClient, LoadApp]
         public ActionResult Create(FormCollection collection)
         {
             var item = new Item();
@@ -160,7 +160,14 @@ namespace Podio.API.Examples.MVC3.Controllers
             return RedirectToRoute(new { controller = "Samples", action = "Index" });
         }
 
-        private class LoadAppAttribute : ActionFilterAttribute
+        [HttpDelete, LoadClient]
+        public ActionResult Delete(int itemId)
+        {
+            this.Client.ItemService.DeleteItem(itemId);
+            return RedirectToRoute(new { controller = "Samples", action = "Index" });
+        }
+
+        private class LoadClientAttribute : ActionFilterAttribute
         {
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
@@ -170,8 +177,15 @@ namespace Podio.API.Examples.MVC3.Controllers
                 }
 
                 var client = Podio.API.Examples.MVC3.Application.CurrentConnectionDetails.GetClient();
-                Podio.API.Model.Application app = client.ApplicationService.GetApp(Int32.Parse(filterContext.HttpContext.Request.QueryString["app_id"]));
                 ((ItemController)filterContext.Controller).Client = client;
+            }
+        }
+
+        private class LoadAppAttribute : ActionFilterAttribute
+        {
+            public override void OnActionExecuting(ActionExecutingContext filterContext)
+            {
+                Podio.API.Model.Application app = ((ItemController)filterContext.Controller).Client.ApplicationService.GetApp(Int32.Parse(filterContext.HttpContext.Request.QueryString["app_id"]));
                 ((ItemController)filterContext.Controller).Application = app;
             }
         }

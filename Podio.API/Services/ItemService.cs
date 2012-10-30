@@ -68,6 +68,9 @@ namespace Podio.API.Services
             public IEnumerable<string> Tags { get; set; }
         }
 
+        /// <summary>
+        /// https://developers.podio.com/doc/items/add-new-item-22362
+        /// </summary>
         public int AddNewItem(int appId, Item item) {
             var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
             var requestData = new CreateRequest()
@@ -82,14 +85,33 @@ namespace Podio.API.Services
             return (int)item.ItemId;
         }
 
-        public Item AddNewItem(int appId, CreateRequest requestData) {
+        /// <summary>
+        /// https://developers.podio.com/doc/items/add-new-item-22362
+        /// </summary>
+        public Item AddNewItem(int appId, CreateRequest requestData)
+        {
             return PodioRestHelper.JSONRequest<Item>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/delete-item-s-22364
+        /// </summary>
+        public PodioRestHelper.PodioResponse DeleteItems(IEnumerable<int> itemIds, bool silent = false)
+        {
+            return PodioRestHelper.JSONRequest(Constants.PODIOAPI_BASEURL + "/item/" + String.Join(",", itemIds.Select(id => id.ToString()).ToArray()), _client.AuthInfo.AccessToken, new { silent = silent }, PodioRestHelper.RequestMethod.DELETE);
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/delete-item-s-22364
+        /// </summary>
+        public PodioRestHelper.PodioResponse DeleteItem(int itemId, bool silent = false)
+        {
+            return DeleteItems(new int[] { itemId }, silent);
         }
 
         /*
          * 
 Calculate
-DeleteItem
 Delete item reference
 Export items
 Filter items

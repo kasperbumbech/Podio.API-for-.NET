@@ -35,6 +35,7 @@
 @*            <td>Task count</td>
             <td>External Id</td>*@
             <td>Fields</td>
+            <td>Actions</td>
         </tr>
         
     </thead>
@@ -191,6 +192,17 @@
                         </li>
                     }
                 </ul>
+            </td>
+            <td>
+                @using (Html.BeginForm(
+                    "Delete", 
+                    "Item", 
+                    new { itemId = item.ItemId }, 
+                    FormMethod.Post)
+                ) {
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <input type="submit" value="Delete" />
+                }
             </td>
         </tr>
     }
