@@ -51,6 +51,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\PodioException.cs" />
     <Compile Include="Exceptions\PodioRateLimitException.cs" />
+    <Compile Include="ExportType.cs" />
     <Compile Include="Model\AccountProvider.cs" />
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\ActivationStatus.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Utils\ItemFields\ProgressItemField.cs" />
     <Compile Include="Utils\ItemFields\QuestionItemField.cs" />
     <Compile Include="Utils\ItemFields\TextItemField.cs" />
+    <Compile Include="Utils\ItemReference.cs" />
     <Compile Include="Utils\PodioCollection.cs" />
     <Compile Include="Utils\RestHelper.cs" />
   </ItemGroup>
