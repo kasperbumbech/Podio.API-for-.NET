@@ -9,6 +9,7 @@
     var client = Model.GetClient();
     // the ref id is App when we got authenticated as an APP
     var items = client.ItemService.GetItems((int)Model.AuthorizationAccessToken.Ref.Id,100,0);
+    //var items = client.ItemService.FilterItems((int)Model.AuthorizationAccessToken.Ref.Id, 100, 0, new Dictionary<string,string> { { "title", "My Item Title"} });
 }
 
 @helper FieldValueTree(Dictionary<string, object> values) {

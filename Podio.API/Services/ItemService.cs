@@ -56,6 +56,53 @@ namespace Podio.API.Services
         }
 
         [DataContract]
+        public struct FilterRequest
+        {
+            [DataMember(IsRequired = false, Name = "filters")]
+            public IDictionary<string, string> Filters { get; set; }
+
+            [DataMember(IsRequired = false, Name = "sort_by")]
+            public string SortBy { get; set; }
+
+            [DataMember(IsRequired = false, Name = "sort_desc")]
+            public bool? SortDesc { get; set; }
+
+            [DataMember(IsRequired = false, Name = "limit")]
+            public int? Limit { get; set; }
+
+            [DataMember(IsRequired = false, Name = "offset")]
+            public int? Offset { get; set; }
+
+            [DataMember(IsRequired = false, Name = "remember")]
+            public bool? Remember { get; set; }
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/filter-items-4496747
+        /// </summary>
+        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, Dictionary<string, string> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
+        {
+            var requestData = new FilterRequest()
+            {
+                Filters = filters,
+                SortBy = sortBy,
+                SortDesc = sortDesc,
+                Limit = limit,
+                Offset = offset,
+                Remember = remembered
+            };
+            return FilterItems(appId, requestData);
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/add-new-item-22362
+        /// </summary>
+        public PodioCollection<Item> FilterItems(int appId, FilterRequest requestData)
+        {
+            return PodioRestHelper.JSONRequest<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/filter/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
+        }
+
+        [DataContract]
         public struct CreateUpdateRequest
         {
             [DataMember(IsRequired = false, Name = "fields")]
