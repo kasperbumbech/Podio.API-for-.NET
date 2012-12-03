@@ -145,6 +145,7 @@
     <Compile Include="Utils\ApplicationFields\ApplicationField.cs" />
     <Compile Include="Utils\ApplicationFields\ApplicationFieldConfig.cs" />
     <Compile Include="Utils\ApplicationFields\CategoryApplicationField.cs" />
+    <Compile Include="Utils\ApplicationFields\StateApplicationField.cs" />
     <Compile Include="Utils\ApplicationFields\TextApplicationField.cs" />
     <Compile Include="Utils\Item.cs" />
     <Compile Include="Utils\ItemFields\AppItemField.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Utils\ItemFields\MoneyItemField.cs" />
     <Compile Include="Utils\ItemFields\ProgressItemField.cs" />
     <Compile Include="Utils\ItemFields\QuestionItemField.cs" />
+    <Compile Include="Utils\ItemFields\StateItemField.cs" />
     <Compile Include="Utils\ItemFields\TextItemField.cs" />
     <Compile Include="Utils\PodioCollection.cs" />
     <Compile Include="Utils\RestHelper.cs" />
