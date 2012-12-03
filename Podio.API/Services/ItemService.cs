@@ -32,15 +32,15 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/get-items-27803
         /// </summary>
-        public PodioCollection<Item> GetItems(int appId, int limit, int offset, string key = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null, int? viewId = null)
+        public PodioCollection<Item> GetItems(int appId, int limit, int offset, KeyValuePair<string, string>? key = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null, int? viewId = null)
         {
             Dictionary<string, string> args = new Dictionary<string, string>();
 
             args.Add("limit", limit.ToString());
             args.Add("offset", offset.ToString());
 
-            if (!string.IsNullOrEmpty(key))
-                args.Add("{key}", key);
+            if (key.HasValue)
+                args.Add(key.Value.Key, key.Value.Value);
 
             if (remembered != null)
                 args.Add("remembered", remembered.ToString());
