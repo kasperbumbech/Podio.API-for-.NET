@@ -373,14 +373,19 @@ namespace Podio.API.Services
         {
             [DataMember(IsRequired = false, Name = "sort_by")]
             public string SortBy { get; set; }
+
             [DataMember(IsRequired = false, Name = "sort_desc")]
             public bool? SortDesc { get; set; }
+
             [DataMember(IsRequired = false, Name = "limit")]
             public int? Limit { get; set; }
+
             [DataMember(IsRequired = false, Name = "offset")]
             public int? Offset { get; set; }
+
             [DataMember(IsRequired = false, Name = "remember")]
             public bool? Remember { get; set; }
+
             [DataMember(IsRequired = false, Name = "filters")]
             public List<Dictionary<string, object>> Filters { get; set; }
         }

@@ -52,7 +52,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "refs", IsRequired=false)]
-		public List<Ref> Refs { get; set; }
+		public List<ItemReference> Refs { get; set; }
 
 
 		[DataMember(Name = "tags", IsRequired=false)]

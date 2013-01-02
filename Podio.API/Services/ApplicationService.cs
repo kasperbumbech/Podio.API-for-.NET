@@ -45,7 +45,7 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/applications/delete-app-field-22355
         /// </summary>
-        public PodioRestHelper.PodioResponse DeleteAppField(int appId, int fieldId, bool deleteValues = null)
+        public PodioRestHelper.PodioResponse DeleteAppField(int appId, int fieldId, bool? deleteValues = null)
         {
             Dictionary<string, string> args = new Dictionary<string, string>();
             if (deleteValues != null) { args.Add("delete_values", deleteValues.ToString()); }
