@@ -56,7 +56,7 @@ namespace Podio.API.Model
 
 
 		[DataMember(Name = "tags", IsRequired=false)]
-		public List<Tag> Tags { get; set; }
+		public List<string> Tags { get; set; }
 
 
 		[DataMember(Name = "subscribed", IsRequired=false)]

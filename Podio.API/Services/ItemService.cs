@@ -39,7 +39,7 @@ namespace Podio.API.Services
                 ExternalId = item.ExternalId,
                 Fields = fieldValues,
                 FileIds = item.FileIds,
-                Tags = item.Tags.Select(tag => tag.Text)
+                Tags = item.Tags
             };
             var newItem = AddNewItem(appId, requestData);
             item.ItemId = newItem.ItemId;
@@ -312,8 +312,7 @@ namespace Podio.API.Services
                 ExternalId = item.ExternalId,
                 Fields = fieldValues,
                 FileIds = item.FileIds,
-                Tags = item.Tags.Select(tag => tag.Text),
-
+                Tags = item.Tags
             };
             UpdateItem((int)item.ItemId, requestData);
         }
