@@ -99,6 +99,8 @@ namespace Podio.API.Utils
             public HttpStatusCode HttpStatusCode { get; set; }
             public string ContentType { get; set; }
             public string RequestUri { get; set; }
+            public string LimitOfLastRequest { get; set; }
+            public string LimitRemaining { get; set; }
             public Dictionary<string, string> RequestData { get; set; }
             public PodioError PodioError
             {
@@ -316,7 +318,8 @@ namespace Podio.API.Utils
                 {
                     retval.ContentType = response.ContentType;
                     retval.HttpStatusCode = ((HttpWebResponse)response).StatusCode;
-
+                    retval.LimitOfLastRequest =((HttpWebResponse)response).Headers["X-Rate-Limit-Limit"];
+                    retval.LimitRemaining = ((HttpWebResponse)response).Headers["X-Rate-Limit-Remaining"];
                     using (StreamReader sr = new StreamReader(response.GetResponseStream()))
                     {
                         retval.Data = sr.ReadToEnd();
@@ -329,6 +332,8 @@ namespace Podio.API.Utils
                 {
                     retval.ContentType = response.ContentType;
                     retval.HttpStatusCode = ((HttpWebResponse)response).StatusCode;
+                    retval.LimitOfLastRequest = ((HttpWebResponse)response).Headers["X-Rate-Limit-Limit"];
+                    retval.LimitRemaining = ((HttpWebResponse)response).Headers["X-Rate-Limit-Remaining"];
                     using (StreamReader sr = new StreamReader(response.GetResponseStream()))
                     {
                         retval.Data = sr.ReadToEnd();
