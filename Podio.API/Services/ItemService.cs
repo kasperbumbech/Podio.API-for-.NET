@@ -25,7 +25,7 @@ namespace Podio.API.Services
         /// </summary>
         public Item AddNewItem(int appId, CreateUpdateRequest requestData)
         {
-            return PodioRestHelper.JSONRequest<Item>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
+            return PodioRestHelper.JSONRequest<Item>(String.Format("{0}/item/app/{1}/", Constants.PODIOAPI_BASEURL, appId), _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Podio.API.Services
         /// </summary>
         public PodioRestHelper.PodioResponse DeleteItems(IEnumerable<int> itemIds, bool silent = false)
         {
-            return PodioRestHelper.JSONRequest(Constants.PODIOAPI_BASEURL + "/item/" + String.Join(",", itemIds.Select(id => id.ToString()).ToArray()), _client.AuthInfo.AccessToken, new { silent = silent }, PodioRestHelper.RequestMethod.DELETE);
+            return PodioRestHelper.JSONRequest(String.Format("{0}/item/{1}", Constants.PODIOAPI_BASEURL, String.Join(",", itemIds.Select(id => id.ToString()).ToArray())), _client.AuthInfo.AccessToken, new { silent = silent }, PodioRestHelper.RequestMethod.DELETE);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Podio.API.Services
         /// </summary>
         public Batch ExportItems(int appId, ExportType export, FilterItemRequest request)
         {
-            return PodioRestHelper.JSONRequest<Batch>(String.Format("{0}/item/app/{1}/export/{2}", Constants.PODIOAPI_BASEURL, appId, export.ToString()), _client.AuthInfo.AccessToken, request, PodioRestHelper.RequestMethod.POST).Data;
+            return PodioRestHelper.JSONRequest<Batch>(String.Format("{0}/item/app/{1}/export/{2}", Constants.PODIOAPI_BASEURL, appId, export), _client.AuthInfo.AccessToken, request, PodioRestHelper.RequestMethod.POST).Data;
         }
 
         /// <summary>
@@ -132,17 +132,17 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/get-app-values-22455
         /// </summary>
-        public void GetAppValues(int appId)
+        public AppValues GetAppValues(int appId)
         {
-            throw new NotImplementedException("Method not implemented yet.");
+            return PodioRestHelper.Request<AppValues>(String.Format("{0}/item/app/{1}/values", Constants.PODIOAPI_BASEURL, appId), _client.AuthInfo.AccessToken).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/items/get-field-ranges-24242866
         /// </summary>
-        public void GetFieldRanges(int fieldId)
+        public ItemFieldRange GetFieldRanges(int fieldId)
         {
-            throw new NotImplementedException("Method not implemented yet.");
+            return PodioRestHelper.Request<ItemFieldRange>(String.Format("{0}/item/field/{1}/range", Constants.PODIOAPI_BASEURL, fieldId), _client.AuthInfo.AccessToken).Data;
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Podio.API.Services
         public Item GetItem(int itemId, bool markAsViewed = true)
         {
             Dictionary<string, string> args = new Dictionary<string, string>() { { "mark_as_viewed", markAsViewed.ToString() } };
-            return PodioRestHelper.Request<Item>(Constants.PODIOAPI_BASEURL + "/item/" + itemId, _client.AuthInfo.AccessToken, args).Data;
+            return PodioRestHelper.Request<Item>(String.Format("{0}/item/{1}", Constants.PODIOAPI_BASEURL, itemId), _client.AuthInfo.AccessToken, args).Data;
         }
 
         /// <summary>
@@ -182,9 +182,9 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/get-item-preview-for-field-reference-7529318
         /// </summary>
-        public void GetItemPreviewForFieldReference(int itemId, int fieldId)
+        public Item GetItemPreviewForFieldReference(int itemId, int fieldId)
         {
-            throw new NotImplementedException("Method not implemented yet.");
+            return PodioRestHelper.Request<Item>(String.Format("{0}/item/{1}/reference/{2}/preview", Constants.PODIOAPI_BASEURL, itemId, fieldId), _client.AuthInfo.AccessToken).Data;
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace Podio.API.Services
                 }
             }
 
-            return PodioRestHelper.Request<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken, args).Data;
+            return PodioRestHelper.Request<PodioCollection<Item>>(String.Format("{0}/item/app/{1}/", Constants.PODIOAPI_BASEURL, appId), _client.AuthInfo.AccessToken, args).Data;
         }
 
         /// <summary>
@@ -280,25 +280,35 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/get-top-values-for-field-68334
         /// </summary>
-        public List<Item> GetTopValuesByField(int fieldId, int? limit =null, IEnumerable<int> excludeItems = null)
+        public List<Item> GetTopValuesByField(int fieldId, int? limit = null, IEnumerable<int> excludeItemIds = null)
         {
-            throw new NotImplementedException("Method not implemented yet.");
+            Dictionary<string, string> args = new Dictionary<string, string>();
+            if (limit != null)
+            {
+                args.Add("limit", limit.ToString());
+            }
+            if (excludeItemIds != null)
+            {
+                args.Add("not_item_id", String.Join(",", excludeItemIds.Select(id => id.ToString()).ToArray()));
+            }
+            return PodioRestHelper.Request<List<Item>>(String.Format("{0}/item/field/{1}/top", Constants.PODIOAPI_BASEURL, fieldId), _client.AuthInfo.AccessToken, args, PodioRestHelper.RequestMethod.GET).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/items/revert-item-revision-953195
         /// </summary>
-        public void RevertItemRevision(int itemId, int revisionId)
+        public ItemRevision RevertItemRevision(int itemId, int revisionId)
         {
-            throw new NotImplementedException("Method not implemented yet.");
+            return PodioRestHelper.Request<ItemRevision>(String.Format("{0}/item/{1}/revision/{2}", Constants.PODIOAPI_BASEURL, itemId, revisionId), _client.AuthInfo.AccessToken, null, PodioRestHelper.RequestMethod.DELETE).Data;
         }
 
         /// <summary>
         /// https://developers.podio.com/doc/items/set-participation-7156154
         /// </summary>
-        public void SetParticipation(int itemId, string status)
+        public PodioRestHelper.PodioResponse SetParticipation(int itemId, ParticipationStatus status)
         {
-            throw new NotImplementedException("Method not implemented yet.");
+            Dictionary<string, string> args = new Dictionary<string,string>(){{"status",status.ToString() }};
+            return PodioRestHelper.Request(String.Format("{0}/item/{1}/participation", Constants.PODIOAPI_BASEURL, itemId), _client.AuthInfo.AccessToken, args, PodioRestHelper.RequestMethod.PUT);
         }
 
         /// <summary>
@@ -322,12 +332,12 @@ namespace Podio.API.Services
         /// </summary>
         public void UpdateItem(int itemId, CreateUpdateRequest requestData)
         {
-            PodioRestHelper.JSONRequest<Item>(Constants.PODIOAPI_BASEURL + "/item/" + itemId, _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.PUT);
+            PodioRestHelper.JSONRequest<Item>(String.Format("{0}/item/{1}", Constants.PODIOAPI_BASEURL, itemId), _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.PUT);
         }
         /// <summary>
         /// https://developers.podio.com/doc/items/update-item-field-values-22367
         /// </summary>
-        public void UpdateItemFieldValues(int itemId, int fieldId)
+        public void UpdateItemFieldValues(int itemId, int fieldId, bool silent = false)
         {
             throw new NotImplementedException("Method not implemented yet.");
         }

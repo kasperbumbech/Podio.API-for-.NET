@@ -147,6 +147,8 @@
     <Compile Include="Utils\ApplicationFields\ApplicationFieldConfig.cs" />
     <Compile Include="Utils\ApplicationFields\CategoryApplicationField.cs" />
     <Compile Include="Utils\ApplicationFields\TextApplicationField.cs" />
+    <Compile Include="Utils\AppValues.cs" />
+    <Compile Include="Utils\ItemFieldRange.cs" />
     <Compile Include="Utils\Item.cs" />
     <Compile Include="Utils\ItemFields\AppItemField.cs" />
     <Compile Include="Utils\ItemFields\CalculationItemField.cs" />
