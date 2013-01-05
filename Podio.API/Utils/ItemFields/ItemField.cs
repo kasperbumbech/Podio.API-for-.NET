@@ -47,10 +47,13 @@ namespace Podio.API.Model
             if (list == null)
             {
                 list = new List<T>();
-                foreach (var itemAttributes in this.Values)
+                if (this.Values != null)
                 {
-                    var obj = this.valueAs<T>(itemAttributes, "value");
-                    list.Add(obj);
+                    foreach (var itemAttributes in this.Values)
+                    {
+                        var obj = this.valueAs<T>(itemAttributes, "value");
+                        list.Add(obj);
+                    }
                 }
             }
             return list;        
