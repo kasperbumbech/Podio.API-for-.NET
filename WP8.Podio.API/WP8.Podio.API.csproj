@@ -140,6 +140,7 @@
     <Compile Include="Model\QuestionOption.cs" />
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\Recurrence.cs" />
+    <Compile Include="Model\Ref.cs" />
     <Compile Include="Model\Reference.cs" />
     <Compile Include="Model\Referral.cs" />
     <Compile Include="Model\Reminder.cs" />
