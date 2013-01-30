@@ -23,8 +23,8 @@ namespace Podio.API.Model
 		public string ExternalId { get; set; }
 
 
-		[DataMember(Name = "config", IsRequired=false)]
-		public ApplicationFieldConfig Config { get; set; }
+		//[DataMember(Name = "config", IsRequired=false)]
+		//public ApplicationFieldConfig Config { get; set; }
 
 
 		[DataMember(Name = "status", IsRequired=false)]
