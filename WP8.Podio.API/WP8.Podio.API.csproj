@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83BBB315-AF51-4990-AD05-2E0144AF65E0}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WP8.Podio.API</RootNamespace>
+    <AssemblyName>WP8.Podio.API</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Model\AccountProvider.cs" />
+    <Compile Include="Model\Action.cs" />
+    <Compile Include="Model\ActivationStatus.cs" />
+    <Compile Include="Model\Activity.cs" />
+    <Compile Include="Model\Application.cs" />
+    <Compile Include="Model\ApplicationEmail.cs" />
+    <Compile Include="Model\ApplicationField.cs" />
+    <Compile Include="Model\AppStoreCategory.cs" />
+    <Compile Include="Model\AppStoreShare.cs" />
+    <Compile Include="Model\Batch.cs" />
+    <Compile Include="Model\Bulletin.cs" />
+    <Compile Include="Model\ByLine.cs" />
+    <Compile Include="Model\CalendarEvent.cs" />
+    <Compile Include="Model\CalendarMute.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\Connection.cs" />
+    <Compile Include="Model\Contact.cs" />
+    <Compile Include="Model\Contract.cs" />
+    <Compile Include="Model\ContractAccounting.cs" />
+    <Compile Include="Model\ContractPrice.cs" />
+    <Compile Include="Model\ContractPriceV2.cs" />
+    <Compile Include="Model\ContractUser.cs" />
+    <Compile Include="Model\Conversation.cs" />
+    <Compile Include="Model\ConversationMessage.cs" />
+    <Compile Include="Model\ConversationParticipant.cs" />
+    <Compile Include="Model\EmailSubscriptionSetting.cs" />
+    <Compile Include="Model\Embed.cs" />
+    <Compile Include="Model\ExternalFile.cs" />
+    <Compile Include="Model\FileAttachment.cs" />
+    <Compile Include="Model\Filter.cs" />
+    <Compile Include="Model\Form.cs" />
+    <Compile Include="Model\Grant.cs" />
+    <Compile Include="Model\Hook.cs" />
+    <Compile Include="Model\Importer.cs" />
+    <Compile Include="Model\Integration.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ItemDiff.cs" />
+    <Compile Include="Model\ItemField.cs" />
+    <Compile Include="Model\ItemRevision.cs" />
+    <Compile Include="Model\LinkedAccount.cs" />
+    <Compile Include="Model\LinkedAccountData.cs" />
+    <Compile Include="Model\News.cs" />
+    <Compile Include="Model\Notification.cs" />
+    <Compile Include="Model\NotificationGroup.cs" />
+    <Compile Include="Model\OAuth.cs" />
+    <Compile Include="Model\OAuthClient.cs" />
+    <Compile Include="Model\Organization.cs" />
+    <Compile Include="Model\OrganizationContact.cs" />
+    <Compile Include="Model\OrganizationMember.cs" />
+    <Compile Include="Model\OrganizationProfile.cs" />
+    <Compile Include="Model\Profile.cs" />
+    <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\QuestionAnswer.cs" />
+    <Compile Include="Model\QuestionOption.cs" />
+    <Compile Include="Model\Rating.cs" />
+    <Compile Include="Model\Recurrence.cs" />
+    <Compile Include="Model\Reference.cs" />
+    <Compile Include="Model\Referral.cs" />
+    <Compile Include="Model\Reminder.cs" />
+    <Compile Include="Model\Search.cs" />
+    <Compile Include="Model\Space.cs" />
+    <Compile Include="Model\SpaceContact.cs" />
+    <Compile Include="Model\SpaceInvitation.cs" />
+    <Compile Include="Model\SpaceMember.cs" />
+    <Compile Include="Model\Status.cs" />
+    <Compile Include="Model\StreamMute.cs" />
+    <Compile Include="Model\StreamObject.cs" />
+    <Compile Include="Model\Subscription.cs" />
+    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TagSearch.cs" />
+    <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\TaskLabel.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserMail.cs" />
+    <Compile Include="Model\UserStatus.cs" />
+    <Compile Include="Model\Via.cs" />
+    <Compile Include="Model\View.cs" />
+    <Compile Include="Model\Widget.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
