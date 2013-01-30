@@ -6,5 +6,6 @@
     <appSettings>
       <add key="InputDirectory" value="C:\Users\Casper\Documents\GitHub\podio-rb\lib\podio\models"/>
       <add key="OutputDirectory" value="C:\Users\Casper\Documents\GitHub\Podio.API-for-.NET\Podio.API\Model"/>
+      <add key="OutputDirectoryWP8" value="C:\Dev\OpenSource\Podio.API-for-.NET\WP8.Podio.API\Model"/>
     </appSettings>
 </configuration>
