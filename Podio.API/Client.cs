@@ -189,5 +189,7 @@ namespace Podio.API
 
         public Services.FileService FileService { get { return new Services.FileService(this); } }
 
+        public Services.TaskService TaskService { get { return new Services.TaskService(this); } }
+
     }
 }
