@@ -59,8 +59,7 @@ namespace Podio.API.Services
         public struct FilterRequest
         {
             [DataMember(IsRequired = false, Name = "filters")]
-            //public IDictionary<string, string> Filters { get; set; }  // Changed to below to fix FilterItem for category/question field type
-            public IDictionary<string, object> Filters { get; set; }
+            public IDictionary<string, string> Filters { get; set; }
 
             [DataMember(IsRequired = false, Name = "sort_by")]
             public string SortBy { get; set; }
@@ -81,9 +80,7 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/filter-items-4496747
         /// </summary>
-        //public PodioCollection<Item> FilterItems(int appId, int limit, int offset, Dictionary<string, string> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
-        // Changed to below to fix FilterItem for category/question field type
-        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, Dictionary<string, object> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
+        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, Dictionary<string, string> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
         {
             var requestData = new FilterRequest()
             {
