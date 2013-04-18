@@ -56,6 +56,15 @@
         case "image":
             <input type="file" name="@appField.ExternalId" />
             break;                              
+        case "state":
+            var stateField = app.Field<Podio.API.Utils.ApplicationFields.StateApplicationField>(appField.ExternalId);
+            <select name="@(appField.ExternalId)">
+                @foreach (var option in stateField.AllowedValues)
+	            {
+		            <option value="@option">@option</option>
+	            }
+            </select>
+            break;
         default:
             <p><i>Not implemented yet in this sample app</i></p>
             break;

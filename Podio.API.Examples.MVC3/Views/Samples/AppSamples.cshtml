@@ -9,6 +9,7 @@
     var client = Model.GetClient();
     // the ref id is App when we got authenticated as an APP
     var items = client.ItemService.GetItems((int)Model.AuthorizationAccessToken.Ref.Id,100,0);
+    //var items = client.ItemService.FilterItems((int)Model.AuthorizationAccessToken.Ref.Id, 100, 0, new Dictionary<string,string> { { "title", "My Item Title"} });
 }
 
 @helper FieldValueTree(Dictionary<string, object> values) {
@@ -40,8 +41,8 @@
         
     </thead>
     <tbody>
-    @foreach (var item in items.Items) { 
-        
+    @foreach (var item in items.Items) {
+
         <tr>
             <td>@item.ItemId</td>
             <td>@item.Title
@@ -182,7 +183,10 @@
                                     var calculation = item.Field<Podio.API.Utils.ItemFields.CalculationItemField>(field.ExternalId);
                                     <p>@calculation.Value</p>
                                     break;                                                                          
-                                 default:
+                                case "state":
+                                    var state = item.Field<Podio.API.Utils.ItemFields.StateItemField>(field.ExternalId);
+                                    <p>@state.Value</p>
+                                    break;                                   default:
                                     foreach (var value in field.Values)
                                     {
                                        // @FieldValueTree(value)

@@ -51,6 +51,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\PodioException.cs" />
     <Compile Include="Exceptions\PodioRateLimitException.cs" />
+    <Compile Include="ExportType.cs" />
     <Compile Include="Model\AccountProvider.cs" />
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\ActivationStatus.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Model\Via.cs" />
     <Compile Include="Model\View.cs" />
     <Compile Include="Model\Widget.cs" />
+    <Compile Include="ParticipationStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\CalendarService.cs" />
@@ -139,13 +141,17 @@
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\OrganisationService.cs" />
     <Compile Include="Services\StreamService.cs" />
+    <Compile Include="Services\TaskService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\SpaceService.cs" />
     <Compile Include="Utils\Application.cs" />
     <Compile Include="Utils\ApplicationFields\ApplicationField.cs" />
     <Compile Include="Utils\ApplicationFields\ApplicationFieldConfig.cs" />
     <Compile Include="Utils\ApplicationFields\CategoryApplicationField.cs" />
+    <Compile Include="Utils\ApplicationFields\StateApplicationField.cs" />
     <Compile Include="Utils\ApplicationFields\TextApplicationField.cs" />
+    <Compile Include="Utils\AppValues.cs" />
+    <Compile Include="Utils\ItemFieldRange.cs" />
     <Compile Include="Utils\Item.cs" />
     <Compile Include="Utils\ItemFields\AppItemField.cs" />
     <Compile Include="Utils\ItemFields\CalculationItemField.cs" />
@@ -160,7 +166,9 @@
     <Compile Include="Utils\ItemFields\MoneyItemField.cs" />
     <Compile Include="Utils\ItemFields\ProgressItemField.cs" />
     <Compile Include="Utils\ItemFields\QuestionItemField.cs" />
+    <Compile Include="Utils\ItemFields\StateItemField.cs" />
     <Compile Include="Utils\ItemFields\TextItemField.cs" />
+    <Compile Include="Utils\ItemReference.cs" />
     <Compile Include="Utils\PodioCollection.cs" />
     <Compile Include="Utils\RestHelper.cs" />
   </ItemGroup>

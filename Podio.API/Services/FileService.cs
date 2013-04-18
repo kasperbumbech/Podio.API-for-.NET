@@ -32,5 +32,18 @@ namespace Podio.API.Services
             return PodioRestHelper.MultipartFormDataRequest<FileAttachment>(Constants.PODIOAPI_BASEURL + "/file/v2/", _client.AuthInfo.AccessToken, requestData).Data;
         }
 
+        /// <summary>
+        /// https://developers.podio.com/doc/files/get-raw-file-1004147
+        /// </summary>
+        public byte[] GetRawFile(int fileId)
+        {
+            byte[] content;
+            using (var request = new System.Net.WebClient())
+            {
+                string uri = String.Format("{0}/file/{1}/raw?oauth_token={2}", Constants.PODIOAPI_BASEURL, fileId, _client.AuthInfo.AccessToken);
+                content = request.DownloadData(uri);
+            }
+           return content;
+        }
     }
 }

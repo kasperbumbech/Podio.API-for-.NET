@@ -76,39 +76,27 @@ namespace Podio.API.Examples.MVC3.Controllers
                     {
                         case "text":
                             var textField = item.Field<TextItemField>(appField.ExternalId);
-                            textField.ExternalId = appField.ExternalId;
                             textField.Value = rawValue;
-                            item.Fields.Add(textField);
                             break;
                         case "app":
                             var appRefField = item.Field<AppItemField>(appField.ExternalId);
-                            appRefField.ExternalId = appField.ExternalId;
                             appRefField.ItemIds = rawValue.Split(',').Select(id => int.Parse(id));
-                            item.Fields.Add(appRefField);
                             break;
                         case "contact":
                             var contactField = item.Field<ContactItemField>(appField.ExternalId);
-                            contactField.ExternalId = appField.ExternalId;
                             contactField.ContactIds = rawValue.Split(',').Select(id => int.Parse(id));
-                            item.Fields.Add(contactField);
                             break;
                         case "location":
                             var locationField = item.Field<LocationItemField>(appField.ExternalId);
-                            locationField.ExternalId = appField.ExternalId;
                             locationField.Locations = new List<string>(rawValue.Split(','));
-                            item.Fields.Add(locationField);
                             break;
                         case "duration":
                             var durationField = item.Field<DurationItemField>(appField.ExternalId);
-                            durationField.ExternalId = appField.ExternalId;
                             durationField.Value = TimeSpan.FromSeconds(Int64.Parse(rawValue));
-                            item.Fields.Add(durationField);
                             break;
                         case "progress":
                             var progressField = item.Field<ProgressItemField>(appField.ExternalId);
-                            progressField.ExternalId = appField.ExternalId;
                             progressField.Value = int.Parse(rawValue);
-                            item.Fields.Add(progressField);
                             break;
                         case "money":
                             var currency = collection[appField.ExternalId + "_currency"];
@@ -118,25 +106,21 @@ namespace Podio.API.Examples.MVC3.Controllers
                                 moneyField.ExternalId = appField.ExternalId;
                                 moneyField.Value = int.Parse(rawValue);
                                 moneyField.Currency = currency;
-                                item.Fields.Add(moneyField);
                             }
                             break;
                         case "date":
                             var dateField = item.Field<DateItemField>(appField.ExternalId);
-                            dateField.ExternalId = appField.ExternalId;
                             dateField.Start = DateTime.Parse(rawValue);
                             var endString = collection[appField.ExternalId + "_end"];
                             if (!String.IsNullOrEmpty(endString))
                             {
                                 dateField.End = DateTime.Parse(endString);
                             }
-                            item.Fields.Add(dateField);
                             break;
                         case "question":
                         case "category":
                             var categoryAppField = Application.Field<CategoryApplicationField>(appField.ExternalId);
                             var categoryItemField = item.Field<CategoryItemField>(appField.ExternalId);
-                            categoryItemField.ExternalId = appField.ExternalId;
                             if (categoryAppField.Multiple)
                             {
                                 categoryItemField.OptionIds = rawValue.Split(',').Select(id => int.Parse(id));
@@ -145,11 +129,9 @@ namespace Podio.API.Examples.MVC3.Controllers
                             {
                                 categoryItemField.OptionId = int.Parse(rawValue);
                             }
-                            item.Fields.Add(categoryItemField);
                             break;
                         case "embed":
                             var embedField = item.Field<EmbedItemField>(appField.ExternalId);
-                            embedField.ExternalId = appField.ExternalId;
                             var embedUrls = new List<string>(rawValue.Split(','));
                             foreach (var embedUrl in embedUrls)
                             {
@@ -163,7 +145,6 @@ namespace Podio.API.Examples.MVC3.Controllers
                                     embedField.AddEmbed((int)embed.EmbedId);
                                 }
                             }
-                            item.Fields.Add(embedField);
                             break;
                         case "image":
                             // This will break if app has more than one image field - each will get all the uploaded images
@@ -183,10 +164,12 @@ namespace Podio.API.Examples.MVC3.Controllers
                             if (fileIds.Count > 0)
                             {
                                 var imageField = item.Field<ImageItemField>(appField.ExternalId);
-                                imageField.ExternalId = appField.ExternalId;
                                 imageField.FileIds = fileIds;
-                                item.Fields.Add(imageField);
                             }
+                            break;
+                        case "state":
+                            var stateItemField = item.Field<StateItemField>(appField.ExternalId);
+                            stateItemField.Value = rawValue;
                             break;
                     }
                 }
