@@ -17,17 +17,17 @@ namespace Podio.API.Model
             where T : ItemField, new()
         {
             var genericField = this.Fields.Find(field => field.ExternalId == externalId);
-            return fieldInstance<T>(genericField);
+            return fieldInstance<T>(genericField, externalId);
         }
 
         public T Field<T>(int fieldId)
             where T : ItemField, new()
         {
             var genericField = this.Fields.Find(field => field.FieldId == fieldId);
-            return fieldInstance<T>(genericField);
+            return fieldInstance<T>(genericField, null, fieldId);
         }
 
-        protected T fieldInstance<T>(ItemField genericField)
+        protected T fieldInstance<T>(ItemField genericField, string externalId = null, int? fieldId = null)
                     where T : ItemField, new()
         {
             T specificField = new T();
@@ -36,6 +36,11 @@ namespace Podio.API.Model
                 {
                     specificField.GetType().GetProperty(property.Name).SetValue(specificField, property.GetValue(genericField, null), null);
                 }
+            }
+            else {
+                specificField.ExternalId = externalId;
+                specificField.FieldId = fieldId;
+                this.Fields.Add(specificField);
             }
             return specificField;
         }
