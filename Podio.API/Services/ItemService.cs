@@ -47,6 +47,7 @@ namespace Podio.API.Services
             return (int)item.ItemId;
         }
 
+        /*
         /// <summary>
         /// https://developers.podio.com/doc/items/calculate-67633
         /// </summary>
@@ -54,6 +55,7 @@ namespace Podio.API.Services
         {
             throw new NotImplementedException("Method not implemented yet.");
         }
+         */
 
         /// <summary>
         /// https://developers.podio.com/doc/items/delete-item-s-22364
@@ -258,6 +260,7 @@ namespace Podio.API.Services
             return PodioRestHelper.Request<PodioCollection<Item>>(String.Format("{0}/item/app/{1}/", Constants.PODIOAPI_BASEURL, appId), _client.AuthInfo.AccessToken, args).Data;
         }
 
+        /*
         /// <summary>
         /// https://developers.podio.com/doc/items/get-items-as-xlsx-63233
         /// </summary>
@@ -265,6 +268,7 @@ namespace Podio.API.Services
         {
             throw new NotImplementedException("Method not implemented yet.");
         }
+        */
 
         /// <summary>
         /// https://developers.podio.com/doc/items/get-meeting-url-14763260
@@ -334,6 +338,8 @@ namespace Podio.API.Services
         {
             PodioRestHelper.JSONRequest<Item>(String.Format("{0}/item/{1}", Constants.PODIOAPI_BASEURL, itemId), _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.PUT);
         }
+
+        /*
         /// <summary>
         /// https://developers.podio.com/doc/items/update-item-field-values-22367
         /// </summary>
@@ -349,6 +355,7 @@ namespace Podio.API.Services
         {
             throw new NotImplementedException("Method not implemented yet.");
         }
+         */
 
         [DataContract]
         public struct CreateUpdateRequest
