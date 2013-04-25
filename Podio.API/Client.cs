@@ -9,9 +9,6 @@ using System.Text;
 
 namespace Podio.API
 {
-    /// <summary>
-    /// Podio Hates .Net
-    /// </summary>
     public class Client
     {
 
