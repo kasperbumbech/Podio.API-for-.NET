@@ -36,19 +36,19 @@ namespace Podio.API.Services
 
             [DataMember(Name = "description", IsRequired = false)]
             public string Description { get; set; }
-            
+
             [DataMember(Name = "private", IsRequired = false)]
             public bool? Private { get; set; }
-            
+
             [DataMember(Name = "due_date", IsRequired = false)]
             public string DueDate { get; set; }
-            
+
             [DataMember(Name = "due_time", IsRequired = false)]
             public string DueTime { get; set; }
-            
+
             [DataMember(Name = "due_on", IsRequired = false)]
             public DateTime? DueOn { get; set; }
-            
+
             [DataMember(Name = "responsible", IsRequired = false)]
             public Dictionary<string, object> Responsible { get; set; }
 
@@ -114,16 +114,16 @@ namespace Podio.API.Services
         {
             if (!String.IsNullOrEmpty(ref_type) && ref_id.HasValue)
             {
-                return PodioRestHelper.JSONRequest<Task>(Constants.PODIOAPI_BASEURL + "/task/" + ref_type + "/" + ref_id.ToString() + "/", 
-                                                         _client.AuthInfo.AccessToken, 
-                                                         requestData, 
+                return PodioRestHelper.JSONRequest<Task>(Constants.PODIOAPI_BASEURL + "/task/" + ref_type + "/" + ref_id.ToString() + "/",
+                                                         _client.AuthInfo.AccessToken,
+                                                         requestData,
                                                          PodioRestHelper.RequestMethod.POST).Data;
             }
             else
             {
-                return PodioRestHelper.JSONRequest<Task>(Constants.PODIOAPI_BASEURL + "/task/", 
-                                                         _client.AuthInfo.AccessToken, 
-                                                         requestData, 
+                return PodioRestHelper.JSONRequest<Task>(Constants.PODIOAPI_BASEURL + "/task/",
+                                                         _client.AuthInfo.AccessToken,
+                                                         requestData,
                                                          PodioRestHelper.RequestMethod.POST).Data;
             }
         }
@@ -198,6 +198,17 @@ namespace Podio.API.Services
                                               _client.AuthInfo.AccessToken,
                                               rq,
                                               PodioRestHelper.RequestMethod.PUT);
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/tasks/complete-task-22432
+        /// </summary>
+        public PodioRestHelper.PodioResponse CompleteTask(int taskId)
+        {
+            return PodioRestHelper.Request(Constants.PODIOAPI_BASEURL + "/task/" + taskId + "/complete",
+                                           _client.AuthInfo.AccessToken,
+                                           null,
+                                           PodioRestHelper.RequestMethod.POST);
         }
 
         /// <summary>
