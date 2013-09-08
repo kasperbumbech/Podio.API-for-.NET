@@ -47,19 +47,19 @@ namespace Podio.API.Services
 
             if (!string.IsNullOrEmpty(sortBy))
                 args.Add("sort_by", sortBy);
-            if (sortDesc != null) 
+            if (sortDesc != null)
                 args.Add("sort_desc", sortDesc.ToString());
             if (viewId != null)
                 args.Add("view_id", viewId.ToString());
 
-            return PodioRestHelper.Request<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken,args).Data;
+            return PodioRestHelper.Request<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/", _client.AuthInfo.AccessToken, args).Data;
         }
 
         [DataContract]
         public struct FilterRequest
         {
             [DataMember(IsRequired = false, Name = "filters")]
-            public IDictionary<string, string> Filters { get; set; }
+            public Object Filters { get; set; }
 
             [DataMember(IsRequired = false, Name = "sort_by")]
             public string SortBy { get; set; }
@@ -80,7 +80,7 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/filter-items-4496747
         /// </summary>
-        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, Dictionary<string, string> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
+        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, IDictionary<string, string> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
         {
             var requestData = new FilterRequest()
             {
@@ -101,6 +101,82 @@ namespace Podio.API.Services
         {
             return PodioRestHelper.JSONRequest<PodioCollection<Item>>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/filter/", _client.AuthInfo.AccessToken, requestData, PodioRestHelper.RequestMethod.POST).Data;
         }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/filter-items-4496747
+        /// </summary>
+        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, Object filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
+        {
+            // Examples for passing an Anonymous Type as the 'filters' parameter.
+
+            // Filtering a String field named 'title':
+            //var filters = new
+            //{
+            //    title = "Support"
+            //};
+
+            // Filtering an Integer field named 'priority':
+            //var filters = new
+            //{
+            //    priority = new { from = 2, to = 3 }
+            //};
+
+            // Filtering an Enumerated field named 'status':
+            //var filters = new
+            //{
+            //    // 2 is the id of the desired enumerator value
+            //    status = new int[] { 2 }
+            //};    
+
+            // Filtering a date field named 'deadline':
+            //var filters = new
+            //{
+            //    deadline = new
+            //    {
+            //        from = new DateTime(2013, 9, 1),
+            //        to = new DateTime(2013, 9, 30)
+            //    }
+            //};
+
+            // Combining filters:
+            //var filters = new
+            //{
+            //    title = "Support",
+            //    priority = new { from = 2, to = 3 }
+            //};
+
+            var requestData = new FilterRequest()
+            {
+                Filters = filters,
+                SortBy = sortBy,
+                SortDesc = sortDesc,
+                Limit = limit,
+                Offset = offset,
+                Remember = remembered
+            };
+
+            return FilterItems(appId, requestData);
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/items/filter-items-4496747
+        /// </summary>
+        public PodioCollection<Item> FilterItems(int appId, int limit, int offset, IDictionary<string, object> filters = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null)
+        {
+            var requestData = new FilterRequest()
+            {
+                Filters = filters,
+                SortBy = sortBy,
+                SortDesc = sortDesc,
+                Limit = limit,
+                Offset = offset,
+                Remember = remembered
+            };
+
+            return FilterItems(appId, requestData);
+        }
+
+
 
         [DataContract]
         public struct CreateUpdateRequest
@@ -130,7 +206,8 @@ namespace Podio.API.Services
         /// <summary>
         /// https://developers.podio.com/doc/items/add-new-item-22362
         /// </summary>
-        public int AddNewItem(int appId, Item item) {
+        public int AddNewItem(int appId, Item item)
+        {
             var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
             var requestData = new CreateUpdateRequest()
             {
