@@ -138,6 +138,13 @@ namespace Podio.API.Services
             //    }
             //};
 
+            // Combining filters:
+            //var filters = new
+            //{
+            //    title = "Support",
+            //    priority = new { from = 2, to = 3 }
+            //};
+
             var requestData = new FilterRequest()
             {
                 Filters = filters,
