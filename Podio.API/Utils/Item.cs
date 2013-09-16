@@ -10,7 +10,7 @@ namespace Podio.API.Model
         public Item() {
             this.Fields = new List<ItemField>();
             this.FileIds = new List<int>();
-            this.Tags = new List<Tag>();
+            this.Tags = new List<string>();
         }
 
         public T Field<T>(string externalId)
