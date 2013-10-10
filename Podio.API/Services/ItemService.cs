@@ -30,6 +30,14 @@ namespace Podio.API.Services
         }
 
         /// <summary>
+        /// https://developers.podio.com/doc/items/get-item-by-external-id-19556702
+        /// </summary>
+        public Item GetItemByExternalId(int appId, string externalId)
+        {
+            return PodioRestHelper.Request<Item>(Constants.PODIOAPI_BASEURL + "/item/app/" + appId + "/external_id/" + externalId, _client.AuthInfo.AccessToken).Data;
+        }
+
+        /// <summary>
         /// https://developers.podio.com/doc/items/get-items-27803
         /// </summary>
         public PodioCollection<Item> GetItems(int appId, int limit, int offset, KeyValuePair<string, string>? key = null, bool? remembered = null, string sortBy = null, bool? sortDesc = null, int? viewId = null)
@@ -181,6 +189,9 @@ namespace Podio.API.Services
         [DataContract]
         public struct CreateUpdateRequest
         {
+            [DataMember(IsRequired = false, Name = "external_id")]
+            public string ExternalId { get; set; }
+
             [DataMember(IsRequired = false, Name = "fields")]
             public IEnumerable<IDictionary<string, object>> Fields { get; set; }
 
@@ -211,6 +222,7 @@ namespace Podio.API.Services
             var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
             var requestData = new CreateUpdateRequest()
             {
+                ExternalId = item.ExternalId,
                 Fields = fieldValues,
                 FileIds = item.FileIds,
                 Tags = item.Tags.Select(tag => tag.Text)
@@ -237,6 +249,7 @@ namespace Podio.API.Services
             var fieldValues = item.Fields.Select(f => f.Values == null ? null : new { external_id = f.ExternalId, values = f.Values }.AsDictionary()).Where(f => f != null);
             var requestData = new CreateUpdateRequest()
             {
+                ExternalId = item.ExternalId,
                 Fields = fieldValues,
                 FileIds = item.FileIds,
                 Tags = item.Tags.Select(tag => tag.Text),
