@@ -28,6 +28,30 @@ namespace Podio.API.Services
             return PodioRestHelper.Request<Task>(Constants.PODIOAPI_BASEURL + "/task/" + taskId, _client.AuthInfo.AccessToken).Data;
         }
 
+        /// <summary>
+        /// https://developers.podio.com/doc/tasks/get-task-77949
+        /// </summary>
+        public IEnumerable<Task> GetTasksDelegatedTo(int userId)
+        {
+            Dictionary<string, string> _args = new Dictionary<string, string>();
+            _args.Add("completed", "0");
+            _args.Add("responsible", userId.ToString());
+            _args.Add("created_by", "user:0");
+            return PodioRestHelper.Request<List<Task>>(Constants.PODIOAPI_BASEURL + "/task/", _client.AuthInfo.AccessToken, _args).Data;
+        }
+
+        /// <summary>
+        /// https://developers.podio.com/doc/tasks/get-task-77949
+        /// </summary>
+        public IEnumerable<Task> GetTasksDelegatedFrom(int userId)
+        {
+            Dictionary<string, string> _args = new Dictionary<string, string>();
+            _args.Add("completed", "0");
+            _args.Add("responsible", "0");
+            _args.Add("created_by", "user:" + userId.ToString());
+            return PodioRestHelper.Request<List<Task>>(Constants.PODIOAPI_BASEURL + "/task/", _client.AuthInfo.AccessToken, _args).Data;
+        }
+
         [DataContract]
         public struct CreateUpdateRequest
         {

@@ -26,6 +26,14 @@ namespace Podio.API.Services
         }
 
         /// <summary>
+        /// https://developers.podio.com/doc/organizations/get-organizations-22411
+        /// </summary>
+        public IEnumerable<Organization> GetSharedOrganizations(int userId)
+        {
+            return PodioRestHelper.Request<List<Organization>>(Constants.PODIOAPI_BASEURL + "/org/shared/" + userId.ToString(), _client.AuthInfo.AccessToken).Data;
+        }
+
+        /// <summary>
         /// https://developers.podio.com/doc/organizations/get-organization-22383
         /// </summary>
         public Organization GetOrganization(int orgId) {
