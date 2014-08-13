@@ -1,12 +1,8 @@
 Podio.API-for-.NET
 ==================
 
-A client library for accessing Podio's REST API in a civilized manner from .NET
+This repo is outdated
 
-The .NET client requires .NET framework 3.5 to be installed. Install the client by using the Package manager in Visual Studio, adding this Nuget storage:
+Go to : https://developers.podio.com/clients/dotnet - or - http://podio.github.io/podio-dotnet/
 
-http://nuget.kasperb.dk/nuget
-
-as a source - and install the package Podio.API
-
-Documentation: https://developers.podio.com/clients/dotnet
+To find the current supported .NET api for Podio
