@@ -138,6 +138,12 @@ namespace Podio.API.Model
 		[DataMember(Name = "shares", IsRequired=false)]
 		public List<AppStoreShare> Shares { get; set; }
 
+        [DataMember(Name = "app_item_id", IsRequired = false)]
+        public int? AppIetmId { get; set; }
+
+        [DataMember(Name = "app_item_id_formatted", IsRequired = false)]
+        public string AppItemIdFormated { get; set; }
+
 
 	}
 }
