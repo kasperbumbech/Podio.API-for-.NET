@@ -19,7 +19,9 @@ namespace ConvertRubyModels
         {
             DirectoryInfo inputdir = new DirectoryInfo(ConfigurationManager.AppSettings["InputDirectory"]);
             DirectoryInfo outputdir = Directory.CreateDirectory(ConfigurationManager.AppSettings["OutputDirectory"]);
-          
+            // Added to get the current directory for the windows phone app library from the config file.
+            DirectoryInfo outputdirWP8 = Directory.CreateDirectory(ConfigurationManager.AppSettings["OutputDirectoryWP8"]);
+
             // convert all ruby files and output it to outputdir
             foreach (var fi in inputdir.GetFiles("*.rb"))
             {
@@ -27,6 +29,11 @@ namespace ConvertRubyModels
                 string filecontents = fi.OpenText().ReadToEnd();
 
                 using (var writer = File.CreateText(Path.Combine(outputdir.FullName, ConvertCaseString(filename, Case.PascalCase) + ".cs")))
+                {
+                    writer.WriteLine(ConvertPodioModelFile(filecontents));
+                }
+                //writing out the podio API clss library to the model directory for the Windows Phone 8 class library
+                using (var writer = File.CreateText(Path.Combine(outputdirWP8.FullName, ConvertCaseString(filename, Case.PascalCase) + ".cs")))
                 {
                     writer.WriteLine(ConvertPodioModelFile(filecontents));
                 }
