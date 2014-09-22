@@ -1,4 +1,5 @@
-﻿using Podio.API.Exceptions;
+﻿using System.Web.Configuration;
+using Podio.API.Exceptions;
 using Podio.API.Utils;
 using System;
 using System.Collections.Generic;
@@ -188,5 +189,6 @@ namespace Podio.API
 
         public Services.TaskService TaskService { get { return new Services.TaskService(this); } }
 
+        public Services.ContactService ContactService { get { return new Services.ContactService(this); } }
     }
 }
