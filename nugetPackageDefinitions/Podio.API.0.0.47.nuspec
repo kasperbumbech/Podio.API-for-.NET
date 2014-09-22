@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Podio.API</id>
+        <version>0.0.47</version>
+        <title>Podio.API Assembly for Windows Apps</title>
+        <authors>Kasper Bumbech Andersen</authors>
+        <owners>Kasper Bumbech Andersen</owners>
+        <projectUrl>https://github.com/kasperbumbech/Podio.API-for-.NET/tree/master/Podio.API</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A warpper for the Podio API that helps building app that need access to the Podio.API.</description>
+        <summary>A warpper for the Podio API that helps building app that need access to the Podio.API.</summary>
+        <language>en-US</language>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="4.5.11" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\Podio.API\bin\Debug\Podio.API.dll" target="lib\Podio.API.dll" />
+    </files>
+</package>

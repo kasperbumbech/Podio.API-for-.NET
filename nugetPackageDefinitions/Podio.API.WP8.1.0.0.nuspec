@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Podio.API.WP8</id>
+        <version>1.0.0</version>
+        <title>Podio API Models for Windows Phone 8</title>
+        <authors>John McBride</authors>
+        <owners>John McBride</owners>
+        <projectUrl>https://github.com/kasperbumbech/Podio.API-for-.NET</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A Client library for access the Podio API (http://www.podio.com) from a Windows Phone 8 project.</description>
+        <summary>A Client library for access the Podio API (http://www.podio.com) from a Windows Phone 8 project.</summary>
+        <language>en-US</language>
+        <tags>Social, Podio, API</tags>
+    </metadata>
+    <files>
+        <file src="lib\WP8.Podio.API.dll" target="lib\WP8.Podio.API.dll" />
+    </files>
+</package>
